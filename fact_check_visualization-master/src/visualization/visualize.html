@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+</style>
+
+<head>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+</head>
+
+<body>
+
+    <script>
+    //gets the browser's window width and height
+
+        var width = window.innerWidth, height = window.innerHeight;  
+
+        var svg = d3.select("body")      // creates a new svg element (empty container) and appends it to the body element, and sets its height and width as the window's
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .style("border", "1px solid black");
+
+
+        var color = d3.scaleOrdinal(d3.schemeCategory20);   //array of random colors (some nice color scheme)
+
+
+        d3.json("data.json", function(error, graph)         // with the data from the json file, (put the data in the variable "graph")
+        {
+            if (error) throw error;
+
+
+            var nodes = svg.selectAll("td")               // get all the rectangles in the DOM, there is none,
+                .data(graph.nodes)                          // load the nodes as the date in rectangles
+                .enter()                                    // because there is no recatngles in the DOM, enter() will reseve placeholders for rectangles to put the data in
+                .append("rect")                             // append new rectangles elements in the placeholder reserved for them in the previous step
+                .attr("class", "graph_nodes");              // change the class for all the rectangle elements and call it "nodes"
+
+            nodesAttributes =                               // chaning the attributes of the rectangles (nodes) created in the previous step
+                nodes.attr("x", 10)
+                .attr("y", 10)
+                .attr("width", 50)
+                .attr("height", 100)
+                .style("fill", function(d) { return d.group; });
+                //.call(d3.drag()
+                //    .on("start", dragstarted)
+                //    .on("drag", dragged)
+                //    .on("end", dragended));
+
+
+            var links = svg.append("g")                     // creating links the same way we created rectangles
+                .attr("class", "links")
+                .selectAll("line")
+                .data(graph.links)
+                .enter().append("line");
+
+
+            var linesAttributes=
+                links.attr("stroke-width", function(d) { return Math.sqrt(d.value); })    // change the stoke width based on the weight of the edge as it comes in the JSON file in the property "value"
+                .attr("x1", function(d) { return d.source.x; })                           // change the positions of the line (edge) so that its x starts at the source object's X (the node's X)
+                .attr("y1", function(d) { return d.source.y; })
+                .attr("x2", function(d) { return d.target.x; })
+                .attr("y2", function(d) { return d.target.y; });
+
+            var lables = nodes.append("text")
+                .text(function(d) {return d.id;})
+                .attr('x', 500)
+                .attr('y', 500);
+
+
+
+
+
+
+        });
+
+        function dragstarted(d)
+        {
+
+            //d.fx = d.x;
+            //d.fy = d.y;
+        }
+
+        function dragged(d)
+        {
+
+            //d.fx = d3.event.x;
+            //d.fy = d3.event.y;
+        }
+
+        function dragended(d)
+        {
+
+            //d.fx = null;
+            //d.fy = null;
+        }
+
+
+
+    </script>
+
+
+</body>
