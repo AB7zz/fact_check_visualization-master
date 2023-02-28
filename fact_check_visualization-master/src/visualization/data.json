@@ -1,110 +1,26 @@
 {
+    "nodes": [
+        {
+            "id": "0",
+            "snippet": "There are at least 25,772,342 illegal aliens, not the 11,000,000 that have been reported for years, in our Country.",
+            "claimer": "Donald Trump ",
+            "date": "2019-01-27",
+            "type": "claim",
+            "year": 2019
+        },
+        {
+            "id": 1,
+            "url": "https://www.nydailynews.com/news/politics/ny-news-politics-trump-illegal-immigrants-25772342-story.html#:~:text=That%20fuzzy%20math%20appears%20to%20be%20based%20on,our%20Country%2C%E2%80%9D%20he%20claimed%20in%20that%20same%20tweet.",
+            "snippet": "On Sunday, Trump tweeted, “We are not even into February and the cost of illegal immigration so far this year is $18,959,495,168.",
+            "type": "evidence",
+            "year": "UNKNOWN"
+        }
+    ],
     "links": [
         {
             "source": 1,
-            "value": "1",
-            "target": "0"
-        },
-        {
-            "source": 2,
-            "value": "1",
-            "target": "0"
-        },
-        {
-            "source": 3,
-            "value": "1",
-            "target": "0"
-        },
-        {
-            "source": 4,
-            "value": "1",
-            "target": "0"
-        },
-        {
-            "source": 5,
-            "value": "1",
-            "target": "0"
-        },
-        {
-            "source": 6,
-            "value": "1",
-            "target": "0"
-        },
-        {
-            "source": 7,
-            "value": "1",
-            "target": "0"
-        },
-        {
-            "source": 8,
-            "value": "1",
-            "target": "0"
-        }
-    ],
-    "nodes": [
-        {
-            "claimer": "Donald Trump",
-            "year": 2019,
-            "id": "0",
-            "type": "claim",
-            "date": "2019-01-27",
-            "snippet": "We are not even into February and the cost of illegal immigration so far this year is $18,959,495,168."
-        },
-        {
-            "type": "evidence",
-            "url": "https://www.politifact.com",
-            "year": 2019,
-            "snippet": "\"We are not even into February and the cost of illegal immigration so far this year is $18,959,495,168.",
-            "id": 1
-        },
-        {
-            "type": "evidence",
-            "url": "https://www.washingtonpost.com",
-            "year": 2019,
-            "snippet": "But both numbers can only be estimates; there is no actual count of undocumented immigrants, and there is a big dispute over what kind of financial drain, if any, illegal immigration places on the United States.. .",
-            "id": 2
-        },
-        {
-            "type": "evidence",
-            "url": "https://www.thedailybeast.com",
-            "year": 2019,
-            "snippet": "“There are at least 25,772,342 illegal aliens, not the 11,000,000 that have been reported for years, in our Country.",
-            "id": 3
-        },
-        {
-            "type": "evidence",
-            "url": "https://www.daytondailynews.com",
-            "year": "UNKNOWN",
-            "snippet": "“We are not even into February and the cost of illegal immigration so far this year is $18,959,495,168.",
-            "id": 4
-        },
-        {
-            "type": "evidence",
-            "url": "https://centurylink.net",
-            "year": 2019,
-            "snippet": "“There are at least 25,772,342 illegal aliens, not the 11,000,000 that have been reported for years, in our Country.",
-            "id": 5
-        },
-        {
-            "type": "evidence",
-            "url": "https://www.businessinsider.com",
-            "year": 2019,
-            "snippet": "There are at least 25,772,342 illegal aliens, not the 11,000,000 that have been reported for years, in our Country.\".",
-            "id": 6
-        },
-        {
-            "type": "evidence",
-            "url": "https://thehill.com",
-            "year": 2019,
-            "snippet": "There are at least 25,772,342 illegal aliens, not the 11,000,000 that have been reported for years, in our Country.",
-            "id": 7
-        },
-        {
-            "type": "evidence",
-            "url": "https://www.texasstandard.org",
-            "year": 2019,
-            "snippet": "There are at least 25,772,342 illegal aliens, not the 11,000,000 that have been reported for years, in our Country.",
-            "id": 8
+            "target": "0",
+            "value": "1"
         }
     ]
 }

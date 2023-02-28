@@ -93,19 +93,19 @@ def get_sentence_vector(sentence):
 # returns relevant_sentences = [relevant sentences from the article in order of similarity]
 def find_most_similar(article, claim):
     relevant_sentences = []
-    print ("Finding most relevant sentences ...")
+    print("Finding most relevant sentences ...")
     claim_vector = get_sentence_vector(claim)
-    # sentence_tokens = [sentencefromarticle,sentencefromarticle,sentencefromarticle]
+    # sentence_tokens = [sentencefromarticle, sentencefromarticle, sentencefromarticle]
     sentence_tokens = sent_tokenize(article)
-    #  if more than 5 sentences then onlt we 
-    if len(sentence_tokens)>5:
-        sentences =[]
+    #  if more than 5 sentences then only we
+    if len(sentence_tokens) > 5:
+        sentences = []
         for sent in sentence_tokens:
             if sent != '.':
                 s = Article_sent(sent)
                 s.vector = get_sentence_vector(s.text)
                 # checks sentences in the article with the sentences in the claim
-                s.similarity =  cosine_similarity(s.vector,claim_vector)
+                s.similarity =  cosine_similarity(s.vector, claim_vector)
                 sentences.append(s)
 
 
@@ -115,7 +115,7 @@ def find_most_similar(article, claim):
             relevant_sentences.append(sent.text)
         return relevant_sentences
     else:
-        return None,None
+        return None, None
 
 
 

@@ -3,6 +3,7 @@
         {
             "claim": "There are at least 25,772,342 illegal aliens, not the 11,000,000 that have been reported for years, in our Country.",
             "most_relevant_sent": [
+<<<<<<< HEAD
                 "There are at least 25,772,342 illegal aliens, not the 11,000,000 that have been reported for years, in our Country.",
                 "There are at least 25,772,342 illegal aliens, not the 11,000,000 that have been reported for years, in our Country.",
                 "There are at least 25,772,342 illegal aliens, not the 11,000,000 that have been reported for years, in our Country.\". .",
@@ -13,6 +14,19 @@
                 "January"
             ],
             "image": "https://static.politifact.com/politifact/rulings/meter-false.jpg",
+=======
+                "“There are at least 25,772,342 illegal aliens, not the 11,000,000 that have been reported for years, in our Country,” he claimed in that same tweet.",
+                "On Sunday, Trump tweeted, “We are not even into February and the cost of illegal immigration so far this year is $18,959,495,168.",
+                "The Daily Beast pointed out that according to a Department of Homeland Security report released last month, the number of illegal immigrants in the U.S., which is declining, is closer to 10.7 million.. .",
+                "That fuzzy math appears to be based on Trump’s claim that there are 14 million more undocumented immigrants in the country than any published research seems to support.. ."
+            ],
+            "publish_date": "UNKNOWN",
+            "authors": [
+                "Brian Niemietznew York Daily Newsjan",
+                "At Pm"
+            ],
+            "image": "https://www.nydailynews.com/resizer/GLnmtxzT1JEExGHpLhEkqrnVuWw=/1200x630/filters:format(jpg):quality(70)/www.trbimg.com/img-5c4e2391/turbine/ny-1548624780-ppjgi0mpbg-snap-image",
+>>>>>>> origin/master
             "keywords": "UNKNOWN",
             "summary": "UNKNOWN",
             "stance": 0

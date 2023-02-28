@@ -17,7 +17,7 @@ from datetime import datetime
 # called by the google_search's do_research() function 
 def read_claims(claims_file):
     claims =[]
-    with codecs.open(claims_file,'r',encoding='utf8') as f:
+    with codecs.open(claims_file, 'r', encoding='utf8') as f:
         lines = f.readlines()
         # lines = all claims
         # line = 1 claim
