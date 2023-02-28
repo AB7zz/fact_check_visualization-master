@@ -1,0 +1,21 @@
+{
+  "nodes": [
+    {"id": "Myriel", "group": 1},
+    {"id": "Napoleon", "group": 1},
+    {"id": "Labarre", "group": 2},
+    {"id": "Zephine", "group": 3},
+    {"id": "Fantine", "group": 3}
+
+
+  ],
+  "links": [
+    {"source": "Napoleon", "target": "Myriel", "value": 1},
+    {"source": "Napoleon", "target": "Labarre", "value": 8},
+    {"source": "Napoleon", "target": "Myriel", "value": 10},
+    {"source": "Labarre", "target": "Fantine", "value": 6},
+    {"source": "Fantine", "target": "Myriel", "value": 1},
+    {"source": "Fantine", "target": "Zephine", "value": 1}
+
+
+  ]
+}
