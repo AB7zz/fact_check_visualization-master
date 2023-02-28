@@ -25,19 +25,19 @@ def parse_parameters(opts):
     logging.info(param)
 
     return param
-def extract_urls_from_html(article):
+def extract_urls_from_html(articles, i):
     urls = dict()
-    if len(article) <= 1:
+    if i == 1:
         parser = AdvancedHTMLParser()
-        parser.parseStr(article.html)
+        parser.parseStr(articles.html)
         temp_links = parser.getElementsByTagName('a')
         # we fill up the article.text (datastructure) with article.text default from newspaper.py
-        whole_article_text = article.text
+        whole_article_text = articles.text
         p_article_text = parser.getElementsByTagName('p')
         # print(article.url)
 
         req = Request(
-            url=article.url,
+            url=articles.url,
             headers={'User-Agent': 'Mozilla/5.0'}
         )
         webpage = urlopen(req).read()
@@ -120,7 +120,7 @@ def analyze_article(article, claim, n_relevant):
 # called from do_research for each claim in the for loop
 # ideally supposed to return all the relevant urls so that the json file can be filled up with this part
 def analyze_urls(claim):
-    all_urls = extract_urls_from_html(claim.articles)
+    all_urls = extract_urls_from_html(claim.articles, 0)
     print("*****")
     print(all_urls)
     print("*****")
@@ -201,7 +201,7 @@ def analyze_urls(claim):
 
             # url.articles = analyzed_articles
             i += 1
-            newurls = extract_urls_from_html(analyzed_article)
+            newurls = extract_urls_from_html(analyzed_article, 1)
             if len(newurls) != 0:
                 totalurls.extend(newurls)
             else:
