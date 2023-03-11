@@ -28,12 +28,12 @@ def parse_parameters(opts):
 def extract_urls_from_html(articles, i):
     urls = dict()
     if i == 1:
-        parser = AdvancedHTMLParser()
-        parser.parseStr(articles.html)
-        temp_links = parser.getElementsByTagName('a')
-        # we fill up the article.text (datastructure) with article.text default from newspaper.py
-        whole_article_text = articles.text
-        p_article_text = parser.getElementsByTagName('p')
+        # parser = AdvancedHTMLParser()
+        # parser.parseStr(articles.html)
+        # temp_links = parser.getElementsByTagName('a')
+        # print(parser)
+        # whole_article_text = articles.text
+        # p_article_text = parser.getElementsByTagName('p')
         # print(article.url)
 
         req = Request(
@@ -45,22 +45,16 @@ def extract_urls_from_html(articles, i):
         all_p_urls = [tag['href'] for tag in soup.select('p a[href]')]
         for i, val in enumerate(all_p_urls):
             if "http" not in val:
-                print(i, val)
                 all_p_urls.pop(i)
 
-        # iterates over all links and takes the ones that are not empty
-        tmp_links = [link for link in temp_links if not link.innerHTML.strip() == '']
+        # tmp_links = [link for link in temp_links if not link.innerHTML.strip() == '']
 
+
+        # links = []
         # for link in tmp_links:
-        #     print(link.innerHTML)
-        links = []
-        # iterates over all nonempty links in that article
-        for link in tmp_links:
-            # if link is there in article.text datastructure which was filled up by article.text newspaper library
-            if link.innerHTML in whole_article_text:
-                # printCyan(link.innerHTML)
-                links.append(link)
-        urls[i] = links
+        #     if link.innerHTML in whole_article_text:
+        #         links.append(link)
+        # urls[i] = links
         return all_p_urls
     for i, article in enumerate(articles, start=1):
         parser = AdvancedHTMLParser()
@@ -155,60 +149,58 @@ def analyze_urls(claim):
 
     opts = optparser.parse_args()[0]
     param = parse_parameters(opts)
-    while len(all_urls) != 0:
-        i = 1
-        for url in all_urls:
-            print(url)
-            article = Article(url)
-            try:
-                article.download()
-            except:
-                printRed("Unable to download the article: " + url)
-            try:
-                article.parse()
-            except:
-                printRed("Unable to parse the article :" + url)
+    i = 1
+    for url in all_urls:
+        article = Article(url)
+        try:
+            article.download()
+        except:
+            printRed("Unable to download the article: " + url)
+        try:
+            article.parse()
+        except:
+            printRed("Unable to parse the article :" + url)
 
+        print(article.url, i)
+        if article.text != "":
+            analyzed_article = Analyzed_article(article.text, i)
+            # article.preprocessed_text just the articles text with . and no tabs
+            analyzed_article.preprocessed_text = preprocess_article_text(article.text)
 
-            if article.text != "":
-                analyzed_article = Analyzed_article(article.text, i)
-                # article.preprocessed_text just the articles text with . and no tabs
-                analyzed_article.preprocessed_text = preprocess_article_text(article.text)
+            analyzed_article.most_relevant_sent = analyze_article(analyzed_article.preprocessed_text, claim.text,
+                                                         param['n_relevant_sent'])
 
-                analyzed_article.most_relevant_sent = analyze_article(analyzed_article.preprocessed_text, claim.text,
-                                                             param['n_relevant_sent'])
-
-                if analyzed_article.most_relevant_sent is not None:
-                    if len(analyzed_article.authors) > 0:
-                        article.author = article.authors
-                    if article.publish_date is not None:
-                        formatted_date = article.publish_date.strftime("%d-%b-%Y")
-                        analyzed_article.publish_date = formatted_date
-                        analyzed_article.year = article.publish_date.year
-                    if article.top_image != '':
-                        analyzed_article.image = article.top_image
-                    if article.summary != '':
-                        analyzed_article.summary = article.summary
-                    if len(article.keywords) > 0:
-                        analyzed_article.keywords = article.keywords
-                    if article.source_url != '':
-                        analyzed_article.source_url = article.source_url
-                    if article.url != '':
-                        analyzed_article.url = article.url
-                    if article.html != '':
-                        analyzed_article.html = article.html
-
-
+            if analyzed_article.most_relevant_sent is not None:
+                if len(article.authors) > 0:
+                    article.author = article.authors or ""
+                if article.publish_date is not None:
+                    formatted_date = article.publish_date.strftime("%d-%b-%Y")
+                    analyzed_article.publish_date = formatted_date
+                    analyzed_article.year = article.publish_date.year
+                if article.top_image != '':
+                    analyzed_article.image = article.top_image
+                if article.summary != '':
+                    analyzed_article.summary = article.summary
+                if len(article.keywords) > 0:
+                    analyzed_article.keywords = article.keywords
+                if article.source_url != '':
+                    analyzed_article.source_url = article.source_url
+                if article.url != '':
+                    analyzed_article.url = article.url
+                if article.html != '':
+                    analyzed_article.html = article.html
             # url.articles = analyzed_articles
             i += 1
-            newurls = extract_urls_from_html(analyzed_article, 1)
-            if len(newurls) != 0:
-                totalurls.extend(newurls)
-            else:
-                continue
-        all_urls = totalurls
-        totalurls = []
-        print("FIRST LISTS LOOP")
-        print(all_urls)
-        print("FIRST LISTS END")
+            if(analyzed_article.url != "UNKNOWN"):
+                print(analyzed_article.url, i)
+                newurls = extract_urls_from_html(analyzed_article, 1)
+                if len(newurls) != 0:
+                    totalurls.extend(newurls)
+                else:
+                    continue
+    all_urls = totalurls
+    totalurls = []
+    print("FIRST LISTS LOOP")
+    print(all_urls)
+    print("FIRST LISTS END")
     return 0
