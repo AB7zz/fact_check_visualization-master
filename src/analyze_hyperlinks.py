@@ -74,7 +74,6 @@ def extract_urls_from_html(articles, i):
         all_p_urls = [tag['href'] for tag in soup.select('p a[href]')]
         for i, val in enumerate(all_p_urls):
             if "http" not in val:
-                print(i, val)
                 all_p_urls.pop(i)
 
 
@@ -151,6 +150,8 @@ def analyze_urls(claim):
     param = parse_parameters(opts)
     i = 1
     for url in all_urls:
+        if i == 5:
+            break
         article = Article(url)
         try:
             article.download()
@@ -161,7 +162,6 @@ def analyze_urls(claim):
         except:
             printRed("Unable to parse the article :" + url)
 
-        print(article.url, i)
         if article.text != "":
             analyzed_article = Analyzed_article(article.text, i)
             # article.preprocessed_text just the articles text with . and no tabs
@@ -192,7 +192,6 @@ def analyze_urls(claim):
             # url.articles = analyzed_articles
             i += 1
             if(analyzed_article.url != "UNKNOWN"):
-                print(analyzed_article.url, i)
                 newurls = extract_urls_from_html(analyzed_article, 1)
                 if len(newurls) != 0:
                     totalurls.extend(newurls)

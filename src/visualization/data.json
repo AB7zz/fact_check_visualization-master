@@ -2,25 +2,25 @@
     "nodes": [
         {
             "id": "0",
-            "snippet": "We are not even into February and the cost of illegal immigration so far this year is $18,959,495,168.",
-            "claimer": "Donald Trump",
+            "snippet": "There are at least 25,772,342 illegal aliens, not the 11,000,000 that have been reported for years, in our Country.",
+            "claimer": "Donald Trump ",
             "date": "2019-01-27",
             "type": "claim",
             "year": 2019
         },
         {
             "id": 1,
-            "url": "https://www.politifact.com/factchecks/2019/jan/28/donald-trump/fact-checking-donald-trumps-claim-cost-illegal-imm/",
-            "snippet": "\"We are not even into February and the cost of illegal immigration so far this year is $18,959,495,168.",
+            "url": "https://www.pbs.org/newshour/politics/ap-fact-check-trumps-shift-on-a-concrete-border-wall",
+            "snippet": "According to Pew, the number of immigrants in the U.S. illegally had reached a height of 12.2 million in 2007, representing about 4 percent of the U.S. population, before declining in part because of a weakening U.S. economy.. .",
             "type": "evidence",
             "year": 2019
         },
         {
             "id": 2,
-            "url": "https://www.businessinsider.com/trump-illegal-immigration-cost-200-billion-year-anti-immigration-groups-confused-2018-12",
-            "snippet": "There are at least 25,772,342 illegal aliens, not the 11,000,000 that have been reported for years, in our Country.\".",
+            "url": "https://www.politifact.com/factchecks/2019/jan/28/donald-trump/fact-checking-donald-trumps-claim-cost-illegal-imm/",
+            "snippet": "There are at least 25,772,342 illegal aliens, not the 11,000,000 that have been reported for years, in our Country.",
             "type": "evidence",
-            "year": "UNKNOWN"
+            "year": 2019
         }
     ],
     "links": [
