@@ -19,7 +19,8 @@ class Analyzed_article:
         self.source_url = "UNKNOWN"
         self.url = "UNKNOWN"
         self.year = "UNKNOWN"
-        self.html = ""
+        self.html = "",
+        self.all_urls = []
 
 
 class Claim:

@@ -176,8 +176,11 @@ def do_research(param):
         # article,article,article,article]] filling up the Claim.articles[] for each claim to have all the articles
         # that are analyzed claims.articles = [relevantartcledatastructure, relevantartcledatastructure,
         # relevantartcledatastructure] in the order of which article came on google search first
-        claim.articles = analyzed_articles
         # write_test_file(param,claim)
+
+        claim.articles = analyzed_articles
+
+        analyze_urls(claim, article)
 
         # called by do_research
         # writes json data for a single claim's articles
@@ -186,7 +189,7 @@ def do_research(param):
         # same thing as dump_data but in a more organized way for D3
         write_json_visulization(param, claim)
 
-        analyze_urls(claim)
+
 
 
 def main(opts):
@@ -208,7 +211,7 @@ if __name__ == '__main__':
         help="path_to the output file, each file has a claim and its analysis"
     )
     optparser.add_option(
-        "-s", "--stop", default=2,
+        "-s", "--stop", default=1,
         help="number of claims to analyze"
     )
     optparser.add_option(
@@ -220,7 +223,7 @@ if __name__ == '__main__':
         help="limit research to the first r search results retrieved."
     )
     optparser.add_option(
-        "-j", "--json_visualization", default='visualization/data.json',
+        "-j", "--json_visualization", default='visualization/json/newdata.json',
         help="the path to the json output file used by the D3 code to visualize the network."
     )
 

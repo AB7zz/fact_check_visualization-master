@@ -112,7 +112,7 @@ def analyze_article(article, claim, n_relevant):
 
 # called from do_research for each claim in the for loop
 # ideally supposed to return all the relevant urls so that the json file can be filled up with this part
-def analyze_urls(claim):
+def analyze_urls(claim, article):
     all_urls = extract_urls_from_html(claim.articles, 0)
     print("*****")
     print(all_urls)
@@ -194,6 +194,7 @@ def analyze_urls(claim):
             if(analyzed_article.url != "UNKNOWN"):
                 newurls = extract_urls_from_html(analyzed_article, 1)
                 if len(newurls) != 0:
+                    analyzed_article.all_url.extend(newurls)
                     totalurls.extend(newurls)
                 else:
                     continue

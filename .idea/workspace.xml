@@ -9,6 +9,9 @@
       <change beforePath="$PROJECT_DIR$/output_data/claim1.json" beforeDir="false" afterPath="$PROJECT_DIR$/output_data/claim1.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/output_data/claim2.json" beforeDir="false" afterPath="$PROJECT_DIR$/output_data/claim2.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/analyze_hyperlinks.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/analyze_hyperlinks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/google_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/google_search.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/data_structures.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/data_structures.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/read_write.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/read_write.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/visualization/data.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/visualization/data.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

@@ -77,15 +77,20 @@ def write_json_visulization(param, claim):
 
     # append the claim to the JSON file as a claim node
     data['nodes'].append({
-        'id': '0',
+        'id': 0,
         'snippet': claim.text,
         'claimer': claim.claimer,
         'date': claim.date,
         'type': 'claim',
         'year': claim.year
     })
-    # append the releveant documents as evidence documents
+    # append the relevant documents as evidence documents
+    print("ALL ARTICLES");
+    print(claim.articles)
+
+
     for a in claim.articles:
+
         data['nodes'].append({
             'id' : a.id,
             'url': a.url,
@@ -100,6 +105,23 @@ def write_json_visulization(param, claim):
             'target': '0',
             'value': '1'
         })
+
+        # all urls don't have an id, url, most_relevant_sent. Might have to make a new data structure
+        for z in a.all_urls:
+            data['nodes'].append({
+                'id': z.id,
+                'url': z.url,
+                'snippet': z.most_relevant_sent[1],
+                'type': 'evidence',
+                'year': z.year
+            })
+
+            # append links from each relevant article to the claim node
+            data['links'].append({
+                'source': z.id,
+                'target': '0',
+                'value': '1'
+            })
 
     with open(param['json_visualization'], 'w', encoding='utf-8') as out:
         json.dump(data, out, ensure_ascii=False, indent=4)
