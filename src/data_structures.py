@@ -3,10 +3,10 @@
 #  ______________________________________________________________________________________________________________________ #
 #  Author : Israa Qasim Jaradat , IDIR lab, University of Texas at Arlington                                              #
 ###########################################################################################################################
-from settings import global_counter1
+# from settings import global_counter1
 class Analyzed_article:
     def __init__(self, text):
-        self.id = next(global_counter1)
+        self.id = 1
         self.text = text
         self.preprocessed_text = ""
         self.most_relevant_sent = []

@@ -9,7 +9,7 @@ from newspaper import Article
 
 from bert_embeddings import *
 from data_structures import Analyzed_article
-from settings import global_counter1
+# from settings import global_counter1
 
 # called by analyze_urls right below, gets a single claim from the claims for loop in do_research()
 # it's meant to extract the urls that are found in the one article (for all articles)
@@ -124,7 +124,7 @@ def analyze_urls(originalarticle, claim, depth):
             help="limit research to the first r search results retrieved."
         )
         optparser.add_option(
-            "-j", "--json_visualization", default='visualization/data.json',
+            "-j", "--json_visualization", default='visualization/json/newdata.json',
             help="the path to the json output file used by the D3 code to visualize the network."
         )
 
@@ -153,7 +153,7 @@ def analyze_urls(originalarticle, claim, depth):
                                                                       param['n_relevant_sent'])
 
                 if analyzed_article.most_relevant_sent is not None:
-                    next(global_counter1)
+                    # next(global_counter1)
                     if len(article.authors) > 0:
                         article.author = article.authors or ""
                     if article.publish_date is not None:
