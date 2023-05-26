@@ -22,12 +22,31 @@ d3.json("./json/newdata.json").then(function(json, error){
     //     .stop()
     // for (var i = 0; i < 300; ++i) simulation.tick();
 
+    var edges = [];
+    console.log(json.links)
+    json.links.forEach(function(e, i) {
+        var sourceNode = json.nodes.filter(function(n) {
+            return n.id === e.source;
+        })[0],
+            targetNode = json.nodes.filter(function(n) {
+                return n.id === e.target;
+            })[0];
+    
+        edges.push({
+            source: sourceNode,
+            target: targetNode,
+            value: e.value
+        });
+    });
+
+    console.log(edges)
+
     d3.forceSimulation(json.nodes)                 
-        .force("link", d3.forceLink(json.links))
+        .force("link", d3.forceLink(edges))
     
     const arrows = svg
         .selectAll('defs')
-        .data(json.links)
+        .data(edges)
         .enter()
         .append("svg:defs")
         .append("svg:marker")
@@ -44,9 +63,10 @@ d3.json("./json/newdata.json").then(function(json, error){
         .append("svg:path")
         .attr("d", "M0,-5L10,0L0,5");
 
+
     const link = svg
         .selectAll("line")
-        .data(json.links)
+        .data(edges)
         .enter()
         .append("line")
         .attr('class', 'lines')
@@ -71,13 +91,13 @@ d3.json("./json/newdata.json").then(function(json, error){
             .attr('font-size', '25px')
             .attr('font-weight', 'bold')
             .attr('x', x+120)
-            .attr('y', y+300)
+            .attr('y', y+500)
     }
     
     const yAxis = []
     const xAxis = []
     const timelineset = []
-    let maxyear = 2019
+    let maxyear = 2023
     let minyear = 2010
     
     node 
@@ -101,16 +121,11 @@ d3.json("./json/newdata.json").then(function(json, error){
         // )
         .attr("x", function(d){
             let xi, month = 0
-            if(d.year[0] == "UNKNOWN"){
-                xi = 150
-            }else if(d.year[0] == 0){
+            let year = d.year[0]
+            if(year == 0 || d.year == "UNKNOWN"){
                 xi = ((maxyear-minyear)*400)+50
-            }else if(d.date){
-                month = parseFloat(d.date.split("-")[1])
-                xi = ((maxyear-d.year[0])*400)+50
-            }
-            if (d.id == 10){
-                // console.log(xi)
+            }else{
+                xi = ((maxyear-year)*400)+50
             }
             xAxis.push(xi)
             d.x = parseFloat(xi)
@@ -119,26 +134,28 @@ d3.json("./json/newdata.json").then(function(json, error){
         .attr("y", function(d){
             let i, yi
             i = 0
+            let year = d.year[0]
             while(json.nodes[i].id!=d.id){
                 i++
             }
-            if(d.year[0] == "UNKNOWN"){
-                d.year[0] = 2019
+            if(year == "UNKNOWN"){
+                year = 2023
             }
-            if(!yAxis[maxyear-d.year[0]]){
-                yAxis[maxyear-d.year[0]] = 200
+            if(!yAxis[maxyear-year]){
+                yAxis[maxyear-year] = 200
             }
             else{
-                yAxis[maxyear-d.year[0]] += 300
+                yAxis[maxyear-year] += 500
             }
-            yi = yAxis[maxyear-d.year[0]]
+            yi = yAxis[maxyear-year]
             d.y = parseFloat(yi)
             return yi;  
         })
         .attr('timeline', (d) => {
             let ymax=json.nodes[0].y, xmax=json.nodes[0].x
-            if(d.year[0] == "UNKNOWN"){
-                d.year[0] = 2019
+            let year = d.year[0]
+            if(year == "UNKNOWN"){
+                year = 2023
             }
             for(let l = 1; l < json.nodes.length; l++){
                 if(json.nodes[l].y >= ymax){
@@ -148,9 +165,9 @@ d3.json("./json/newdata.json").then(function(json, error){
                     xmax = json.nodes[l].x
                 }
             }
-            if(!timelineset[d.year[0]]){
-                bottomYear(d.x, ymax, d.year[0])
-                timelineset[d.year[0]] = true
+            if(!timelineset[year]){
+                bottomYear(d.x, ymax, year)
+                timelineset[year] = true
             }
             svg
                 .attr("height", ymax+1000)

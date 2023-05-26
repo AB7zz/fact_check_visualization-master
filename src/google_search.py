@@ -221,7 +221,7 @@ if __name__ == '__main__':
         help="limit research to the first r search results retrieved."
     )
     optparser.add_option(
-        "-j", "--json_visualization", default='visualization/data.json',
+        "-j", "--json_visualization", default='visualization/json/newdata.json',
         help="the path to the json output file used by the D3 code to visualize the network."
     )
 
