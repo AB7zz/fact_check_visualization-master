@@ -1,19 +1,15 @@
-from newspaper import Article
-from bert_embeddings import *
-from analyze_hyperlinks import *
-from helpers.read_write import *
 # from random import randrange
-import optparse
-from collections import OrderedDict
-import logging
+
 import nltk
-from helpers.print_colors import *
-# from googlesearch import search
-
 import requests
-from bs4 import BeautifulSoup
 
-from helpers.data_structures import Analyzed_article
+from analyze_hyperlinks import *
+from bert_embeddings import *
+from print_colors import *
+import settings
+from read_write import *
+from settings import global_counter1
+# from googlesearch import search
 
 nltk.download('punkt')
 
@@ -64,7 +60,7 @@ def search_claim(param, claim):
 
         if link.find('a'):
             urls.append(link.find('a')['href'])
-            count+=1
+            count += 1
     # urls =[articlelink,articlelink,articlelink] from google
 
     articles = []
@@ -117,7 +113,7 @@ def do_research(param):
     print("Research started ...")
     c = 1
     for claim in claims:
-        if c >= param['stop']+1:
+        if c >= param['stop'] + 1:
             break
 
         printLightPurple(
@@ -140,11 +136,13 @@ def do_research(param):
                 print("Processing article #" + str(
                     i))  # NOTE: the article may or may not be added to the output file based on its length")
                 # just creates a article data structure and fills up artcle.text and article.id
-                article = Analyzed_article(a.text, i)
+
+                article = Analyzed_article(a.text)
                 # article.preprocessed_text just the articles text with . and no tabs
                 article.preprocessed_text = preprocess_article_text(a.text)
 
-                article.most_relevant_sent = analyze_article(article.preprocessed_text, claim.text, param['n_relevant_sent'])
+                article.most_relevant_sent = analyze_article(article.preprocessed_text, claim.text,
+                                                             param['n_relevant_sent'])
                 # article.most_relevant_sent = [relevant sentence in order of similarity] we only fill up rest of the
                 # article data structure for that article only if there are similar sentences in that article
                 # compared to the claim
@@ -167,7 +165,7 @@ def do_research(param):
                         article.url = a.url
                     if a.html != '':
                         article.html = a.html
-
+                    article.depth = 0
                     analyzed_articles.append(article)
                     i += 1
         c += 1
@@ -179,20 +177,20 @@ def do_research(param):
         # write_test_file(param,claim)
 
         claim.articles = analyzed_articles
-
-        analyze_urls(claim, article)
+        # calling analyze article with 2 original articles
+        for a in claim.articles:
+            analyze_urls(a, claim, 1)
 
         # called by do_research
         # writes json data for a single claim's articles
         # this is called in a for loop iterating over each claim
-        dump_data(param, claim)
+
         # same thing as dump_data but in a more organized way for D3
-        write_json_visulization(param, claim)
-
-
+        write_json_visualization(param, claim)
 
 
 def main(opts):
+    next(global_counter1)
     # param = {'input': inputfilename, 'output': outputfilename, 'stop': stoplink,'n_relevant_sent': relevantsentlink,'top_search_results':topsearchlink,'json_visualization': jsonlink}
     param = parse_parameters(opts)  # get parameters from command
     do_research(param)
@@ -223,7 +221,7 @@ if __name__ == '__main__':
         help="limit research to the first r search results retrieved."
     )
     optparser.add_option(
-        "-j", "--json_visualization", default='visualization/json/newdata.json',
+        "-j", "--json_visualization", default='visualization/data.json',
         help="the path to the json output file used by the D3 code to visualize the network."
     )
 

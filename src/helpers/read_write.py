@@ -11,17 +11,17 @@
 
 import codecs
 import json
-from helpers.data_structures import *
+from data_structures import *
 from datetime import datetime
 
-# called by the google_search's do_research() function 
+# called by the google_search's do_research() function
 def read_claims(claims_file):
     claims =[]
     with codecs.open(claims_file, 'r', encoding='utf8') as f:
         lines = f.readlines()
         # lines = all claims
         # line = 1 claim
-        i=1
+        i=0
         for line in lines:
             #print(line)
             line=line.strip()
@@ -40,19 +40,37 @@ def read_claims(claims_file):
 # this is called in a for loop iterating over each claim
 def dump_data(param,claim):
     data = {}
+    datatmp = {}
     data['articles'] = []
+    datatmp['subarticles'] = []
     for article in claim.articles:
-
+        for subarticle in article.articleurls:
+            datatmp['subarticles'].append({
+                'claim': claim.text,
+                'source': article.text,
+                'most_relevant_sent': subarticle.most_relevant_sent,
+                'publish_date': subarticle.publish_date,
+                'authors': subarticle.author,
+                'image': subarticle.image,
+                'keywords': subarticle.keywords,
+                'summary': subarticle.summary,
+                'stance': subarticle.stance,
+                'depth': subarticle.depth
+            })
         data['articles'].append({
             'claim': claim.text,
+            'depth': article.depth,
             'most_relevant_sent': article.most_relevant_sent,
             'publish_date': article.publish_date,
             'authors': article.author,
             'image': article.image,
             'keywords': article.keywords,
             'summary': article.summary,
-            'stance': article.stance
+            'stance': article.stance,
+            'articles': datatmp['subarticles']
         })
+
+
 
     with open(param['output']+str(claim.id)+".json", 'w', encoding='utf-8') as out:
         json.dump(data, out, ensure_ascii=False, indent=4)
@@ -70,58 +88,51 @@ def write_test_file(param,claim):
 
 
 # called for every claim in do_research claims for loop
-def write_json_visulization(param, claim):
+def write_json_visualization(param, claim):
     data = {}
-    data['nodes'] =[]
-    data['links'] =[]
+    data['links'] = []
+    data['nodes'] = []
 
-    # append the claim to the JSON file as a claim node
-    data['nodes'].append({
-        'id': 0,
-        'snippet': claim.text,
-        'claimer': claim.claimer,
-        'date': claim.date,
-        'type': 'claim',
-        'year': claim.year
-    })
-    # append the relevant documents as evidence documents
-    print("ALL ARTICLES");
-    print(claim.articles)
-
-
-    for a in claim.articles:
-
-        data['nodes'].append({
-            'id' : a.id,
-            'url': a.url,
-            'snippet': a.most_relevant_sent[1],
-            'type' : 'evidence',
-            'year' : a.year
-        })
-
-    # append links from each relevant article to the claim node
+    def add_article_node(article,parent):
+        # Append links frSom the article to the claim node
         data['links'].append({
-            'source': a.id,
-            'target': '0',
-            'value': '1'
+            'source': parent.id,
+            'value': "1",
+            'target': article.id
+        })
+        data['nodes'].append({
+            'claimer': "NA",
+            'year': [article.year],
+            'id': article.id,
+            'type': 'evidence',
+            'date': str(article.publish_date),
+            'snippet': article.most_relevant_sent[1],
+            'source': article.url,
+            'truth_value': "NA"
         })
 
-        # all urls don't have an id, url, most_relevant_sent. Might have to make a new data structure
-        for z in a.all_urls:
-            data['nodes'].append({
-                'id': z.id,
-                'url': z.url,
-                'snippet': z.most_relevant_sent[1],
-                'type': 'evidence',
-                'year': z.year
-            })
 
-            # append links from each relevant article to the claim node
-            data['links'].append({
-                'source': z.id,
-                'target': '0',
-                'value': '1'
-            })
+        # Recursively add subarticles as nodes
+        for subarticle in article.articleurls:
+            # Append links from the subarticle to the current article node
+            add_article_node(subarticle,article)
+
+
+    # Append the claim to the JSON file as a claim node
+    data['nodes'].append({
+        'claimer': claim.claimer,
+        'year': [claim.year],
+        'id': 0,
+        'type': 'claim',
+        'date': claim.date,
+        'snippet': claim.text[0:15],
+        'source': claim.claimer,
+        'truth_value': "NA"
+    })
+
+    # Append the relevant documents as evidence documents
+    for article in claim.articles:
+        add_article_node(article,claim)
 
     with open(param['json_visualization'], 'w', encoding='utf-8') as out:
         json.dump(data, out, ensure_ascii=False, indent=4)

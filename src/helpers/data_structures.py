@@ -3,10 +3,10 @@
 #  ______________________________________________________________________________________________________________________ #
 #  Author : Israa Qasim Jaradat , IDIR lab, University of Texas at Arlington                                              #
 ###########################################################################################################################
-
+from settings import global_counter1
 class Analyzed_article:
-    def __init__(self, text, id):
-        self.id = id
+    def __init__(self, text):
+        self.id = next(global_counter1)
         self.text = text
         self.preprocessed_text = ""
         self.most_relevant_sent = []
@@ -19,10 +19,9 @@ class Analyzed_article:
         self.source_url = "UNKNOWN"
         self.url = "UNKNOWN"
         self.year = "UNKNOWN"
-        self.html = "",
-        self.all_urls = []
-
-
+        self.html = ""
+        self.depth = 0
+        self.articleurls = []
 class Claim:
     def __init__(self, id, text, claimer, date, year):
         self.id = id

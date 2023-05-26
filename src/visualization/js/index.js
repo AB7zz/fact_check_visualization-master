@@ -8,7 +8,7 @@ const outside = document.getElementById('outside')
 
 
 
-d3.json("./json/data.json").then(function(json, error){
+d3.json("./json/newdata.json").then(function(json, error){
     if (error){
         console.log(error)  
     }

@@ -1,7 +1,7 @@
 {
     "nodes": [
         {
-            "id": "0",
+            "id": 0,
             "snippet": "We are not even into February and the cost of illegal immigration so far this year is $18,959,495,168.",
             "claimer": "Donald Trump",
             "date": "2019-01-27",
@@ -17,10 +17,10 @@
         },
         {
             "id": 2,
-            "url": "https://www.businessinsider.com/trump-illegal-immigration-cost-200-billion-year-anti-immigration-groups-confused-2018-12",
-            "snippet": "There are at least 25,772,342 illegal aliens, not the 11,000,000 that have been reported for years, in our Country.\".",
+            "url": "https://api.politifact.com/factchecks/2019/jan/28/donald-trump/fact-checking-donald-trumps-claim-cost-illegal-imm/",
+            "snippet": "\"We are not even into February and the cost of illegal immigration so far this year is $18,959,495,168.",
             "type": "evidence",
-            "year": "UNKNOWN"
+            "year": 2019
         }
     ],
     "links": [

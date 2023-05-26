@@ -7,12 +7,12 @@
     <list default="true" id="514694bc-37f8-4a36-b4c2-bb4449598943" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/output_data/claim1.json" beforeDir="false" afterPath="$PROJECT_DIR$/output_data/claim1.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output_data/claim2.json" beforeDir="false" afterPath="$PROJECT_DIR$/output_data/claim2.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/analyze_hyperlinks.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/analyze_hyperlinks.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/google_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/google_search.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/helpers/data_structures.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/data_structures.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/helpers/read_write.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/read_write.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/visualization/data.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/visualization/data.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/visualization/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/visualization/js/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/visualization/json/newdata.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/visualization/json/newdata.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
