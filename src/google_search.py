@@ -3,7 +3,7 @@
 import nltk
 import requests
 
-from flask import Flask
+from flask import Flask, request
 from flask_cors import CORS
 
 from analyze_hyperlinks import *
@@ -113,7 +113,8 @@ def preprocess_article_text(text):
 
 
 def do_research(param, userClaim):
-    claims = read_claims(param['input'])
+    # claims = read_claims(param['input'])
+    readClaim = read_claim(userClaim)
     print("Research started ...")
     c = 1
 
@@ -122,7 +123,7 @@ def do_research(param, userClaim):
     # max 2 articles at a time
     # search_claim(6 links,claims[claim.text])
     # in order of what article came on top of the google search
-    relevant_articles = search_claim(param, userClaim.text)
+    relevant_articles = search_claim(param, readClaim.text)
     # relevant articles = [articledata,articledata,articledata]
     analyzed_articles = []
     i = 1
@@ -142,7 +143,7 @@ def do_research(param, userClaim):
             # article.preprocessed_text just the articles text with . and no tabs
             article.preprocessed_text = preprocess_article_text(a.text)
 
-            article.most_relevant_sent = analyze_article(article.preprocessed_text, userClaim.text,
+            article.most_relevant_sent = analyze_article(article.preprocessed_text, readClaim.text,
                                                             param['n_relevant_sent'])
             # article.most_relevant_sent = [relevant sentence in order of similarity] we only fill up rest of the
             # article data structure for that article only if there are similar sentences in that article
@@ -177,17 +178,19 @@ def do_research(param, userClaim):
     # relevantartcledatastructure] in the order of which article came on google search first
     # write_test_file(param,claim)
 
-    claim.articles = analyzed_articles
+    readClaim.articles = analyzed_articles
     # calling analyze article with 2 original articles
-    for a in userClaim.articles:
-        analyze_urls(a, userClaim, 1)
+    for a in readClaim.articles:
+        analyze_urls(a, readClaim, 1)
 
     # called by do_research
     # writes json data for a single claim's articles
     # this is called in a for loop iterating over each claim
 
     # same thing as dump_data but in a more organized way for D3
-    write_json_visualization(param, userClaim)
+    write_json_visualization(param, readClaim)
+
+
 
 
 @app.route('/', methods=['POST'])
@@ -195,7 +198,8 @@ def main():
     # next(global_counter1)
     optparser = optparse.OptionParser()
 
-    userClaim = request.form.get('value')
+    data = request.get_json()
+    userClaim = data.get('value')
 
     print(userClaim)
 
@@ -220,13 +224,14 @@ def main():
         help="limit research to the first r search results retrieved."
     )
     optparser.add_option(
-        "-j", "--json_visualization", default='visualization/json/newdata.json',
+        "-j", "--json_visualization", default='src/visualization/json/newdata.json',
         help="the path to the json output file used by the D3 code to visualize the network."
     )
 
     opts = optparser.parse_args()[0]
     param = parse_parameters(opts)  # get parameters from command
     # do_research(param, userClaim)
+    return "success"
 
 
 # it's so that you can run it with -i etc

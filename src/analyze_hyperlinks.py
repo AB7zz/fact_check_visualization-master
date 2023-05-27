@@ -91,13 +91,13 @@ def analyze_article(article, claim, n_relevant):
 # called from do_research for each claim in the for loop
 # ideally supposed to return all the relevant urls so that the json file can be filled up with this part
 def analyze_urls(originalarticle, claim, depth):
-    if depth < 4:
+    if depth < 2:
         all_urls = extract_urls_from_html(originalarticle)
         print("*****")
         print("URLs from articles")
         if claim.articles[0] == originalarticle:
             print("Links from orginal article 1")
-        elif claim.articles[1] == originalarticle:
+        elif claim.articles[1] and claim.articles[1] == originalarticle:
             print("Links from orginal article 2")
         print(all_urls)
         print("*****")
@@ -124,7 +124,7 @@ def analyze_urls(originalarticle, claim, depth):
             help="limit research to the first r search results retrieved."
         )
         optparser.add_option(
-            "-j", "--json_visualization", default='visualization/json/newdata.json',
+            "-j", "--json_visualization", default='src/visualization/json/newdata.json',
             help="the path to the json output file used by the D3 code to visualize the network."
         )
 

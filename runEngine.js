@@ -21,6 +21,10 @@ search.addEventListener('click', function() {
     })
     .then(function(result) {
         console.log(result);
+        if(result === "success"){
+          console.log('yo')
+          window.location.replace('/idir/src/visualization/')
+        }
     })
     .catch(function(error) {
         console.log(error);
