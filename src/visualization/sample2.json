@@ -1,0 +1,358 @@
+{
+  "links": [
+      {
+          "source": 0,
+          "value": "1",
+          "target": 1
+      },
+      {
+          "source": 1,
+          "value": "1",
+          "target": 4
+      },
+      {
+          "source": 4,
+          "value": "1",
+          "target": 7
+      },
+      {
+          "source": 7,
+          "value": "1",
+          "target": 9
+      },
+      {
+          "source": 7,
+          "value": "1",
+          "target": 11
+      },
+      {
+          "source": 7,
+          "value": "1",
+          "target": 13
+      },
+      {
+          "source": 4,
+          "value": "1",
+          "target": 15
+      },
+      {
+          "source": 4,
+          "value": "1",
+          "target": 22
+      },
+      {
+          "source": 1,
+          "value": "1",
+          "target": 24
+      },
+      {
+          "source": 24,
+          "value": "1",
+          "target": 27
+      },
+      {
+          "source": 27,
+          "value": "1",
+          "target": 29
+      },
+      {
+          "source": 27,
+          "value": "1",
+          "target": 31
+      },
+      {
+          "source": 27,
+          "value": "1",
+          "target": 33
+      },
+      {
+          "source": 24,
+          "value": "1",
+          "target": 35
+      },
+      {
+          "source": 24,
+          "value": "1",
+          "target": 42
+      },
+      {
+          "source": 1,
+          "value": "1",
+          "target": 44
+      },
+      {
+          "source": 44,
+          "value": "1",
+          "target": 46
+      },
+      {
+          "source": 44,
+          "value": "1",
+          "target": 48
+      },
+      {
+          "source": 44,
+          "value": "1",
+          "target": 55
+      },
+      {
+          "source": 0,
+          "value": "1",
+          "target": 2
+      }
+  ],
+  "nodes": [
+      {
+          "claimer": "Donald Trump",
+          "year": [
+              2019
+          ],
+          "id": 0,
+          "type": "claim",
+          "date": "2019-01-27",
+          "snippet": "We are not even",
+          "source": "Donald Trump",
+          "truth_value": "NA"
+      },
+      {
+          "claimer": "NA",
+          "year": [
+              2019
+          ],
+          "id": 1,
+          "type": "evidence",
+          "date": "28-Jan-2019",
+          "snippet": "DHS,\" Trump tweeted Jan. 27.. . We are not even into February and the cost of illegal immigration so far this year is $18,959,495,168.",
+          "source": "https://www.politifact.com/factchecks/2019/jan/28/donald-trump/fact-checking-donald-trumps-claim-cost-illegal-imm/",
+          "truth_value": "NA"
+      },
+      {
+          "claimer": "NA",
+          "year": [
+              2018
+          ],
+          "id": 4,
+          "type": "evidence",
+          "date": "05-Dec-2018",
+          "snippet": "But several immigration experts told PolitiFact they were unaware of any study pegging immigration losses or costs at $250 billion a year.",
+          "source": "https://www.politifact.com/truth-o-meter/statements/2018/dec/05/donald-trump/donald-trumps-false-claim-about-cost-illegal-immig/",
+          "truth_value": "NA"
+      },
+      {
+          "claimer": "NA",
+          "year": [
+              2016
+          ],
+          "id": 7,
+          "type": "evidence",
+          "date": "01-Sep-2016",
+          "snippet": "\"For the money we are going to spend on illegal immigration over the next 10 years, we could provide 1 million at-risk students with a school voucher, which so many people are wanting.\". .",
+          "source": "https://www.politifact.com/truth-o-meter/statements/2016/sep/01/donald-trump/donald-trump-says-illegal-immigration-costs-113-bi/",
+          "truth_value": "NA"
+      },
+      {
+          "claimer": "NA",
+          "year": [
+              2017
+          ],
+          "id": 9,
+          "type": "evidence",
+          "date": "27-Sep-2017",
+          "snippet": "The Cost of Illegal Immigration to the United States. . At the federal, state, and local levels, taxpayers shell out approximately $134.9 billion to cover the costs incurred by the presence of more than 12.5 million illegal aliens, and about 4.2 million citizen children of illegal aliens.",
+          "source": "http://www.fairus.org/publications/the-fiscal-burden-of-illegal-immigration-on-united-states-taxpayers",
+          "truth_value": "NA"
+      },
+      {
+          "claimer": "NA",
+          "year": [
+              2015
+          ],
+          "id": 11,
+          "type": "evidence",
+          "date": "19-Nov-2015",
+          "snippet": "Their numbers (and share of the total) have been declining in recent years: There were 4.9 million Mexican unauthorized immigrants living in the U.S. in 2017, down from 6.9 million in 2007.. .",
+          "source": "https://www.pewresearch.org/fact-tank/2015/11/19/5-facts-about-illegal-immigration-in-the-u-s/",
+          "truth_value": "NA"
+      },
+      {
+          "claimer": "NA",
+          "year": [
+              2010
+          ],
+          "id": 13,
+          "type": "evidence",
+          "date": "30-Jun-2010",
+          "snippet": "Still, even if FAIR's math passed muster, the report's findings would not validate Workman's claim.. . . . FAIR concludes the bulk of state expenses related to illegal immigrants, or $3.4 billion, is spent on educating the children of illegal immigrants, including children who were born here and thus are U.S. citizens.. . . . Only $380 million was spent on uncompensated medical care and incarceration, a far cry from Workman's $3.5 billion-claim, a seemingly impossible figure, acknowledged FAIR.. . . . \"The magnitude of the fiscal cost estimate would require the inclusion of the educational costs,\" said Martin, who wrote the FAIR report.. . . . Just to be sure, we checked with state health and criminal justice officials.. . . .",
+          "source": "http://politifact.com/florida/statements/2010/jun/30/ritch-workman/workman-misquotes-immigration-report/",
+          "truth_value": "NA"
+      },
+      {
+          "claimer": "NA",
+          "year": [
+              2018
+          ],
+          "id": 15,
+          "type": "evidence",
+          "date": "27-Nov-2018",
+          "snippet": "The latest report, for the 2017 fiscal year, estimated that more than 700,000 overstays should have left sometime during the year ending Sept. 30, 2017.. .",
+          "source": "http://www.pewhispanic.org/2018/11/27/u-s-unauthorized-immigrant-total-dips-to-lowest-level-in-a-decade/",
+          "truth_value": "NA"
+      },
+      {
+          "claimer": "NA",
+          "year": [
+              "UNKNOWN"
+          ],
+          "id": 22,
+          "type": "evidence",
+          "date": "UNKNOWN",
+          "snippet": "Interest payments on government debt and related costs resulting from public good spending in previous years add an estimated additional cost of $93.5 billion, bringing the total public goods cost in FY 2010 to $1,071.5 billion.. . An immigrant’s entry into the country neither increases the size and cost of public goods nor decreases the utility of those goods to taxpayers.",
+          "source": "https://www.heritage.org/immigration/report/the-fiscal-cost-unlawful-immigrants-and-amnesty-the-us-taxpayer",
+          "truth_value": "NA"
+      },
+      {
+          "claimer": "NA",
+          "year": [
+              2018
+          ],
+          "id": 24,
+          "type": "evidence",
+          "date": "05-Dec-2018",
+          "snippet": "But several immigration experts told PolitiFact they were unaware of any study pegging immigration losses or costs at $250 billion a year.",
+          "source": "https://www.politifact.com/truth-o-meter/statements/2018/dec/05/donald-trump/donald-trumps-false-claim-about-cost-illegal-immig/",
+          "truth_value": "NA"
+      },
+      {
+          "claimer": "NA",
+          "year": [
+              2016
+          ],
+          "id": 27,
+          "type": "evidence",
+          "date": "01-Sep-2016",
+          "snippet": "\"For the money we are going to spend on illegal immigration over the next 10 years, we could provide 1 million at-risk students with a school voucher, which so many people are wanting.\". .",
+          "source": "https://www.politifact.com/truth-o-meter/statements/2016/sep/01/donald-trump/donald-trump-says-illegal-immigration-costs-113-bi/",
+          "truth_value": "NA"
+      },
+      {
+          "claimer": "NA",
+          "year": [
+              2017
+          ],
+          "id": 29,
+          "type": "evidence",
+          "date": "27-Sep-2017",
+          "snippet": "The Cost of Illegal Immigration to the United States. . At the federal, state, and local levels, taxpayers shell out approximately $134.9 billion to cover the costs incurred by the presence of more than 12.5 million illegal aliens, and about 4.2 million citizen children of illegal aliens.",
+          "source": "http://www.fairus.org/publications/the-fiscal-burden-of-illegal-immigration-on-united-states-taxpayers",
+          "truth_value": "NA"
+      },
+      {
+          "claimer": "NA",
+          "year": [
+              2015
+          ],
+          "id": 31,
+          "type": "evidence",
+          "date": "19-Nov-2015",
+          "snippet": "Their numbers (and share of the total) have been declining in recent years: There were 4.9 million Mexican unauthorized immigrants living in the U.S. in 2017, down from 6.9 million in 2007.. .",
+          "source": "https://www.pewresearch.org/fact-tank/2015/11/19/5-facts-about-illegal-immigration-in-the-u-s/",
+          "truth_value": "NA"
+      },
+      {
+          "claimer": "NA",
+          "year": [
+              2010
+          ],
+          "id": 33,
+          "type": "evidence",
+          "date": "30-Jun-2010",
+          "snippet": "Still, even if FAIR's math passed muster, the report's findings would not validate Workman's claim.. . . . FAIR concludes the bulk of state expenses related to illegal immigrants, or $3.4 billion, is spent on educating the children of illegal immigrants, including children who were born here and thus are U.S. citizens.. . . . Only $380 million was spent on uncompensated medical care and incarceration, a far cry from Workman's $3.5 billion-claim, a seemingly impossible figure, acknowledged FAIR.. . . . \"The magnitude of the fiscal cost estimate would require the inclusion of the educational costs,\" said Martin, who wrote the FAIR report.. . . . Just to be sure, we checked with state health and criminal justice officials.. . . .",
+          "source": "http://politifact.com/florida/statements/2010/jun/30/ritch-workman/workman-misquotes-immigration-report/",
+          "truth_value": "NA"
+      },
+      {
+          "claimer": "NA",
+          "year": [
+              2018
+          ],
+          "id": 35,
+          "type": "evidence",
+          "date": "27-Nov-2018",
+          "snippet": "The latest report, for the 2017 fiscal year, estimated that more than 700,000 overstays should have left sometime during the year ending Sept. 30, 2017.. .",
+          "source": "http://www.pewhispanic.org/2018/11/27/u-s-unauthorized-immigrant-total-dips-to-lowest-level-in-a-decade/",
+          "truth_value": "NA"
+      },
+      {
+          "claimer": "NA",
+          "year": [
+              "UNKNOWN"
+          ],
+          "id": 42,
+          "type": "evidence",
+          "date": "UNKNOWN",
+          "snippet": "Interest payments on government debt and related costs resulting from public good spending in previous years add an estimated additional cost of $93.5 billion, bringing the total public goods cost in FY 2010 to $1,071.5 billion.. . An immigrant’s entry into the country neither increases the size and cost of public goods nor decreases the utility of those goods to taxpayers.",
+          "source": "https://www.heritage.org/immigration/report/the-fiscal-cost-unlawful-immigrants-and-amnesty-the-us-taxpayer",
+          "truth_value": "NA"
+      },
+      {
+          "claimer": "NA",
+          "year": [
+              2016
+          ],
+          "id": 44,
+          "type": "evidence",
+          "date": "01-Sep-2016",
+          "snippet": "\"For the money we are going to spend on illegal immigration over the next 10 years, we could provide 1 million at-risk students with a school voucher, which so many people are wanting.\". .",
+          "source": "https://www.politifact.com/truth-o-meter/statements/2016/sep/01/donald-trump/donald-trump-says-illegal-immigration-costs-113-bi/",
+          "truth_value": "NA"
+      },
+      {
+          "claimer": "NA",
+          "year": [
+              2017
+          ],
+          "id": 46,
+          "type": "evidence",
+          "date": "27-Sep-2017",
+          "snippet": "The Cost of Illegal Immigration to the United States. . At the federal, state, and local levels, taxpayers shell out approximately $134.9 billion to cover the costs incurred by the presence of more than 12.5 million illegal aliens, and about 4.2 million citizen children of illegal aliens.",
+          "source": "http://www.fairus.org/publications/the-fiscal-burden-of-illegal-immigration-on-united-states-taxpayers",
+          "truth_value": "NA"
+      },
+      {
+          "claimer": "NA",
+          "year": [
+              2015
+          ],
+          "id": 48,
+          "type": "evidence",
+          "date": "19-Nov-2015",
+          "snippet": "Their numbers (and share of the total) have been declining in recent years: There were 4.9 million Mexican unauthorized immigrants living in the U.S. in 2017, down from 6.9 million in 2007.. .",
+          "source": "https://www.pewresearch.org/fact-tank/2015/11/19/5-facts-about-illegal-immigration-in-the-u-s/",
+          "truth_value": "NA"
+      },
+      {
+          "claimer": "NA",
+          "year": [
+              2010
+          ],
+          "id": 55,
+          "type": "evidence",
+          "date": "30-Jun-2010",
+          "snippet": "Still, even if FAIR's math passed muster, the report's findings would not validate Workman's claim.. . . . FAIR concludes the bulk of state expenses related to illegal immigrants, or $3.4 billion, is spent on educating the children of illegal immigrants, including children who were born here and thus are U.S. citizens.. . . . Only $380 million was spent on uncompensated medical care and incarceration, a far cry from Workman's $3.5 billion-claim, a seemingly impossible figure, acknowledged FAIR.. . . . \"The magnitude of the fiscal cost estimate would require the inclusion of the educational costs,\" said Martin, who wrote the FAIR report.. . . . Just to be sure, we checked with state health and criminal justice officials.. . . .",
+          "source": "http://politifact.com/florida/statements/2010/jun/30/ritch-workman/workman-misquotes-immigration-report/",
+          "truth_value": "NA"
+      },
+      {
+          "claimer": "NA",
+          "year": [
+              2023
+          ],
+          "id": 2,
+          "type": "evidence",
+          "date": "08-Mar-2023",
+          "snippet": "This means that the net fiscal cost of illegal immigration to taxpayers totals approximately $150.7 billion.. .",
+          "source": "https://www.fairus.org/issue/publications-resources/fiscal-burden-illegal-immigration-united-states-taxpayers-2023",
+          "truth_value": "NA"
+      }
+  ]
+}

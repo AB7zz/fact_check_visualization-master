@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<meta charset="utf-8">
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v6.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3plus@2"></script>
+
+<body>
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+<script>
+  
+        const margin = {top: 500, right: 20, bottom: 500, left: 10},
+          width = 3000 - margin.left - margin.right,
+          height = 2000 - margin.top - margin.bottom;
+      
+        const svg = d3.select("#my_dataviz")
+        .append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+         
+        .append("g")
+          .attr("transform",
+                `translate(${margin.left}, ${margin.top})`);
+        d3.json("final_input.json").then( function( data) {
+        
+          // Initialize the links
+          const link = svg
+            .append("g")
+            .selectAll("line")
+            .data(data.links)
+            .enter()
+            .append("line")
+              .style("stroke", "#000000")
+              .style("stroke-width","7");
+
+          const simulation = d3.forceSimulation(data.nodes)                 
+        //   .force("x", d3.forceX(width/2).strength(0.2))
+            
+          .force("link", d3.forceLink()                               
+                    .id(function(d) { return d.id; })                     
+                    .links(data.links))
+              .force("charge", d3.forceManyBody().strength(-25000))        
+              .force("center", d3.forceCenter(width/2, height/3)) 
+              .on("tick", ticked);
+      
+          var textNodes= svg.append("g")
+                            .selectAll("g")
+                            .data(data.nodes)
+                            .enter().append("g");
+
+            var rects=textNodes.append("rect")
+                                .attr("width",1000)
+                                .attr("height",400)
+                                .style("fill", "#69b3a2")
+                                .style("font-size","40px")
+                                .attr("stroke","black");
+
+            var texts1= textNodes.append("text")
+            .append("tspan")
+                                .attr("dx", 12)
+                                .attr("dy", "1.1em")
+                                .text(function(d){
+                return d.type;
+            })
+            .style("font-size","40px");
+
+            var texts2= textNodes.append("text")
+                                .attr("dx", 12)
+                                .attr("dy", "2em")
+                                .text(function(d){
+                return d.snippet;})
+            .style("font-size","40px");
+
+          function ticked() {            
+            
+            textNodes.attr("transform",function (d) {return "translate("+d.x+", "+d.y+")";});
+            link
+                .attr("x1", function(d) { return d.source.x; })
+                .attr("y1", function(d) { return d.source.y; })
+                .attr("x2", function(d) { return d.target.x; })
+                .attr("y2", function(d) { return d.target.y; }); 
+     }
+        });
+
+</script>
+</body>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Claim Map Engine</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://use.fontawesome.com/265b5bff8c.js"></script>
+
+    <script src="https://kit.fontawesome.com/420b921a12.js" crossorigin="anonymous"></script>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+        crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+            background-color: lightgray;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="..src/visualization/index.js"></script>
+
+</head>
+
+<body>
+
+    <div class="Maindiv">
+        <div class="searchdiv">
+
+            <img src="./idir.png" style="max-width: 500px;margin-bottom: 40px;">
+            <form name="search" action="/search" method="post">
+                <div class="input-group rounded">
+                    <input id="myInput" name="claim_input" type="text" class="form-control rounded" placeholder="Search"
+                        aria-label="Search" aria-describedby="search-addon" />
+                    <input type="submit" value="Submit">
+                    <span class="input-group-text border-0" id="search-addon"
+                        style="background-color: #0064b1;">
+                        <i class="fas fa-search" style="color: white;"></i>
+                    </span>
+                </div>
+            </form>
+            <br>
+            <div style="text-align: center; margin: auto;">
+                <a id="sample1.json" onclick="changeColor('sample1.json');" href="../index.html">Sample Run 1 - Andrew Cuomo 2019-03-12</a><br><br>
+                <a id="sample2.json" onclick="changeColor('sample2.json');" href="../index.html">Sample Run 2 - Donald Trump 2019-01-27</a><br><br>
+                <a id="sample3.json" onclick="changeColor('sample3.json');" href="../index.html">Sample Run 3 - Turning Point 2018-08-01</a><br><br>
+            </div>
+
+            <br>
+
+            <div id="visualization"></div> <!-- Placeholder for D3 visualization -->
+
+        </div>
+    </div>
+    <footer class="footer">
+        <section id="contact"
+            style="background-color:#0064b1;padding-top:10px;border-top: 3px solid grey;">
+            <div class="container" style="text-align: center; padding-top: 20px;">
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4" style="text-align:center">
+                        <p style="color:white;">500 UTA Boulevard<br>
+                            Engineering Research Building (ERB), Room 414<br>
+                            Arlington, TX 76019-0015</p>
+                        <p style="color:white">Email: <a style="color:white"
+                                href="mailto:cli@uta.edu">cli@uta.edu</a></p>
+                    </div>
+                    <div class="col-md-4" style="text-align:center">
+                        <a target="_new" href="https://www.facebook.com/idiruta/" class="fa fa-facebook"></a>
+                        <a target="_new" href="https://twitter.com/Chengkai_Li" class="fa fa-twitter"></a>
+                        <a target="_new" href="https://www.linkedin.com/in/chengkaili/"
+                            class="fa fa-linkedin"></a>
+                        <p></p>
+                        <p style="color:white">  © <a target="_new" href="https://www.uta.edu/uta/"
+                                style="color:white">The University of Texas at Arlington</a> 2007-2019. All rights
+                            reserved.</p>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+            </div>
+        </section>
+    </footer>
+
+</body>
+
+<style>
+    .Maindiv {
+        align-items: center;
+        padding-top: 130px;
+    }
+
+    .searchdiv {
+        align-content: center;
+        max-width: 500px;
+        margin: auto;
+    }
+
+    .searchbar {
+        margin-top: 40px;
+    }
+
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+    .fa-facebook,
+    .fa-twitter,
+    .fa-linkedin {
+        background: white;
+        color: #3B5998;
+    }
+
+    .fa {
+        padding: 15px;
+        font-size: 20px;
+        width: 50px;
+        text-align: center;
+        text-decoration: none;
+        margin: 5px 2px;
+        border-radius: 50%;
+    }
+</style>
+
+</html>

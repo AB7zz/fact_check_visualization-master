@@ -1,0 +1,154 @@
+{
+    "links": [
+        {
+            "source": 0,
+            "value": "1",
+            "target": 1
+        },
+        {
+            "source": 0,
+            "value": "1",
+            "target": 2
+        },
+        {
+            "source": 2,
+            "value": "1",
+            "target": 3
+        },
+        {
+            "source": 3,
+            "value": "1",
+            "target": 5
+        },
+        {
+            "source": 2,
+            "value": "1",
+            "target": 9
+        },
+        {
+            "source": 2,
+            "value": "1",
+            "target": 13
+        },
+        {
+            "source": 13,
+            "value": "1",
+            "target": 15
+        },
+        {
+            "source": 2,
+            "value": "1",
+            "target": 18
+        }
+    ],
+    "nodes": [
+        {
+            "claimer": "Andrew Cuomo",
+            "year": [
+                2019
+            ],
+            "id": 0,
+            "type": "claim",
+            "date": "2019-03-12",
+            "snippet": "There’s been a ",
+            "source": "Andrew Cuomo",
+            "truth_value": "NA"
+        },
+        {
+            "claimer": "NA",
+            "year": [
+                "UNKNOWN"
+            ],
+            "id": 1,
+            "type": "evidence",
+            "date": "UNKNOWN",
+            "snippet": "The uptick in the number of young people in the Buffalo Niagara region during that six-year period from 2006 to 2012 – the most recent data available – has been among the strongest among all of the counties in New York and easily exceeds national growth in that age group.. . “It’s good to have the influx of younger folks,” said Gary Keith, regional economist at M&T Bank, who has been studying the trend.. .",
+            "source": "https://buffalonews.com/business/local/after-years-of-brain-drain-young-people-are-moving-back-to-buffalo/article_8b699692-6610-5dfe-add3-7b143585cf88.html",
+            "truth_value": "NA"
+        },
+        {
+            "claimer": "NA",
+            "year": [
+                2022
+            ],
+            "id": 2,
+            "type": "evidence",
+            "date": "15-Dec-2022",
+            "snippet": "The East Side of Buffalo is \"the community that raised” the 22-year-old, but now that he spends so much of his time in Washington, D.C., he has begun to think about the differences in quality of life in the two cities.. . Deonte Brown: 'Knowing that there is so much hate, we need to love each other more' Deonte Brown, a young resident of Buffalo's East Side, says the mass shooting at the local Tops Supermarket \"was a call to action.\". .",
+            "source": "https://www.democratandchronicle.com/in-depth/news/2022/12/15/teens-young-adults-growing-up-on-buffalo-east-side-share-feelings/65414373007/",
+            "truth_value": "NA"
+        },
+        {
+            "claimer": "NA",
+            "year": [
+                2022
+            ],
+            "id": 3,
+            "type": "evidence",
+            "date": "15-May-2022",
+            "snippet": "\"Our leaders must strengthen our nation’s gun laws to prevent other communities across the country from experiencing similar trauma and devastation.”. .",
+            "source": "https://www.democratandchronicle.com/story/news/2022/05/15/buffalo-ny-mass-shooting-tops-what-we-know-now-payton-gendron/9780866002/",
+            "truth_value": "NA"
+        },
+        {
+            "claimer": "NA",
+            "year": [
+                "UNKNOWN"
+            ],
+            "id": 5,
+            "type": "evidence",
+            "date": "UNKNOWN",
+            "snippet": "Your First Name Your Middle Name Your Last Name Your Phone Number Your E-Mail Address Information ✺ Information and/or description of files you are uploading (location, time, etc.)",
+            "source": "https://FBI.gov/BuffaloShooting",
+            "truth_value": "NA"
+        },
+        {
+            "claimer": "NA",
+            "year": [
+                2022
+            ],
+            "id": 9,
+            "type": "evidence",
+            "date": "21-May-2022",
+            "snippet": "Eleven of the 13 victims were Black.. . Now, a week later, residents of this Buffalo neighborhood and from far beyond it are still here, finding ways to grieve, to honor the victims and, they hope, find a way to move forward.. . Outside the store on Jefferson Avenue Saturday, some people stopped briefly to leave a bouquet of flowers, others looked on, tears in their eyes.",
+            "source": "https://www.democratandchronicle.com/story/news/local/2022/05/21/buffalo-tops-shooting-community-continues-vigil-week-later/9870579002/",
+            "truth_value": "NA"
+        },
+        {
+            "claimer": "NA",
+            "year": [
+                2022
+            ],
+            "id": 13,
+            "type": "evidence",
+            "date": "15-Jul-2022",
+            "snippet": "It cornered us to make decisions out of desperation,” Hill said.. . Jerome R. Wright, an East Side resident who came to protest, has started a petition against the reopening that already has almost 200 signatures.",
+            "source": "https://www.democratandchronicle.com/story/news/2022/07/15/buffalo-tops-grocery-store-reopens-to-the-public-after-mass-shooting/65374275007/",
+            "truth_value": "NA"
+        },
+        {
+            "claimer": "NA",
+            "year": [
+                "UNKNOWN"
+            ],
+            "id": 15,
+            "type": "evidence",
+            "date": "UNKNOWN",
+            "snippet": "Yet, we are supposed to go back into a refurbished TOPS that should actually change its' name to \"TARGET\" because that is exactly what its' reopening represents to our community that was already targeted because there was ONLY ONE such store.. . . . We are well aware of the essential need for a store of that caliber in that community especially given that it continues to suffer from Food Apartheid as well as a lack of many other important resources that to date have not been addressed?!?",
+            "source": "https://www.change.org/p/keep-tops-on-jefferson-closed-don-t-re-traumatize-us-but-instead-memorialize-the-space?cs_tk=AgqbJ8L427c2PGCj2mIAAXicyyvNyQEABF8BvIvZF3cUqJuidhhX_k6PSyQ%3D&utm_campaign=64852dc3b33643079af362a6db6a7ea4&utm_content=initial_v0_3_0&utm_medium=email&utm_source=petition_signer_receipt&utm_term=cs",
+            "truth_value": "NA"
+        },
+        {
+            "claimer": "NA",
+            "year": [
+                2022
+            ],
+            "id": 18,
+            "type": "evidence",
+            "date": "15-May-2022",
+            "snippet": "86-year-old grandmother:Victims of the Buffalo supermarket shooting. . Jefferson Avenue runs north/south through the city's East Side, where 78 percent of the residents are people of color, according to a 2019 economic development report.",
+            "source": "https://www.democratandchronicle.com/story/news/2022/05/15/buffalo-shooting-jefferson-avenue-neighborhood-faces-questions-after-tops-attack/9784401002/",
+            "truth_value": "NA"
+        }
+    ]
+}
