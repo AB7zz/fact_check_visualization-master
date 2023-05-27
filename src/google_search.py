@@ -188,7 +188,7 @@ def do_research(param, userClaim):
     # this is called in a for loop iterating over each claim
 
     # same thing as dump_data but in a more organized way for D3
-    write_json_visualization(param, readClaim)
+    return write_json_visualization(param, readClaim)
 
 
 
@@ -230,8 +230,8 @@ def main():
 
     opts = optparser.parse_args()[0]
     param = parse_parameters(opts)  # get parameters from command
-    # do_research(param, userClaim)
-    return "success"
+    json = do_research(param, userClaim)
+    return json
 
 
 # it's so that you can run it with -i etc

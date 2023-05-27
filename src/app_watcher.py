@@ -10,7 +10,7 @@ class AppEventHandler(FileSystemEventHandler):
 if __name__ == "__main__":
     event_handler = AppEventHandler()
     observer = Observer()
-    observer.schedule(event_handler, path='./src/', recursive=True)
+    observer.schedule(event_handler, path='.', recursive=True)
     observer.start()
 
     try:

@@ -145,3 +145,7 @@ def write_json_visualization(param, claim):
 
     with open(param['json_visualization'], 'w', encoding='utf-8') as out:
         json.dump(data, out, ensure_ascii=False, indent=4)
+
+    json_string = json.dumps(data)
+
+    return json_string

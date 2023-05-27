@@ -6,32 +6,7 @@
             "target": 1
         },
         {
-            "source": 1,
-            "value": "1",
-            "target": 1
-        },
-        {
-            "source": 1,
-            "value": "1",
-            "target": 1
-        },
-        {
-            "source": 1,
-            "value": "1",
-            "target": 1
-        },
-        {
             "source": 0,
-            "value": "1",
-            "target": 1
-        },
-        {
-            "source": 1,
-            "value": "1",
-            "target": 1
-        },
-        {
-            "source": 1,
             "value": "1",
             "target": 1
         }
@@ -56,81 +31,21 @@
             ],
             "id": 1,
             "type": "evidence",
+            "date": "29-Jan-2019",
+            "snippet": "Share the Facts 2019-01-29 11:42:42 UTC Washington Post 1 1 5 Washington Post Rating: Four Pinocchios Washington Post Rating: “We are not even into February and the cost of illegal immigration so far this year is $18,959,495,168.",
+            "source": "https://www.washingtonpost.com/politics/2019/01/29/president-trump-tweets-nonsensical-figures-illegal-immigration/",
+            "truth_value": "NA"
+        },
+        {
+            "claimer": "NA",
+            "year": [
+                2019
+            ],
+            "id": 1,
+            "type": "evidence",
             "date": "28-Jan-2019",
             "snippet": "\"We are not even into February and the cost of illegal immigration so far this year is $18,959,495,168.",
             "source": "https://www.politifact.com/factchecks/2019/jan/28/donald-trump/fact-checking-donald-trumps-claim-cost-illegal-imm/",
-            "truth_value": "NA"
-        },
-        {
-            "claimer": "NA",
-            "year": [
-                2018
-            ],
-            "id": 1,
-            "type": "evidence",
-            "date": "05-Dec-2018",
-            "snippet": "Could somebody please explain to the Democrats (we need their votes) that our Country losses 250 Billion Dollars a year on illegal immigration, not including the terrible drug flow.",
-            "source": "https://www.politifact.com/truth-o-meter/statements/2018/dec/05/donald-trump/donald-trumps-false-claim-about-cost-illegal-immig/",
-            "truth_value": "NA"
-        },
-        {
-            "claimer": "NA",
-            "year": [
-                2018
-            ],
-            "id": 1,
-            "type": "evidence",
-            "date": "05-Dec-2018",
-            "snippet": "Could somebody please explain to the Democrats (we need their votes) that our Country losses 250 Billion Dollars a year on illegal immigration, not including the terrible drug flow.",
-            "source": "https://www.politifact.com/truth-o-meter/statements/2018/dec/05/donald-trump/donald-trumps-false-claim-about-cost-illegal-immig/",
-            "truth_value": "NA"
-        },
-        {
-            "claimer": "NA",
-            "year": [
-                2016
-            ],
-            "id": 1,
-            "type": "evidence",
-            "date": "01-Sep-2016",
-            "snippet": "We wondered if illegal immigration costs taxpayers $113 billion a year.",
-            "source": "https://www.politifact.com/truth-o-meter/statements/2016/sep/01/donald-trump/donald-trump-says-illegal-immigration-costs-113-bi/",
-            "truth_value": "NA"
-        },
-        {
-            "claimer": "NA",
-            "year": [
-                "UNKNOWN"
-            ],
-            "id": 1,
-            "type": "evidence",
-            "date": "UNKNOWN",
-            "snippet": "There are at least 25,772,342 illegal aliens, not the 11,000,000 that have been reported for years, in our Country.\".",
-            "source": "https://www.businessinsider.com/trump-illegal-immigration-cost-200-billion-year-anti-immigration-groups-confused-2018-12",
-            "truth_value": "NA"
-        },
-        {
-            "claimer": "NA",
-            "year": [
-                "UNKNOWN"
-            ],
-            "id": 1,
-            "type": "evidence",
-            "date": "UNKNOWN",
-            "snippet": "On July 14, 2018, he spoke at a pro-ICE rally in Wichita where he promised to end in-state tuition for undocumented immigrants and said, “If you want to create a job for an American citizen tomorrow, deport an illegal alien today.”.",
-            "source": "https://www.splcenter.org/fighting-hate/extremist-files/group/federation-american-immigration-reform",
-            "truth_value": "NA"
-        },
-        {
-            "claimer": "NA",
-            "year": [
-                2018
-            ],
-            "id": 1,
-            "type": "evidence",
-            "date": "05-Dec-2018",
-            "snippet": "Could somebody please explain to the Democrats (we need their votes) that our Country losses 250 Billion Dollars a year on illegal immigration, not including the terrible drug flow.",
-            "source": "https://www.politifact.com/truth-o-meter/statements/2018/dec/05/donald-trump/donald-trumps-false-claim-about-cost-illegal-immig/",
             "truth_value": "NA"
         }
     ]

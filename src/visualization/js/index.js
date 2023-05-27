@@ -8,10 +8,10 @@ const outside = document.getElementById('outside')
 
 
 
-d3.json("./json/newdata.json").then(function(json, error){
-    if (error){
-        console.log(error)  
-    }
+// d3.json("./json/newdata.json").then(function(json, error){
+//     if (error){
+//         console.log(error)  
+//     }
 
     // const simulation = d3.forceSimulation(json.nodes)                 
     //     .force("link", d3.forceLink(json.links)
@@ -21,7 +21,8 @@ d3.json("./json/newdata.json").then(function(json, error){
     //     .force("center", d3.forceCenter(900, 2500))
     //     .stop()
     // for (var i = 0; i < 300; ++i) simulation.tick();
-
+const json = JSON.parse(localStorage.getItem('json'))
+function generate(){
     var edges = [];
     console.log(json.links)
     json.links.forEach(function(e, i) {
@@ -295,4 +296,7 @@ d3.json("./json/newdata.json").then(function(json, error){
     //         .attr("x", d => d.x )   
     //         .attr("y", d => d.y )
     // }
-})
+// })
+}
+
+generate()

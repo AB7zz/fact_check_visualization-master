@@ -1,12 +1,9 @@
 var input = document.getElementById('myInput');
 var search = document.getElementById('search-addon');
 
-// Add an event listener to the input element
 search.addEventListener('click', function() {
-  // Retrieve the current value of the input
   var value = input.value;
 
-  
   localStorage.setItem('search', value)
 
   fetch('http://127.0.0.1:5000/', {
@@ -21,8 +18,8 @@ search.addEventListener('click', function() {
     })
     .then(function(result) {
         console.log(result);
-        if(result === "success"){
-          console.log('yo')
+        if(result){
+          localStorage.setItem('json', result)
           window.location.replace('/idir/src/visualization/')
         }
     })
