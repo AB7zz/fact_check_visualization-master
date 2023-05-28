@@ -1,5 +1,18 @@
+// import { sample1, sample2, sample3 } from "./jsons.js";
+
 var input = document.getElementById('myInput');
 var search = document.getElementById('search-addon');
+
+function changeColor(id) {
+  if(id==0){
+    localStorage.setItem('json', JSON.stringify(sample1))
+  }else if(id==1){
+    localStorage.setItem('json', JSON.stringify(sample2))
+  }else{
+    localStorage.setItem('json', JSON.stringify(sample3))
+  }
+  window.location.replace('/idir/src/visualization/')
+}
 
 search.addEventListener('click', function() {
   var value = input.value;
@@ -17,7 +30,6 @@ search.addEventListener('click', function() {
         return response.text();
     })
     .then(function(result) {
-        console.log(result);
         if(result){
           localStorage.setItem('json', result)
           window.location.replace('/idir/src/visualization/')
@@ -26,9 +38,4 @@ search.addEventListener('click', function() {
     .catch(function(error) {
         console.log(error);
     });
-
-
-
-  // Do something with the value (e.g., log it to the console)
-  console.log(value);
 });

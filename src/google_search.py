@@ -11,7 +11,7 @@ from bert_embeddings import *
 from print_colors import *
 # import settings
 from read_write import *
-# from settings import global_counter1
+from settings import global_counter1
 # from googlesearch import search
 
 nltk.download('punkt')
@@ -195,7 +195,7 @@ def do_research(param, userClaim):
 
 @app.route('/', methods=['POST'])
 def main():
-    # next(global_counter1)
+    next(global_counter1)
     optparser = optparse.OptionParser()
 
     data = request.get_json()
