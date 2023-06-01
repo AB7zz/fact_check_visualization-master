@@ -91,7 +91,7 @@ def analyze_article(article, claim, n_relevant):
 # called from do_research for each claim in the for loop
 # ideally supposed to return all the relevant urls so that the json file can be filled up with this part
 def analyze_urls(originalarticle, claim, depth):
-    if depth < 3:
+    if depth < 2:
         all_urls = extract_urls_from_html(originalarticle)
         print("*****")
         print("URLs from articles")
