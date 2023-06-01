@@ -41,7 +41,6 @@ numpy==1.19.5
 packaging==20.8
 Pillow==8.4.0
 pipwin==0.5.1
-PyAudio @ file:///C:/Users/HP/pipwin/PyAudio-0.2.11-cp39-cp39-win_amd64.whl
 PyAutoGUI==0.9.53
 PyGetWindow==0.0.9
 pyjokes==0.6.0
