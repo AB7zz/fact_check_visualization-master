@@ -1,0 +1,232 @@
+/* ------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------ */
+
+body{
+    background-image: url('../images/bg.png');
+    /* background-size: cover; */
+}
+
+/* ------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------ */
+
+.box {
+    /* width: 200px; */
+    background-color: white;
+    border: 2px solid black;
+    padding: 0px 3px 0px 5px;
+    margin: 10px;
+    position: fixed;
+    z-index: 9999;
+}
+
+.box:hover{
+    cursor: pointer;
+}
+
+.boxfirstline{
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.boxsecondline{
+    font-size: 13px;
+    color: #50A7FF;
+    font-weight: bold;
+    text-align: center;
+}
+
+.boxdate{
+    color: red;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+
+/* ------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------ */
+
+.greenclaim {
+    /* width: 200px; */
+    background-color: #b3ff66;
+    padding: 0px 3px 0px 5px;
+    margin: 10px;
+    position: absolute;
+    z-index: 9999;
+}
+
+.greenclaim:hover{
+    cursor: pointer;
+}
+
+.greenclaimfirstline{
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.greenclaimsecondline{
+    font-size: 13px;
+    color: #50A7FF;
+    font-weight: bold;
+    text-align: center;
+}
+
+.border{
+    border: 2px solid #83b468;
+}
+
+.tri-right.border.btm-left-in:before {
+    content: ' ';
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: 30px;
+    right: auto;
+    top: auto;
+    bottom: -40px;
+    border: 19px solid;
+    border-color: #83b468 transparent transparent #83b468;
+}
+
+.tri-right.btm-left-in:after{
+    content: ' ';
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: 32px;
+    right: auto;
+    top: auto;
+    bottom: -36px;
+    border: 18px solid;
+    border-color: #b3ff66 transparent transparent #b3ff66;
+}
+
+/* ------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------ */
+
+.claimbox {
+    /* width: 200px; */
+    background-color: #fff2cc;
+    padding: 0px 3px 0px 5px;
+    margin: 10px;
+    position: fixed;
+    z-index: 9999;
+}
+
+.claimbox:hover{
+    cursor: pointer;
+}
+
+.claimfirstline{
+    font-size: 15px;
+    font-weight: bold;
+}
+.claimsecondline{
+    font-size: 13px;
+    color: #50A7FF;
+    font-weight: bold;
+    text-align: center;
+}
+
+.claimdate{
+    color: red;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.border2{
+    border: 2px dotted #e4cb85;
+}
+
+.tri-right2.border2.btm-left-in2:before {
+    content: ' ';
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: 31px;
+    right: auto;
+    top: auto;
+    bottom: -38px;
+    border: 18px solid;
+    border-color: #e4cb85 transparent transparent #e4cb85;
+}
+
+.tri-right2.btm-left-in2:after{
+    content: ' ';
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: 33px;
+    right: auto;
+    top: auto;
+    bottom: -32px;
+    border: 16px solid;
+    border-color: #fff2cc transparent transparent #fff2cc;
+}
+
+/* ------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------ */
+
+
+.fact_check {
+    /* width: 200px; */
+    background-color: #dbdbdb;
+    /* border-width: 9px; */
+    border-color: black;
+    border-style: double !important;
+    padding: 0px 3px 0px 5px;
+    margin: 10px;
+    position: fixed;
+    z-index: 9999;
+}
+
+.fact_check:hover{
+    cursor: pointer;
+}
+
+.fact_checkfirstline{
+    font-size: 15px;
+    font-weight: bold;
+}
+.fact_checksecondline{
+    font-size: 15px;
+    color: #50A7FF;
+    font-weight: bold;
+}
+
+.fact_checkthirdline{
+    font-size: 13px;
+    color: #02994e;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.fact_checkdate{
+    color: red;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* ------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------ */
+
+line {
+  stroke: #000;
+  stroke-width: 1px;
+}
+
+/* ------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------ */
+
+
+/* for bg  */
+/* #f1f1f1 light */
+/* #e6e6e6 dark */
+/* #f5f5f5 middle */
