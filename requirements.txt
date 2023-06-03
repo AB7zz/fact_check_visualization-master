@@ -67,12 +67,10 @@ requests==2.25.1
 requests-file==1.5.1
 s3transfer==0.6.0
 sacremoses==0.0.43
-scikit-learn==1.2.0
 scipy==1.9.3
 sgmllib3k==1.0.0
 six==1.15.0
-sklearn==0.0.post1
-scikit-learn==1.2.0rc1
+scikit-learn==1.2.0
 soupsieve==2.2.1
 SpeechRecognition==3.8.1
 sqlparse==0.4.2
