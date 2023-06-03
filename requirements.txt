@@ -48,7 +48,6 @@ pyjsparser==2.7.1
 PyMsgBox==1.0.9
 pyparsing==2.4.7
 pyperclip==1.8.2
-pypiwin32==223
 PyPrind==2.11.3
 PyRect==0.1.4
 PyScreeze==0.1.28
