@@ -24,12 +24,12 @@ Flask-Cors==3.0.10
 future==0.18.2
 googlesearch-python==1.1.0
 idna==2.10
-importlib-metadata==6.6.0
+importlib-metadata==3.4.0
 itsdangerous==2.1.2
 jieba3k==0.35.1
 Jinja2==3.1.2
 jmespath==1.0.1
-joblib==1.2.0
+joblib==1.0.0
 Js2Py==0.71
 lxml==4.9.2
 MarkupSafe==2.1.2
@@ -41,7 +41,6 @@ numpy==1.19.5
 packaging==20.8
 Pillow==8.4.0
 pipwin==0.5.1
-PyAudio @ file:///C:/Users/HP/pipwin/PyAudio-0.2.11-cp39-cp39-win_amd64.whl
 PyAutoGUI==0.9.53
 PyGetWindow==0.0.9
 pyjokes==0.6.0
@@ -61,19 +60,17 @@ pyttsx3==2.90
 pytweening==1.0.4
 pytz-deprecation-shim==0.1.0.post0
 pywhatkit==5.1
-pywin32==302
 PyYAML==6.0
 QueryableList==3.1.0
-regex==2022.10.31
+regex==2020.11.13
 requests==2.25.1
 requests-file==1.5.1
 s3transfer==0.6.0
 sacremoses==0.0.43
-scikit-learn==1.2.0
 scipy==1.9.3
 sgmllib3k==1.0.0
 six==1.15.0
-sklearn==0.0.post1
+scikit-learn==1.2.0
 soupsieve==2.2.1
 SpeechRecognition==3.8.1
 sqlparse==0.4.2
