@@ -36,7 +36,7 @@ MarkupSafe==2.1.2
 MouseInfo==0.1.3
 mysql-connector-python==8.0.31
 newspaper3k @ git+https://github.com/codelucas/newspaper.git@f622011177f6c2e95e48d6076561e21c016f08c3
-nltk==3.6.7
+nltk==3.5b1
 numpy==1.19.5
 packaging==20.8
 Pillow==8.4.0
