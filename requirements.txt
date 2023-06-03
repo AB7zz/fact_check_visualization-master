@@ -69,7 +69,7 @@ sacremoses==0.0.43
 scipy==1.9.3
 sgmllib3k==1.0.0
 six==1.15.0
-scikit-learn==1.2.0
+scikit-learn==1.1.0
 soupsieve==2.2.1
 SpeechRecognition==3.8.1
 sqlparse==0.4.2
