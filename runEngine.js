@@ -32,7 +32,7 @@ search.addEventListener('click', function() {
     .then(function(result) {
         if(result){
           localStorage.setItem('json', result)
-          window.location.replace('/visualization/')
+          window.location.replace('/claimmap/visualization/')
         }
     })
     .catch(function(error) {
