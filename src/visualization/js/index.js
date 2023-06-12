@@ -81,8 +81,8 @@ function generate(){
         .enter()
         .append('foreignObject')
         .attr('id', data => `${data.id}`)
-        .attr('width', 300)
         .attr('height', '100%')
+        .attr('width', 350)
         
     function bottomYear(x, y, year){
         svg
@@ -105,14 +105,14 @@ function generate(){
         .attr('class', (d) => `l${d.id} nodes`)
         .html( function(data){
             if(data.type == "evidence"){
-                return '<div class="box"><p class="boxfirstline">' + data.snippet + '</p><a target="_blank" style="text-decoration: none" href="' + '//www.' + data.source + '" class="boxsecondline">'+data.source+'</a><hr class="solid"><p class="boxdate">' + data.year + '</p></div>';
+                return '<div class="box"><p class="boxfirstline fit-text">' + data.snippet + '</p><a target="_blank" style="text-decoration: none" href="' + '//www.' + data.source + '" class="boxsecondline fit-text">'+data.source+'</a><hr class="solid"><p class="boxdate">' + data.year + '</p></div>';
             }else if(data.type == "claim" && data.id!=0){
-                return '<div class="claimbox tri-right2 btm-left-in2 border2 sb32"><p class="claimfirstline">' + data.snippet + '</p><p class="claimsecondline">'+data.claimer +'</p><hr class="solid"><p class="claimdate">' + data.year + '</p></div>';
+                return '<div class="claimbox tri-right2 btm-left-in2 border2 sb32"><p class="claimfirstline fit-text">' + data.snippet + '</p><p class="claimsecondline fit-text">'+data.claimer +'</p><hr class="solid"><p class="claimdate">' + data.year + '</p></div>';
             }else if(data.type == "claim" && data.id==0){
-                return '<div class="greenclaim tri-right btm-left-in border sb32"><p class="greenclaimfirstline">' + data.snippet + '</p><p class="greenclaimsecondline">'+data.claimer +'</p><hr class="solid"><p class="claimdate">' + data.year + '</p></div>';
+                return '<div class="greenclaim tri-right btm-left-in border sb32"><p class="greenclaimfirstline fit-text">' + data.snippet + '</p><p class="greenclaimsecondline fit-text">'+data.claimer +'</p><hr class="solid"><p class="claimdate">' + data.year + '</p></div>';
             }
             else if(data.type == "fact_check"){
-                return '<div class="fact_check"><p class="fact_checkfirstline">' + data.snippet + '</p><a target="_blank" href="' + '//www.' + data.source + '"  class="fact_checksecondline">'+data.source +'</a><p class="fact_checkthirdline">Truth value: '+data.truth_value +'</p><hr class="solid"><p class="fact_checkdate">' + data.year + '</p></div>';
+                return '<div class="fact_check"><p class="fact_checkfirstline fit-text">' + data.snippet + '</p><a target="_blank" href="' + '//www.' + data.source + '"  class="fact_checksecondline fit-text">'+data.source +'</a><p class="fact_checkthirdline">Truth value: '+data.truth_value +'</p><hr class="solid"><p class="fact_checkdate">' + data.year + '</p></div>';
             }
         })
         // .call(d3.drag()
@@ -124,9 +124,9 @@ function generate(){
             let xi, month = 0
             let year = d.year[0]
             if(year == 0 || d.year == "UNKNOWN"){
-                xi = ((maxyear-minyear)*400)+50
+                xi = ((maxyear-minyear)*400)+20
             }else{
-                xi = ((maxyear-year)*400)+50
+                xi = ((maxyear-year)*400)+20
             }
             xAxis.push(xi)
             d.x = parseFloat(xi)

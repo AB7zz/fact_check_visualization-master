@@ -11,7 +11,7 @@ function changeColor(id) {
   }else{
     localStorage.setItem('json', JSON.stringify(sample3))
   }
-  window.location.replace('/idir/src/visualization/')
+  window.location.replace('/src/visualization/')
 }
 
 search.addEventListener('click', function() {
