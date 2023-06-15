@@ -156,7 +156,7 @@ function generate(){
             let ymax=json.nodes[0].y, xmax=json.nodes[0].x
             let year = d.year[0]
             if(year == "UNKNOWN"){
-                year = 2023
+                year = minyear
             }
             for(let l = 1; l < json.nodes.length; l++){
                 if(json.nodes[l].y >= ymax){
