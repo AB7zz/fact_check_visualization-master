@@ -19,7 +19,7 @@ search.addEventListener('click', function() {
 
   localStorage.setItem('search', value)
 
-  fetch('http://127.0.0.1:5000/', {
+  fetch('https://idir.uta.edu/claimmap-api', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'
@@ -32,7 +32,7 @@ search.addEventListener('click', function() {
     .then(function(result) {
         if(result){
           localStorage.setItem('json', result)
-          window.location.replace('/visualization/')
+          window.location.replace('/claimmap/visualization/')
         }
     })
     .catch(function(error) {
