@@ -91,8 +91,28 @@ function generate(){
             .attr('fill', 'red')
             .attr('font-size', '25px')
             .attr('font-weight', 'bold')
-            .attr('x', x+120)
+            .attr('x', x+150)
             .attr('y', y+500)
+    }
+    function newBottomYear(x, y, year){
+        svg
+            .append('text')
+            .text(year)
+            .attr('fill', 'red')
+            .attr('font-size', '25px')
+            .attr('font-weight', 'bold')
+            .attr('x', x+150)
+            .attr('y', y+500)
+    }
+    function topYear(x, year){
+        svg
+            .append('text')
+            .text(year)
+            .attr('fill', 'red')
+            .attr('font-size', '25px')
+            .attr('font-weight', 'bold')
+            .attr('x', x+150)
+            .attr('y', 100)
     }
     
     const yAxis = []
@@ -168,6 +188,7 @@ function generate(){
             }
             if(!timelineset[year]){
                 bottomYear(d.x, ymax, year)
+                topYear(d.x, year)
                 timelineset[year] = true
             }
             svg
@@ -175,7 +196,7 @@ function generate(){
                 .attr("width", xmax+1000)
         })
     
-
+    
 
     link
         .attr("x1", function(d){
