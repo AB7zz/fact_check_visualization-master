@@ -134,7 +134,7 @@ def write_json_visualization(param, claim):
         'id': 0,
         'type': 'claim',
         'date': claim.date,
-        'snippet': claim.text[0:15],
+        'snippet': claim.text,
         'source': claim.claimer,
         'truth_value': "NA"
     })
