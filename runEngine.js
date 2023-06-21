@@ -11,7 +11,7 @@ function changeColor(id) {
   }else{
     localStorage.setItem('json', JSON.stringify(sample3))
   }
-  window.location.replace('/src/visualization/index.html')
+  window.location.replace('claimmap/src/visualization/index.html')
 }
 
 search.addEventListener('click', function() {
@@ -19,7 +19,7 @@ search.addEventListener('click', function() {
 
   localStorage.setItem('search', value)
 
-  fetch('http://127.0.0.1:5000', {
+  fetch('https://idir.uta.edu/claimmap-api/', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'
@@ -32,7 +32,7 @@ search.addEventListener('click', function() {
     .then(function(result) {
         if(result){
           localStorage.setItem('json', result)
-          window.location.replace('/src/visualization/')
+          window.location.replace('/claimmap/src/visualization/')
         }
     })
     .catch(function(error) {
