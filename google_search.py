@@ -3,7 +3,7 @@
 import nltk
 import requests
 
-from flask import Flask, request
+from flask import Flask, request, render_template
 from flask_cors import CORS
 
 from analyze_hyperlinks import *
@@ -37,7 +37,6 @@ def parse_parameters(opts):
     param['stop'] = opts.stop
     param['n_relevant_sent'] = opts.n_relevant_sent
     param['top_search_results'] = opts.top_search_results
-    param['json_visualization'] = opts.json_visualization
     logging.info("PARAMETER LIST:_______________________________________________________________________")
     logging.info(param)
 
@@ -193,8 +192,17 @@ def do_research(param, userClaim):
 
 
 
-@app.route('/', methods=['POST'])
-def main():
+@app.route('/')
+def home():
+    return render_template('home/index.html')
+
+@app.route('/visualization')
+def visualization():
+    return render_template('visualization/index.html')
+
+@app.route('/search', methods=['POST'])
+def search():
+    print('search is invoked')
     next(global_counter1)
     optparser = optparse.OptionParser()
 
@@ -223,20 +231,16 @@ def main():
         "-t", "--top_search_results", default=10,
         help="limit research to the first r search results retrieved."
     )
-    optparser.add_option(
-        "-j", "--json_visualization", default='src/visualization/json/newdata.json',
-        help="the path to the json output file used by the D3 code to visualize the network."
-    )
 
     opts = optparser.parse_args()[0]
-    param = parse_parameters(opts)  # get parameters from command
+    param = parse_parameters(opts)
     json = do_research(param, userClaim)
     return json
 
 
 # it's so that you can run it with -i etc
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
 
 # html = requests.get(...).text
 # text = fulltext(html)

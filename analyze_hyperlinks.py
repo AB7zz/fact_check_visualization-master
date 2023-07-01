@@ -22,7 +22,6 @@ def parse_parameters(opts):
     param['stop'] = opts.stop
     param['n_relevant_sent'] = opts.n_relevant_sent
     param['top_search_results'] = opts.top_search_results
-    param['json_visualization'] = opts.json_visualization
     logging.info("PARAMETER LIST:_______________________________________________________________________")
     logging.info(param)
 
@@ -122,10 +121,6 @@ def analyze_urls(originalarticle, claim, depth):
         optparser.add_option(
             "-t", "--top_search_results", default=10,
             help="limit research to the first r search results retrieved."
-        )
-        optparser.add_option(
-            "-j", "--json_visualization", default='src/visualization/json/newdata.json',
-            help="the path to the json output file used by the D3 code to visualize the network."
         )
 
         opts = optparser.parse_args()[0]
