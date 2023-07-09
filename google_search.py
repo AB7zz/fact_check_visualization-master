@@ -16,7 +16,7 @@ from settings import global_counter1
 
 nltk.download('punkt')
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 CORS(app)
 
 # tld : tld stands for top level domain which means we want to search our result on google.com or google.in or some other domain.
@@ -81,6 +81,7 @@ def search_claim(param, claim):
             printRed("Unable to parse the article :" + url)
     # articles = [articledata,articledata,articledata]
     return articles
+
 
 
 # called by do_research to fill up Analyzed_Article.most_relevant_sent[sentences from articles in order of similarity]
@@ -196,11 +197,11 @@ def do_research(param, userClaim):
 def home():
     return render_template('home/index.html')
 
-@app.route('/visualization')
+@app.route('/claimmap/visualization')
 def visualization():
     return render_template('visualization/index.html')
 
-@app.route('/search', methods=['POST'])
+@app.route('/claimmap/search', methods=['POST'])
 def search():
     print('search is invoked')
     next(global_counter1)
@@ -240,7 +241,7 @@ def search():
 
 # it's so that you can run it with -i etc
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='192.168.1.10', port=8101, debug=True)
 
 # html = requests.get(...).text
 # text = fulltext(html)
