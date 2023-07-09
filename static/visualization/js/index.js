@@ -9,12 +9,12 @@ const outside = document.getElementById('outside')
 const json = JSON.parse(localStorage.getItem('json'))
 function generate(){
     var edges = [];
-    console.log(json.links)
+    const sortedNodes = json.nodes.sort((a, b) => b.year[0] - a.year[0])
     json.links.forEach(function(e, i) {
-        var sourceNode = json.nodes.filter(function(n) {
+        var sourceNode = sortedNodes.filter(function(n) {
             return n.id === e.source;
         })[0],
-            targetNode = json.nodes.filter(function(n) {
+            targetNode = sortedNodes.filter(function(n) {
                 return n.id === e.target;
             })[0];
     
@@ -25,9 +25,8 @@ function generate(){
         });
     });
 
-    console.log(edges)
 
-    d3.forceSimulation(json.nodes)                 
+    d3.forceSimulation(sortedNodes)                 
         .force("link", d3.forceLink(edges))
     
     const arrows = svg
@@ -62,13 +61,13 @@ function generate(){
 
     const node = svg
         .selectAll('foreignObject')
-        .data(json.nodes)
+        .data(sortedNodes)
         .enter()
         .append('foreignObject')
         .attr('id', data => `${data.id}`)
         .attr('height', '100%')
         .attr('width', 350)
-        
+
     function bottomYear(x, y, year){
         svg
             .append('text')
@@ -126,22 +125,34 @@ function generate(){
         //         .on('end', dragended)
         // )
         .attr("x", function(d){
-            let xi, month = 0
+            let xi
             let year = d.year[0]
-            if(year == 0 || d.year == "UNKNOWN"){
-                xi = ((maxyear-minyear)*400)+20
-            }else{
-                xi = ((maxyear-year)*400)+20
+            // if(year == 0 || d.year == "UNKNOWN"){
+            //     year = maxyear
+            //     xi = ((maxyear-year)*400)+20
+            // }else{
+            //     xi = ((maxyear-year)*400)+20
+            // }
+            if(year == 0 || year == "UNKNOWN"){
+                year = maxyear
+                xi = 20
+            }else if(xAxis.length == 0){
+                xi = 20
+            }else if(!xAxis[maxyear - year]){
+                xi = xAxis[xAxis.length - 1] + 400
+            }else if(xAxis[maxyear - year]){
+                xi = xAxis[maxyear-year]
             }
-            xAxis.push(xi)
+            xAxis[maxyear - year] = xi
             d.x = parseFloat(xi)
+            console.log(xAxis)
             return xi;
         })
         .attr("y", function(d){
             let i, yi
             i = 0
             let year = d.year[0]
-            while(json.nodes[i].id!=d.id){
+            while(sortedNodes[i].id!=d.id){
                 i++
             }
             if(year == "UNKNOWN"){
@@ -158,17 +169,17 @@ function generate(){
             return yi;  
         })
         .attr('timeline', (d) => {
-            let ymax=json.nodes[0].y, xmax=json.nodes[0].x
+            let ymax=sortedNodes[0].y, xmax=sortedNodes[0].x
             let year = d.year[0]
             if(year == "UNKNOWN"){
-                year = minyear
+                year = 2023
             }
-            for(let l = 1; l < json.nodes.length; l++){
-                if(json.nodes[l].y >= ymax){
-                    ymax = json.nodes[l].y
+            for(let l = 1; l < sortedNodes.length; l++){
+                if(sortedNodes[l].y >= ymax){
+                    ymax = sortedNodes[l].y
                 }
-                if(json.nodes[l].x >= xmax){
-                    xmax = json.nodes[l].x
+                if(sortedNodes[l].x >= xmax){
+                    xmax = sortedNodes[l].x
                 }
             }
             if(!timelineset[year]){
