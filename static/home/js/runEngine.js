@@ -17,7 +17,7 @@ search.addEventListener('click', function() {
 
   localStorage.setItem('search', value)
 
-  fetch('https://idir.uta.edu/claimmap/claimmap/search', {
+  fetch('claimmap/search', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'
