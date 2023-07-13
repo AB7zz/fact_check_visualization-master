@@ -197,11 +197,11 @@ def do_research(param, userClaim):
 def home():
     return render_template('home/index.html')
 
-@app.route('/claimmap/claimmap/visualization')
+@app.route('/claimmap/visualization')
 def visualization():
     return render_template('visualization/index.html')
 
-@app.route('/claimmap/claimmap/search', methods=['POST'])
+@app.route('/claimmap/search', methods=['POST'])
 def search():
     print('search is invoked')
     next(global_counter1)
