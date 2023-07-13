@@ -9,7 +9,7 @@ function changeColor(id) {
   }else{
     localStorage.setItem('json', JSON.stringify(sample3))
   }
-  window.location.replace('/visualization')
+  window.location.replace('claimmap/visualization')
 }
 
 search.addEventListener('click', function() {
@@ -30,7 +30,7 @@ search.addEventListener('click', function() {
     .then(function(result) {
         if(result){
           localStorage.setItem('json', result)
-          window.location.replace('/visualization')
+          window.location.replace('claimmap/visualization')
         }
     })
     .catch(function(error) {
