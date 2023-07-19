@@ -10,6 +10,7 @@ const json = JSON.parse(localStorage.getItem('json'))
 function generate(){
     var edges = [];
     const sortedNodes = json.nodes.sort((a, b) => b.year[0] - a.year[0])
+    console.log('lol', sortedNodes)
     json.links.forEach(function(e, i) {
         var sourceNode = sortedNodes.filter(function(n) {
             return n.id === e.source;
@@ -109,14 +110,14 @@ function generate(){
         .attr('class', (d) => `l${d.id} nodes`)
         .html( function(data){
             if(data.type == "evidence"){
-                return '<div class="box"><p class="boxfirstline fit-text">' + data.snippet + '</p><a target="_blank" style="text-decoration: none" href="' + '//www.' + data.source + '" class="boxsecondline fit-text">'+data.source+'</a><hr class="solid"><p class="boxdate">' + data.year + '</p></div>';
+                return '<div class="box"><p class="boxfirstline fit-text">' + data.snippet + '</p><a target="_blank" style="text-decoration: none" href="' + data.source + '" class="boxsecondline fit-text">'+data.source+'</a><hr class="solid"><p class="boxdate">' + data.year + '</p></div>';
             }else if(data.type == "claim" && data.id!=0){
                 return '<div class="claimbox tri-right2 btm-left-in2 border2 sb32"><p class="claimfirstline fit-text">' + data.snippet + '</p><p class="claimsecondline fit-text">'+data.claimer +'</p><hr class="solid"><p class="claimdate">' + data.year + '</p></div>';
             }else if(data.type == "claim" && data.id==0){
                 return '<div class="greenclaim tri-right btm-left-in border sb32"><p class="greenclaimfirstline fit-text">' + data.snippet + '</p><p class="greenclaimsecondline fit-text">'+data.claimer +'</p><hr class="solid"><p class="claimdate">' + data.year + '</p></div>';
             }
             else if(data.type == "fact_check"){
-                return '<div class="fact_check"><p class="fact_checkfirstline fit-text">' + data.snippet + '</p><a target="_blank" href="' + '//www.' + data.source + '"  class="fact_checksecondline fit-text">'+data.source +'</a><p class="fact_checkthirdline">Truth value: '+data.truth_value +'</p><hr class="solid"><p class="fact_checkdate">' + data.year + '</p></div>';
+                return '<div class="fact_check"><p class="fact_checkfirstline fit-text">' + data.snippet + '</p><a target="_blank" href="' + data.source + '"  class="fact_checksecondline fit-text">'+data.source +'</a><p class="fact_checkthirdline">Truth value: '+data.truth_value +'</p><hr class="solid"><p class="fact_checkdate">' + data.year + '</p></div>';
             }
         })
         // .call(d3.drag()
@@ -134,9 +135,11 @@ function generate(){
             //     xi = ((maxyear-year)*400)+20
             // }
             if(year == 0 || year == "UNKNOWN"){
-                year = maxyear
-                xi = 20
-            }else if(xAxis.length == 0){
+                year = sortedNodes[0].year[0]
+                // xi = 20
+            }
+
+            if(xAxis.length == 0){
                 xi = 20
             }else if(!xAxis[maxyear - year]){
                 xi = xAxis[xAxis.length - 1] + 400
@@ -155,9 +158,11 @@ function generate(){
             while(sortedNodes[i].id!=d.id){
                 i++
             }
+
             if(year == "UNKNOWN"){
-                year = 2023
+                year = sortedNodes[0].year[0]
             }
+
             if(!yAxis[maxyear-year]){
                 yAxis[maxyear-year] = 200
             }
@@ -172,7 +177,7 @@ function generate(){
             let ymax=sortedNodes[0].y, xmax=sortedNodes[0].x
             let year = d.year[0]
             if(year == "UNKNOWN"){
-                year = 2023
+                year = sortedNodes[0].year[0]
             }
             for(let l = 1; l < sortedNodes.length; l++){
                 if(sortedNodes[l].y >= ymax){
