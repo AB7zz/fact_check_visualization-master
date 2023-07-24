@@ -10,7 +10,6 @@ const json = JSON.parse(localStorage.getItem('json'))
 function generate(){
     var edges = [];
     const sortedNodes = json.nodes.sort((a, b) => b.year[0] - a.year[0])
-    console.log('lol', sortedNodes)
     json.links.forEach(function(e, i) {
         var sourceNode = sortedNodes.filter(function(n) {
             return n.id === e.source;

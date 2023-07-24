@@ -9,7 +9,7 @@ function changeColor(id) {
   }else{
     localStorage.setItem('json', JSON.stringify(sample3))
   }
-  window.location.replace('claimmap/visualization')
+  // window.location.href = 'claimmap/visualization'
 }
 
 search.addEventListener('click', function() {
