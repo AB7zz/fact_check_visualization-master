@@ -72,7 +72,6 @@ def search_claim(param, claim):
     reqs = requests.get(url, headers=headers)
     soup = BeautifulSoup(reqs.text, 'html.parser')
 
-    urls = []
     count = 0
     for link in soup.find_all("div", {"class": "b_title"}):
         if count == 2:
@@ -85,7 +84,7 @@ def search_claim(param, claim):
 
     articles = []
 
-    urls = ['https://www.ajc.com/news/national/immigration-can-undocumented-immigrants-get-federal-public-benefits/nyks4aB0PtTbbwVP9GyogI/', 'https://www.politifact.com/factchecks/2019/jan/28/donald-trump/fact-checking-donald-trumps-claim-cost-illegal-imm/']
+    # urls = ['https://www.ajc.com/news/national/immigration-can-undocumented-immigrants-get-federal-public-benefits/nyks4aB0PtTbbwVP9GyogI/', 'https://www.politifact.com/factchecks/2019/jan/28/donald-trump/fact-checking-donald-trumps-claim-cost-illegal-imm/']
     print(urls)
     if(len(urls) == 0):
         return search_claim(param, claim)
