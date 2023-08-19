@@ -42,6 +42,22 @@ def parse_parameters(opts):
 
     return param
 
+def parseAgain(url, article):
+    printYellow("Trying to parse " + url + " AGAIN")
+    try:
+        article.download()
+    except:
+        printRed("Unable to download the article: " + url)
+    try:
+        article.parse()
+        printGreen('OK')
+        return True
+    except:
+        printGreen('NO')
+        return False
+    
+
+
 
 # called from do_research(param)
 # search_claim(param,1 claim's text)
@@ -68,17 +84,28 @@ def search_claim(param, claim):
     # urls =[articlelink,articlelink,articlelink] from google
 
     articles = []
-    for url in urls:
-        article = Article(url)
-        try:
-            article.download()
-        except:
-            printRed("Unable to download the article: " + url)
-        try:
-            article.parse()
-            articles.append(article)
-        except:
-            printRed("Unable to parse the article :" + url)
+
+    urls = ['https://www.ajc.com/news/national/immigration-can-undocumented-immigrants-get-federal-public-benefits/nyks4aB0PtTbbwVP9GyogI/', 'https://www.politifact.com/factchecks/2019/jan/28/donald-trump/fact-checking-donald-trumps-claim-cost-illegal-imm/']
+    print(urls)
+    if(len(urls) == 0):
+        return search_claim(param, claim)
+    else:
+        for url in urls:
+            article = Article(url)
+            try:
+                article.download()
+            except:
+                printRed("Unable to download the article: " + url)
+            try:
+                article.parse()
+                printGreen("Successfully parsed article " + url)
+                articles.append(article)
+            except:
+                if parseAgain(url, article):
+                    articles.append(articleAgain)
+                    printGreen("Successfully parsed the article again :" + url)
+                else:
+                    printRed("Unable to parse the article again :" + url)
     # articles = [articledata,articledata,articledata]
     return articles
 

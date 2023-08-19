@@ -3,7 +3,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://idir.uta.edu/claimmap/static/visualization/css/style.css">
+    <!-- <link rel="stylesheet" href="https://idir.uta.edu/claimmap/static/visualization/css/style.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='visualization/css/style.css') }}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <title>FDG</title>
 </head>
@@ -19,6 +20,6 @@
           </ul>
         </div>
     </div>
-    <!-- <script src="{{ url_for('static', filename='visualization/js/index.js') }}"> </script> -->
-    <script src="https://idir.uta.edu/claimmap/static/visualization/js/index.js"> </script>
+    <script src="{{ url_for('static', filename='visualization/js/index.js') }}"> </script>
+    <!-- <script src="https://idir.uta.edu/claimmap/static/visualization/js/index.js"> </script> -->
 </body>
