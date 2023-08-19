@@ -3,17 +3,27 @@ import optparse
 from collections import OrderedDict
 from urllib.request import Request, urlopen
 
+from time import sleep
+
 from AdvancedHTMLParser import AdvancedHTMLParser
 from bs4 import BeautifulSoup
-from newspaper import Article
+from newspaper import Article, ArticleException
 
 from bert_embeddings import *
 from data_structures import Analyzed_article
 from settings import global_counter1
 
+from print_colors import *
+
+from google_search import parseAgain
+
 # called by analyze_urls right below, gets a single claim from the claims for loop in do_research()
 # it's meant to extract the urls that are found in the one article (for all articles)
 # urls = {1:[elink,elink,elink],2:[elink,elink,elink]}
+
+MAX_RETRIES = 3
+
+
 def parse_parameters(opts):
     param = OrderedDict()
     # param = {'input': inputfilename, 'output': outputfilename, 'stop','n_relevant_sent','top_search_results','json_visualization'}
@@ -92,6 +102,7 @@ def analyze_article(article, claim, n_relevant):
 def analyze_urls(originalarticle, claim, depth):
     if depth < 2:
         all_urls = extract_urls_from_html(originalarticle)
+        all_urls = ['https://www.whitehouse.gov/briefings-statements/remarks-president-trump-signing-h-r-2-agriculture-improvement-act-2018/', 'https://www.nbcnews.com/politics/donald-trump/fact-check-how-much-does-illegal-immigration-cost-america-not-n950981', 'https://www.nbcnews.com/politics/donald-trump/fact-check-how-much-does-illegal-immigration-cost-america-not-n950981', 'https://www.nbcnews.com/politics/donald-trump/fact-check-how-much-does-illegal-immigration-cost-america-not-n950981', 'https://www.nbcnews.com/politics/donald-trump/fact-check-how-much-does-illegal-immigration-cost-america-not-n950981', 'https://www.nbcnews.com/politics/donald-trump/fact-check-how-much-does-illegal-immigration-cost-america-not-n950981']
         print("*****")
         print("URLs from articles")
         if claim.articles[0] == originalarticle:
@@ -128,17 +139,26 @@ def analyze_urls(originalarticle, claim, depth):
         # all_urls is the 5 urls
         for url in all_urls:
             article = Article(url)
-            try:
-                article.download()
-            except:
-                print("Unable to download the article: " + url)
-            try:
-                article.parse()
-            except:
-                print("Unable to parse the article :" + url)
+            retries = 0
+            while retries < MAX_RETRIES:
+                article = Article(url)
+                try:
+                    article.download()
+                    article.parse()
+                    printGreen("Successfully parsed article " + url)
+                    break
+                except ArticleException as ae:
+                    printRed("Error parsing the article: " + str(ae))
+                    retries += 1
+                    sleep(5)
+                except Exception as e:
+                    printRed("Unexpected error: " + str(e))
+                    retries += 1
+                    sleep(5)
+
 
             if article.text != "":
-
+                printYellow(url)
                 analyzed_article = Analyzed_article(article.text)
 
                 # article.preprocessed_text just the articles text with . and no tabs
@@ -169,6 +189,7 @@ def analyze_urls(originalarticle, claim, depth):
                         analyzed_article.html = article.html
                     analyzed_article.depth = depth
                 if (analyzed_article.url != "UNKNOWN"):
+                    printYellow(url)
                     originalarticle.articleurls.append(analyzed_article)
                     # loop with each article from original article
                     analyze_urls(analyzed_article, claim, depth + 1)
