@@ -267,8 +267,8 @@ def search():
 
 # it's so that you can run it with -i etc
 if __name__ == '__main__':
-    app.run(port=8000, debug=True)
-    # app.run(host='192.168.1.10', port=8101, debug=True)
+    # app.run(port=8000, debug=True)
+    app.run(host='192.168.1.10', port=8101, debug=True)
 
 # html = requests.get(...).text
 # text = fulltext(html)
