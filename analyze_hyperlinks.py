@@ -39,23 +39,10 @@ def parse_parameters(opts):
 
 
 def extract_urls_from_html(article):
-    urls = dict()
-    # if i == 1:
-    #     req = Request(
-    #         url=article.url,
-    #         headers={'User-Agent': 'Mozilla/5.0'}
-    #     )
-    #     webpage = urlopen(req).read()
-    #     soup = BeautifulSoup(webpage, 'html.parser')
-    #     all_p_urls = [tag['href'] for tag in soup.select('p a[href]')]
-    #     for i, val in enumerate(all_p_urls):
-    #         if "http" not in val:
-    #             all_p_urls.pop(i)
-    #     return all_p_urls
+    # urls = dict()
     parser = AdvancedHTMLParser()
     parser.parseStr(article.html)
     temp_links = parser.getElementsByTagName('a')
-    # we fill up the article.text (datastructure) with article.text default from newspaper.py
     whole_article_text = article.text
     p_article_text = parser.getElementsByTagName('p')
     req = Request(
@@ -68,7 +55,6 @@ def extract_urls_from_html(article):
     for i, val in enumerate(all_p_urls):
         if "http" not in val:
             all_p_urls.pop(i)
-    # iterates over all links and takes the ones that are not empty
     tmp_links = [link for link in temp_links if not link.innerHTML.strip() == '']
     links = []
     # iterates over all nonempty links in that article
@@ -77,7 +63,7 @@ def extract_urls_from_html(article):
         if link.innerHTML in whole_article_text:
             # printCyan(link.innerHTML)
             links.append(link)
-    urls[i] = links
+    # urls[i] = links
     return all_p_urls[0:2]
 
 
@@ -89,9 +75,7 @@ def preprocess_article_text(text):
 
 def analyze_article(article, claim, n_relevant):
     print('Analyzing article ...')
-    print('error1')
     relevant_sentences = find_most_similar(article, claim)
-    print('error2')
     # if more than 5 relevant searches get first 5
     if len(relevant_sentences) > n_relevant:
         return relevant_sentences[0: n_relevant - 1]
@@ -104,13 +88,8 @@ def analyze_article(article, claim, n_relevant):
 def analyze_urls(originalarticle, claim, depth):
     if depth < 2:
         all_urls = extract_urls_from_html(originalarticle)
-        # all_urls = ['https://www.whitehouse.gov/briefings-statements/remarks-president-trump-signing-h-r-2-agriculture-improvement-act-2018/', 'https://www.nbcnews.com/politics/donald-trump/fact-check-how-much-does-illegal-immigration-cost-america-not-n950981', 'https://www.nbcnews.com/politics/donald-trump/fact-check-how-much-does-illegal-immigration-cost-america-not-n950981', 'https://www.nbcnews.com/politics/donald-trump/fact-check-how-much-does-illegal-immigration-cost-america-not-n950981', 'https://www.nbcnews.com/politics/donald-trump/fact-check-how-much-does-illegal-immigration-cost-america-not-n950981', 'https://www.nbcnews.com/politics/donald-trump/fact-check-how-much-does-illegal-immigration-cost-america-not-n950981']
         print("*****")
         print("URLs from articles")
-        if claim.articles[0] == originalarticle:
-            print("Links from orginal article 1")
-        elif claim.articles[1] and claim.articles[1] == originalarticle:
-            print("Links from orginal article 2")
         print(all_urls)
         print("*****")
         optparser = optparse.OptionParser()
@@ -124,7 +103,7 @@ def analyze_urls(originalarticle, claim, depth):
             help="path_to the output file, each file has a claim and its analysis"
         )
         optparser.add_option(
-            "-s", "--stop", default=2,
+            "-s", "--stop", default=10,
             help="number of claims to analyze"
         )
         optparser.add_option(
@@ -132,15 +111,13 @@ def analyze_urls(originalarticle, claim, depth):
             help="n most releveant sentences in each article."
         )
         optparser.add_option(
-            "-t", "--top_search_results", default=10,
+            "-t", "--top_search_results", default=15,
             help="limit research to the first r search results retrieved."
         )
 
         opts = optparser.parse_args()[0]
         param = parse_parameters(opts)
-        # all_urls is the 5 urls
         for url in all_urls:
-            article = Article(url)
             retries = 0
             while retries < MAX_RETRIES:
                 article = Article(url)
@@ -160,16 +137,9 @@ def analyze_urls(originalarticle, claim, depth):
 
 
             if article.text != "":
-                printYellow(url)
                 analyzed_article = Analyzed_article(article.text)
-
-                # article.preprocessed_text just the articles text with . and no tabs
                 analyzed_article.preprocessed_text = preprocess_article_text(article.text)
-
-                analyzed_article.most_relevant_sent = analyze_article(analyzed_article.preprocessed_text, claim.text,
-                                                                      param['n_relevant_sent'])
-                print(analyzed_article.most_relevant_sent)
-
+                analyzed_article.most_relevant_sent = analyze_article(analyzed_article.preprocessed_text, claim.text,param['n_relevant_sent'])
                 if analyzed_article.most_relevant_sent is not None:
                     next(global_counter1)
                     if len(article.authors) > 0:
@@ -192,7 +162,5 @@ def analyze_urls(originalarticle, claim, depth):
                         analyzed_article.html = article.html
                     analyzed_article.depth = depth
                 if (analyzed_article.url != "UNKNOWN"):
-                    printYellow(url)
                     originalarticle.articleurls.append(analyzed_article)
-                    # loop with each article from original article
                     analyze_urls(analyzed_article, claim, depth + 1)
