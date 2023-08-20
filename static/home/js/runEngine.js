@@ -15,24 +15,31 @@ function changeColor(id) {
 search.addEventListener('click', function() {
   var value = input.value;
 
-  localStorage.setItem('search', value)
+  localStorage.setItem('search', value);
 
   fetch('/claimmap/claimmap/search', {
     method: 'POST',
     headers: {
-        'Content-Type': 'application/json'
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify({ value: value })
-    })
+  })
     .then(function(response) {
-        return response.text();
+      return response.text();
     })
     .then(function(result) {
-        if(result){
-          localStorage.setItem('json', result)
-          window.location.replace('claimmap/visualization')
-        }
+      if (result) {
+        localStorage.setItem('json', result);
+        
+        // Move the redirection here, inside the success callback
+        window.location.replace('claimmap/visualization');
+      }
     })
+    .catch(function(error) {
+      console.log(error);
+    });
+});
+
     .catch(function(error) {
         console.log(error);
     });
