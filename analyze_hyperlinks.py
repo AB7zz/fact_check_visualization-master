@@ -89,7 +89,9 @@ def preprocess_article_text(text):
 
 def analyze_article(article, claim, n_relevant):
     print('Analyzing article ...')
+    print('error1')
     relevant_sentences = find_most_similar(article, claim)
+    print('error2')
     # if more than 5 relevant searches get first 5
     if len(relevant_sentences) > n_relevant:
         return relevant_sentences[0: n_relevant - 1]
@@ -166,6 +168,7 @@ def analyze_urls(originalarticle, claim, depth):
 
                 analyzed_article.most_relevant_sent = analyze_article(analyzed_article.preprocessed_text, claim.text,
                                                                       param['n_relevant_sent'])
+                print(analyzed_article.most_relevant_sent)
 
                 if analyzed_article.most_relevant_sent is not None:
                     next(global_counter1)
