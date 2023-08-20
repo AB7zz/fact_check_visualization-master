@@ -21,7 +21,7 @@ from google_search import parseAgain
 # it's meant to extract the urls that are found in the one article (for all articles)
 # urls = {1:[elink,elink,elink],2:[elink,elink,elink]}
 
-MAX_RETRIES = 3
+MAX_RETRIES = 2
 
 
 def parse_parameters(opts):
@@ -102,7 +102,7 @@ def analyze_article(article, claim, n_relevant):
 def analyze_urls(originalarticle, claim, depth):
     if depth < 2:
         all_urls = extract_urls_from_html(originalarticle)
-        all_urls = ['https://www.whitehouse.gov/briefings-statements/remarks-president-trump-signing-h-r-2-agriculture-improvement-act-2018/', 'https://www.nbcnews.com/politics/donald-trump/fact-check-how-much-does-illegal-immigration-cost-america-not-n950981', 'https://www.nbcnews.com/politics/donald-trump/fact-check-how-much-does-illegal-immigration-cost-america-not-n950981', 'https://www.nbcnews.com/politics/donald-trump/fact-check-how-much-does-illegal-immigration-cost-america-not-n950981', 'https://www.nbcnews.com/politics/donald-trump/fact-check-how-much-does-illegal-immigration-cost-america-not-n950981', 'https://www.nbcnews.com/politics/donald-trump/fact-check-how-much-does-illegal-immigration-cost-america-not-n950981']
+        # all_urls = ['https://www.whitehouse.gov/briefings-statements/remarks-president-trump-signing-h-r-2-agriculture-improvement-act-2018/', 'https://www.nbcnews.com/politics/donald-trump/fact-check-how-much-does-illegal-immigration-cost-america-not-n950981', 'https://www.nbcnews.com/politics/donald-trump/fact-check-how-much-does-illegal-immigration-cost-america-not-n950981', 'https://www.nbcnews.com/politics/donald-trump/fact-check-how-much-does-illegal-immigration-cost-america-not-n950981', 'https://www.nbcnews.com/politics/donald-trump/fact-check-how-much-does-illegal-immigration-cost-america-not-n950981', 'https://www.nbcnews.com/politics/donald-trump/fact-check-how-much-does-illegal-immigration-cost-america-not-n950981']
         print("*****")
         print("URLs from articles")
         if claim.articles[0] == originalarticle:
