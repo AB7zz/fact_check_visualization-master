@@ -89,7 +89,7 @@ def analyze_urls(originalarticle, claim, depth):
     if depth < 3:
         all_urls = extract_urls_from_html(originalarticle)
         print("*****")
-        print("2 URLs from originalarticle " + depth)
+        print("2 URLs from originalarticle ")
         print(all_urls)
         print("*****")
         optparser = optparse.OptionParser()
