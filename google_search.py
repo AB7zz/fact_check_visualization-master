@@ -74,7 +74,7 @@ def search_claim(param, claim):
 
     count = 0
     for link in soup.find_all("div", {"class": "b_title"}):
-        if count == 2:
+        if count == 10:
             break
 
         if link.find('a'):
