@@ -149,6 +149,7 @@ def analyze_urls(originalarticle, claim, depth):
                         break  # Exit the loop on success
                 except ArticleException as ae:
                     printRed("Error parsing the article: " + str(ae))
+                    continue
                     retries += 1
                     sleep(5)  # Wait for 5 seconds before retrying
                 except Exception as e:
