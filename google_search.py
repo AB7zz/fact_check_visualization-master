@@ -120,7 +120,7 @@ def do_research(param, userClaim):
     printLightPurple(
         " C L A I M     # " + str(c) + " ========================================================================")
     relevant_articles = search_claim(param, readClaim.text)
-    print("original articles =" + relevant_articles)
+    print(relevant_articles)
     analyzed_articles = []
     i = 1
 
