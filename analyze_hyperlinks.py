@@ -39,34 +39,34 @@ def parse_parameters(opts):
 
 
 def extract_urls_from_html(article):
-    # urls = dict()
-    parser = AdvancedHTMLParser()
-    parser.parseStr(article.html)
-    temp_links = parser.getElementsByTagName('a')
-    whole_article_text = article.text
-    p_article_text = parser.getElementsByTagName('p')
+    try:
+        parser = AdvancedHTMLParser()
+        parser.parseStr(article.html)
+        temp_links = parser.getElementsByTagName('a')
+        whole_article_text = article.text
+        p_article_text = parser.getElementsByTagName('p')
 
-    req = Request(
-        url=article.url,
-        headers={'User-Agent': 'Mozilla/5.0'}
-    )
-    webpage = urlopen(req).read()
-    soup = BeautifulSoup(webpage, 'html.parser')
-    all_p_urls = [tag['href'] for tag in soup.select('p a[href]')]
-    for i, val in enumerate(all_p_urls):
-        if "http" not in val:
-            all_p_urls.pop(i)
-    tmp_links = [link for link in temp_links if not link.innerHTML.strip() == '']
-    links = []
-    # iterates over all nonempty links in that article
-    for link in tmp_links:
-        # if link is there in article.text datastructure which was filled up by article.text newspaper library
-        if link.innerHTML in whole_article_text:
-            # printCyan(link.innerHTML)
-            links.append(link)
-    # urls[i] = links
-    return all_p_urls[0:2]
+        req = Request(
+            url=article.url,
+            headers={'User-Agent': 'Mozilla/5.0'}
+        )
+        webpage = urlopen(req).read()
+        soup = BeautifulSoup(webpage, 'html.parser')
+        all_p_urls = [tag['href'] for tag in soup.select('p a[href]')]
 
+        # Filter out invalid URLs
+        valid_urls = []
+        for url in all_p_urls:
+            if url.startswith('http://') or url.startswith('https://'):
+                valid_urls.append(url)
+
+        # Return the first two valid URLs
+        return valid_urls[:2]
+
+    except Exception as e:
+        # Handle parsing or network errors here
+        print(f"Error: {e}")
+        return []
 
 def preprocess_article_text(text):
     text = text.replace('\n', '. ')
@@ -84,8 +84,6 @@ def analyze_article(article, claim, n_relevant):
         return None
 
 
-# called from do_research for each claim in the for loop
-# ideally supposed to return all the relevant urls so that the json file can be filled up with this part
 def analyze_urls(originalarticle, claim, depth):
     if depth < 3:
         all_urls = extract_urls_from_html(originalarticle)
