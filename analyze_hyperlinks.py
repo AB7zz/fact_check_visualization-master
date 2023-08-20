@@ -57,7 +57,7 @@ def extract_urls_from_html(article):
         # Filter out invalid URLs
         valid_urls = []
         for url in all_p_urls:
-            if url.startswith('http://') or url.startswith('https://'):
+            if url.startswith('http://') or url.startswith('https://') and not url.lower().endswith('.pdf'):
                 valid_urls.append(url)
 
         # Return the first two valid URLs
