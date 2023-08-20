@@ -9,7 +9,7 @@ function changeColor(id) {
   }else{
     localStorage.setItem('json', JSON.stringify(sample3))
   }
-  window.location.href = 'claimmap/visualization'
+  // window.location.href = 'claimmap/visualization'
 }
 
 search.addEventListener('click', function() {
@@ -17,7 +17,7 @@ search.addEventListener('click', function() {
 
   localStorage.setItem('search', value)
 
-  fetch('claimmap/search', {
+  fetch('/claimmap/claimmap/search', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'
