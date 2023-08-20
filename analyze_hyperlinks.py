@@ -7,7 +7,7 @@ from time import sleep
 
 from AdvancedHTMLParser import AdvancedHTMLParser
 from bs4 import BeautifulSoup
-from newspaper import Article, ArticleException
+from newspaper import Article, ArticleException,Config
 
 from bert_embeddings import *
 from data_structures import Analyzed_article
@@ -45,6 +45,7 @@ def extract_urls_from_html(article):
     temp_links = parser.getElementsByTagName('a')
     whole_article_text = article.text
     p_article_text = parser.getElementsByTagName('p')
+
     req = Request(
         url=article.url,
         headers={'User-Agent': 'Mozilla/5.0'}
@@ -120,7 +121,10 @@ def analyze_urls(originalarticle, claim, depth):
         for url in all_urls:
             retries = 0
             while retries < MAX_RETRIES:
-                article = Article(url)
+                config = Config()
+                # config.browser_user_agent = user_agent
+                config.request_timeout = 10
+                article = Article(url,config=config)
                 try:
                     article.download()
                     article.parse()
