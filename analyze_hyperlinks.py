@@ -78,7 +78,7 @@ def extract_urls_from_html(article):
             # printCyan(link.innerHTML)
             links.append(link)
     urls[i] = links
-    return all_p_urls[0:5]
+    return all_p_urls[0:2]
 
 
 def preprocess_article_text(text):
