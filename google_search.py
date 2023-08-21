@@ -163,7 +163,7 @@ def do_research(param, userClaim):
     readClaim.articles = analyzed_articles
     for a in readClaim.articles:
         analyze_urls(a, readClaim, 1)
-        time.sleep(10)
+        time.sleep(5)
     return write_json_visualization(param, readClaim)
 
 
