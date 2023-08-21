@@ -25,7 +25,11 @@ search.addEventListener('click', function() {
     timeout: 300000, // Set a timeout of 30 seconds (adjust as needed)
   })
     .then(function(response) {
-      return response.text();
+      if (response.ok) {
+        return response.text();
+      } else {
+        throw new Error('Network response was not ok');
+      }
     })
     .then(function(result) {
       if (result) {
@@ -39,3 +43,4 @@ search.addEventListener('click', function() {
       console.log(error);
     });
 });
+
