@@ -5,8 +5,7 @@ import requests
 
 from flask import Flask, request, render_template
 from flask_cors import CORS
-from time import sleep
-
+import time
 from analyze_hyperlinks import *
 from bert_embeddings import *
 from print_colors import *
