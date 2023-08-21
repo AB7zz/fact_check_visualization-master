@@ -11,7 +11,6 @@ function changeColor(id) {
   }
   // window.location.href = 'claimmap/visualization'
 }
-
 search.addEventListener('click', function() {
   var value = input.value;
 
@@ -22,7 +21,8 @@ search.addEventListener('click', function() {
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ value: value })
+    body: JSON.stringify({ value: value }),
+    timeout: 30000, // Set a timeout of 30 seconds (adjust as needed)
   })
     .then(function(response) {
       return response.text();
@@ -37,10 +37,5 @@ search.addEventListener('click', function() {
     })
     .catch(function(error) {
       console.log(error);
-    });
-});
-
-    .catch(function(error) {
-        console.log(error);
     });
 });
