@@ -68,7 +68,7 @@ def search_claim(param, claim):
 
     count = 0
     for link in soup.find_all("div", {"class": "b_title"}):
-        if count == 7:
+        if count == 4:
             break
         if link.find('a'):
             urls.append(link.find('a')['href'])
