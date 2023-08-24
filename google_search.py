@@ -66,13 +66,11 @@ def search_claim(param, claim):
     reqs = requests.get(url, headers=headers)
     soup = BeautifulSoup(reqs.text, 'html.parser')
 
-    count = 0
     for link in soup.find_all("div", {"class": "b_title"}):
-        if count == 4:
+        if len(urls) == 10:
             break
         if link.find('a'):
             urls.append(link.find('a')['href'])
-            count += 1
     articles = []
 
     # urls = ['https://www.ajc.com/news/national/immigration-can-undocumented-immigrants-get-federal-public-benefits/nyks4aB0PtTbbwVP9GyogI/', 'https://www.politifact.com/factchecks/2019/jan/28/donald-trump/fact-checking-donald-trumps-claim-cost-illegal-imm/']
@@ -161,6 +159,7 @@ def do_research(param, userClaim):
     c += 1
 
     readClaim.articles = analyzed_articles
+    print("Orignial articles count" + str(len(readClaim.articles))
     for a in readClaim.articles:
         analyze_urls(a, readClaim, 1)
     return write_json_visualization(param, readClaim)
