@@ -159,7 +159,7 @@ def do_research(param, userClaim):
     c += 1
 
     readClaim.articles = analyzed_articles
-    print("Orignial articles count" + str(len(readClaim.articles))
+    print("Orignial articles count")
     for a in readClaim.articles:
         analyze_urls(a, readClaim, 1)
     return write_json_visualization(param, readClaim)
