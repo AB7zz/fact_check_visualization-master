@@ -112,7 +112,7 @@ def analyze_urls(originalarticle, claim, depth):
             retries = 0
             while retries < MAX_RETRIES:
                 config = Config()
-                config.request_timeout = 20  # Increase the timeout to 20 seconds
+                config.request_timeout = 5  # Increase the timeout to 20 seconds
 
                 article = Article(url, config=config)
                 try:
