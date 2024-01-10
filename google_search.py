@@ -66,6 +66,7 @@ def search_claim(param, claim):
 
     reqs = requests.get(url, headers=headers)
     soup = BeautifulSoup(reqs.text, 'html.parser')
+    print('URL in bing', url)
     print('soup links', soup.find_all("div", {"class": "b_title"}))
     articles = []
     count = 0
