@@ -70,20 +70,20 @@ def search_claim(param, claim):
     articles = []
     count = 0
     for link in soup.find_all("div", {"class": "b_title"}):
+        print("printing LINK:", link)
         if count == 10:
             break
-
         if link.find('a'):
             try:  
-                print("Printing 1 article:",link.find('a')['href'])
                 article = Article(link.find('a')['href'])
                 article.download()
                 article.parse()
                 articles.append(article)
                 count += 1
             except:
-                printRed("Unable to download the article: " + url)
+                printRed("Unable to download the article: " + link.find('a')['href'])
     print('ARTICLES FROM BING:', articles)
+    print('NO OF ARTICLES FROM BING:', count)
         
     return articles
 
