@@ -58,45 +58,34 @@ def parseAgain(url, article):
     
 
 def search_claim(param, claim):
+    print("Searching with Google ...")
     urls = []
     headers = {
-        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Cafari/537.36'}
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5)\AppleWebKit/537.36 (KHTML, like Gecko) Cafari/537.36'}
     url = 'https://www.bing.com/search?q=' + preprocess_article_text(claim)
-    print("URL in bing: ", url)
-    
-    try:
-        reqs = requests.get(url, headers=headers)
-        reqs.raise_for_status()  # Raise an HTTPError for bad responses
-    except requests.exceptions.RequestException as e:
-        print(f"Error making the request: {e}")
-        return []
 
+    reqs = requests.get(url, headers=headers)
     soup = BeautifulSoup(reqs.text, 'html.parser')
 
-    for link in soup.find_all("li", {"class": "b_algo"}):
-        anchor = link.find('a', href=True)
-        if anchor:
-            href = anchor['href']
-            if not is_video_link(href) and len(urls) < 10:
-                urls.append(href)
-
     articles = []
+    count = 0
+    for link in soup.find_all("div", {"class": "b_title"}):
+        if count == 10:
+            break
 
-    for url in urls:
-        article = Article(url)
-        try:
-            article.download()
-            article.parse()
-            print("Successfully parsed article:", url)
-            articles.append(article)
-        except Exception as e:
-            print(f"Unable to parse the article {url}: {e}")
-
+        if link.find('a'):
+            try:
+                article = Article(link)
+                article.download()
+                article.parse()
+                articles.append(article)
+                count += 1
+            except:
+                printRed("Unable to download the article: " + url)
+    print('ARTICLES FROM BING:', articles)
+        
     return articles
-    
-def is_video_link(url):
-    # Check if the URL points to a video (e.g., YouTube)
-    return "youtube.com" in url.lower() or "vimeo.com" in url.lower()
+s
 
 def analyze_article(article, claim, n_relevant):
     print('Analyzing article ...')
