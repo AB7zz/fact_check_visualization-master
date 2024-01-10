@@ -33,15 +33,16 @@ def read_claims(claims_file):
             i+=1
         f.close()
     return claims
-
+# def __init__(self, id, text, claimer, date, year):
 def read_claim(line):
-    line=line.strip()
-    fields = line.split('\t')
-    i=0
-    if(len(fields) >= 3):
-        dt = datetime.strptime(fields[2], '%Y-%m-%d')
-        c = Claim(i,fields[0],fields[1],fields[2],dt.year)
-        return c
+    c = Claim(0,line,'unknown','unknown','unknown')
+    # line=line.strip()
+    # fields = line.split('\t')
+    # i=0
+    # if(len(fields) >= 3):
+    #     dt = datetime.strptime(fields[2], '%Y-%m-%d')
+    #     c = Claim(i,fields[0],fields[1],fields[2],dt.year)
+    #     return c
 
 
 # called by do_research
