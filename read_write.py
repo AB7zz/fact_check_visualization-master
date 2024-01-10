@@ -36,6 +36,7 @@ def read_claims(claims_file):
 # def __init__(self, id, text, claimer, date, year):
 def read_claim(line):
     c = Claim(0,line,'unknown','unknown','unknown')
+    return c
     # line=line.strip()
     # fields = line.split('\t')
     # i=0
