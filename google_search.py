@@ -85,7 +85,7 @@ def search_claim(param, claim):
     print('ARTICLES FROM BING:', articles)
         
     return articles
-s
+
 
 def analyze_article(article, claim, n_relevant):
     print('Analyzing article ...')
