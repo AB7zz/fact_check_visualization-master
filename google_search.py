@@ -58,7 +58,7 @@ def parseAgain(url, article):
     
 
 def search_claim(param, claim):
-    print("Searching with Google ...")
+    print("PHASE 1: GETTING UPTO 10 RESULTS FROM BING")
     urls = []
     headers = {
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5)\AppleWebKit/537.36 (KHTML, like Gecko) Cafari/537.36'}
@@ -70,7 +70,7 @@ def search_claim(param, claim):
 
     count_results = 0
     articles = []
-
+    downloaded_articles_urls = []
     for result in soup.find_all('li', class_='b_algo'):
         count_results += 1
         result_link = result.find('a')['href']
@@ -79,11 +79,14 @@ def search_claim(param, claim):
             article.download()
             article.parse()
             articles.append(article)
+            downloaded_articles_urls.append(result_link)
         except:
             printRed("Unable to download the article: " + result_link)
+    
     print("# Search results from bing: ", count_results)
     print("# Articles successfully downloaded and parsed from BING: ", len(articles))
-    print("Articles: ", articles)
+    print("Articles from BING urls: ",downloaded_articles_urls)
+    print("PHASE 1: COMPLETE!")
     return articles
 
 def preprocess_article_text(text):
@@ -106,10 +109,10 @@ def do_research(param, userClaim):
     readClaim = read_claim(userClaim)
     print("Research started ...")
     c = 1
-    printLightPurple(
-        " C L A I M     # " + str(c) + " ========================================================================")
+    # printLightPurple(
+    #     " C L A I M     # " + str(c) + " ========================================================================")
     relevant_articles = search_claim(param, readClaim.text)
-    print(relevant_articles)
+    
     analyzed_articles = []
     i = 1
 
