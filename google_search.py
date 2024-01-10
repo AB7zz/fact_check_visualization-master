@@ -66,11 +66,10 @@ def search_claim(param, claim):
 
     reqs = requests.get(url, headers=headers)
     soup = BeautifulSoup(reqs.text, 'html.parser')
-    print('soup',soup)
+    print('soup links', soup.find_all("div", {"class": "b_title"}))
     articles = []
     count = 0
     for link in soup.find_all("div", {"class": "b_title"}):
-        print("printing LINK:", link)
         if count == 10:
             break
         if link.find('a'):
