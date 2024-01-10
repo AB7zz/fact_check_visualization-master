@@ -74,8 +74,9 @@ def search_claim(param, claim):
             break
 
         if link.find('a'):
-            try:
-                article = Article(link)
+            try:  
+                print(link.find('a')['href'])
+                article = Article(link.find('a')['href'])
                 article.download()
                 article.parse()
                 articles.append(article)
