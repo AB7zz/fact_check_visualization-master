@@ -67,26 +67,29 @@ def search_claim(param, claim):
     reqs = requests.get(url, headers=headers)
     soup = BeautifulSoup(reqs.text, 'html.parser')
     print('URL in bing', url)
-    print('soup links', soup.find_all("div", {"class": "b_title"}))
+
+    count_results = 0
     articles = []
-    count = 0
-    for link in soup.find_all("div", {"class": "b_title"}):
-        if count == 10:
-            break
-        if link.find('a'):
-            try:  
-                article = Article(link.find('a')['href'])
-                article.download()
-                article.parse()
-                articles.append(article)
-                count += 1
-            except:
-                printRed("Unable to download the article: " + link.find('a')['href'])
-    print('ARTICLES FROM BING:', articles)
-    print('NO OF ARTICLES FROM BING:', count)
-        
+
+    for result in soup.find_all('li', class_='b_algo'):
+        count_results += 1
+        result_link = result.find('a')['href']
+        try:  
+            article = Article(result_link)
+            article.download()
+            article.parse()
+            articles.append(article)
+        except:
+            printRed("Unable to download the article: " + result_link)
+    print("# Search results from bing: ", count_results)
+    print("# Articles successfully downloaded and parsed from BING: ", len(articles))
+    print("Articles: ", articles)
     return articles
 
+def preprocess_article_text(text):
+    text = text.replace('\n', '. ')
+    text = text.replace('\t', '')
+    return text
 
 def analyze_article(article, claim, n_relevant):
     print('Analyzing article ...')
@@ -97,10 +100,6 @@ def analyze_article(article, claim, n_relevant):
     else:
         return None
 
-def preprocess_article_text(text):
-    text = text.replace('\n', '. ')
-    text = text.replace('\t', '')
-    return text
 
 
 def do_research(param, userClaim):
