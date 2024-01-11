@@ -65,6 +65,7 @@ def analyze_article(article, claim, n_relevant):
 
 def get_citation_articles(originalarticle, original_article_idx, total_original, claim, depth):
     print("Processing citation articles from originalarticle #" + str(original_article_idx) + "/" + str(total_original))
+    print("Original article link: ", originalarticle.url)
     # while depth < 3:
     valid_citation_articles, num_citation_articles = extract_articles_from_html(originalarticle)
     print("# Citation articles: " + str(num_citation_articles))
