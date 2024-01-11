@@ -41,13 +41,13 @@ def extract_articles_from_html(article):
                 if citation_article.text:
                     valid_citation_articles.append(citation_article)
             except Exception as e:
-                print(f"Error: Could not parse citation article: {citation_url} - {e}")
+                print(f"Error: Could not parse citation article:" + str(citation_url))
                 
         print("# Citation articles successfully downloaded from article: " + str(len(valid_citation_articles)) + "\n\n")
         return valid_citation_articles, len(valid_citation_articles)
         
     except Exception as e:
-        print(f"Original article could not be parsed for links - {e}")
+        print(f"Original article could not be parsed for links")
         return [], 0
 
 
