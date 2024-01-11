@@ -103,7 +103,8 @@ def get_citation_articles(originalarticle, original_article_idx, total_original,
     print("Original article link (or recursive original article): ", originalarticle.url)
     
     valid_citation_articles, num_citation_articles = extract_articles_from_html(originalarticle)
-    
+
+    print("PHASE 4: CHECKING CITATION ARTICLES FOR RELEVANCY")
     final_citation_articles = []
     if num_citation_articles != 0:
         citation_article_idx = 1
@@ -114,6 +115,7 @@ def get_citation_articles(originalarticle, original_article_idx, total_original,
             citation_article_idx += 1
         
     print("# Relevant citation articles(final)"+ str(len(final_citation_articles)) + "/" + str(num_citation_articles))
+    print("PHASE 4: COMPLETE!\n\n")
     originalarticle.articleurls = final_citation_articles
 
     # print("\n Recursive call for original article #" + str(original_article_idx)
