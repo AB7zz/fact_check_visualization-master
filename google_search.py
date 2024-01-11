@@ -58,20 +58,21 @@ def parseAgain(url, article):
     
 
 def search_claim(param, claim):
-    print("PHASE 1: GETTING UPTO 40 RESULTS FROM BING")
-    urls = []
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5)\AppleWebKit/537.36 (KHTML, like Gecko) Cafari/537.36'}
-
-    num_results = 40
-    url = f'https://www.bing.com/search?q={preprocess_url_text(claim)}&count={num_results}'
-
-    # url = 'https://www.bing.com/search?q=' + preprocess_article_text(claim)
-
-    reqs = requests.get(url, headers=headers)
-    soup = BeautifulSoup(reqs.text, 'html.parser')
+    soup = None
+    while soup == None:
+        print("PHASE 1: GETTING UPTO 40 RESULTS FROM BING")
+        urls = []
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5)\AppleWebKit/537.36 (KHTML, like Gecko) Cafari/537.36'}
+    
+        num_results = 20
+        url = f'https://www.bing.com/search?q={preprocess_url_text(claim)}&count={num_results}'
+    
+        # url = 'https://www.bing.com/search?q=' + preprocess_article_text(claim)
+    
+        reqs = requests.get(url, headers=headers)
+        soup = BeautifulSoup(reqs.text, 'html.parser')
     print('URL in bing', url)
-    print(soup)
     count_results = 0
     articles = []
     downloaded_articles_urls = []
@@ -93,7 +94,7 @@ def search_claim(param, claim):
     print("# Search results from bing: ", count_results)
     print("# Articles successfully downloaded and parsed from BING: ", len(articles))
     print("PHASE 1: COMPLETE!\n\n")
-    return articles[:3],len(articles)
+    return articles,len(articles)
 
 def preprocess_url_text(text):
     processed_text = urllib.parse.quote_plus(text)
