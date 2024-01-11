@@ -71,8 +71,9 @@ def search_claim(param, claim):
     count_results = 0
     articles = []
     downloaded_articles_urls = []
-    print(soup.find_all('li', class_='b_algo'))
+    
     for result in soup.find_all('li', class_='b_algo'):
+        print("RESULT \n \n \n",result)
         count_results += 1
         result_link = result.find('h2 a')['href']
         try:  
