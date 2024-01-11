@@ -113,7 +113,7 @@ def preprocess_article_text(text):
 def analyze_article(article, claim, n_relevant):
     relevant_sentences = find_most_similar(article, claim)
     # if more than 5 relevant searches get first 5
-    print("no of relevant sentences",len(relevant_sentences))
+    print("relevant sentences",relevant_sentences)
     if len(relevant_sentences) >= n_relevant:
         return relevant_sentences[0: n_relevant - 1]
     else:
