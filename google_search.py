@@ -58,12 +58,12 @@ def parseAgain(url, article):
     
 
 def search_claim(param, claim):
-    print("PHASE 1: GETTING UPTO 10 RESULTS FROM BING")
+    print("PHASE 1: GETTING UPTO 40 RESULTS FROM BING")
     urls = []
     headers = {
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5)\AppleWebKit/537.36 (KHTML, like Gecko) Cafari/537.36'}
 
-    num_results = 20
+    num_results = 40
     url = f'https://www.bing.com/search?q={preprocess_article_text(claim)}&count={num_results}'
 
     # url = 'https://www.bing.com/search?q=' + preprocess_article_text(claim)
