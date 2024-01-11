@@ -102,7 +102,7 @@ def preprocess_article_text(text):
 def analyze_article(article, claim, n_relevant):
     relevant_sentences = find_most_similar(article, claim)
     # if more than 5 relevant searches get first 5
-    if len(relevant_sentences) > n_relevant:
+    if len(relevant_sentences) >= n_relevant:
         return relevant_sentences[0: n_relevant - 1]
     else:
         return None
@@ -112,7 +112,7 @@ def check_BING_article_valid(bing_article,total_bing_articles,article_idx, readC
     
     article = Analyzed_article(bing_article.text)
     article.preprocessed_text = preprocess_article_text(bing_article.text)
-    article.most_relevant_sent = analyze_article(article.preprocessed_text, readClaim.text,param['n_relevant_sent'])
+    article.most_relevant_sent = analyze_article(article.preprocessed_text, readClaim.text, 5)
     if article.most_relevant_sent is not None:
         if len(bing_article.authors) > 0:
             article.author = bing_article.authors
@@ -201,7 +201,7 @@ def search():
     )
     optparser.add_option(
         "-r", "--n_relevant_sent", default=5,
-        help="n most releveant sentences in each article."
+        help="n most relevant sentences in each article."
     )
     optparser.add_option(
         "-t", "--top_search_results", default=10,
