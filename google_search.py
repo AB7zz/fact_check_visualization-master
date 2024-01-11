@@ -85,7 +85,7 @@ def search_claim(param, claim):
             article.download()
             article.parse()
             print("Article url", result_link)
-            print("article sources",article.source_url)
+            print("article sources",article.references)
             if article.text != None:
                 articles.append(article)
         except:
