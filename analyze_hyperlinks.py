@@ -122,7 +122,7 @@ def get_citation_articles(originalarticle, original_article_idx, total_original,
     print("Recursive call for original article #" + str(original_article_idx))
     
     for final_citation_article in final_citation_articles:
-        get_citation_articles(final_citation_article, original_article_idx, total_original, readClaim, depth+1):
+        get_citation_articles(final_citation_article, original_article_idx, total_original, readClaim, depth+1)
         
     print("PHASE 5: COMPLETE!\n\n")
 
