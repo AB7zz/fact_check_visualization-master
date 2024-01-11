@@ -166,8 +166,8 @@ def do_research(param, userClaim):
     print("Relevant bing articles:", final_bing_articles)
     print("PHASE 2 COMPLETE!")
     
-    # for bing_article in readClaim.articles:
-    #     analyze_urls(bing_article, readClaim, 1)
+    for bing_article in readClaim.articles:
+        analyze_urls(bing_article, readClaim, 1)
     return write_json_visualization(param, readClaim)
 
 
