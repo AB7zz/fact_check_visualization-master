@@ -2,7 +2,7 @@
 
 import nltk
 import requests
-
+import urllib.parse
 from flask import Flask, request, render_template
 from flask_cors import CORS
 import time
@@ -92,7 +92,7 @@ def search_claim(param, claim):
     return articles,len(articles)
 
 def preprocess_article_text(text):
-    processed_text = text.replace(' ', '+')
+    processed_text = urllib.parse.quote_plus(text)
     return processed_text
     # text = text.replace('\n', '. ')
     # text = text.replace('\t', '')
