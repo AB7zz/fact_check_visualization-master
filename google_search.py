@@ -103,7 +103,7 @@ def analyze_article(article, claim, n_relevant):
     else:
         return None
 
-def check_BING_article_valid(bing_article,total_bing_articles,article_idx)
+def check_BING_article_valid(bing_article,total_bing_articles,article_idx):
     print("Processing BING article #" + str(article_idx) + "/" + str(total_bing_articles)) 
     
     article = Analyzed_article(bing_article.text)
