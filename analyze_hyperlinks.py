@@ -28,20 +28,25 @@ def extract_articles_from_html(article):
         webpage = urlopen(req).read()
         soup = BeautifulSoup(webpage, 'html.parser')
         citation_urls_webpage = [tag['href'] for tag in soup.select('p a[href]')]
+        print("# of citation urls found in article: ", len(citation_urls_webpage))
         
-        try:
-            # Filter out invalid citation articles
-            valid_citation_articles = []
-            for citation_url in citation_urls_webpage:
+        # Filter out invalid citation articles
+        valid_citation_articles = []
+        for citation_url in citation_urls_webpage:
+            try:
                 citation_article = Article(citation_url)
                 citation_article.download()
                 citation_article.parse()
                 if citation_article.text != None:
                     valid_citation_articles.append(citation_article)
-        except:
-            print(f"Error: Could not parse citation article")
-            
+            except:
+                print(f"Error: Could not parse citation article : ", citation_url)
+                
+        print("# Citation articles successfully downloaded from article: " + len(valid_citation_articles) + "\n\n")
         return valid_citation_articles, len(valid_citation_articles)
+    except:
+        print("Orignal article could not be parsed for links")
+        return None, None
 
     except Exception as e:
         # Handle parsing or network errors here
@@ -68,7 +73,7 @@ def get_citation_articles(originalarticle, original_article_idx, total_original,
     print("Original article link: ", originalarticle.url)
     # while depth < 3:
     valid_citation_articles, num_citation_articles = extract_articles_from_html(originalarticle)
-    print("# Citation articles: " + str(num_citation_articles))
+
         
         
 
