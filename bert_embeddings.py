@@ -113,7 +113,7 @@ def find_most_similar(article, claim):
 
         for sent in most_similar_sentences:
             relevant_sentences.append(sent.text)
-        return relevant_sentences
+        return relevant_sentences, len(relevant_sentences)
     else:
         return None, None
 
