@@ -105,7 +105,7 @@ def get_citation_articles(originalarticle, original_article_idx, total_original,
     final_citation_articles = []
     citation_article_idx = 1
     for citation_article in valid_citation_articles:
-        analyzed_citation_res = check_BING_article_valid(citation_article, num_citation_articles, citation_article_idx, readClaim, depth) 
+        analyzed_citation_res = check_citation_article_valid(citation_article, num_citation_articles, citation_article_idx, readClaim, depth) 
         if analyzed_citation_res != None:
             final_citation_articles.append(analyzed_citation_res)
         citation_article_idx += 1
