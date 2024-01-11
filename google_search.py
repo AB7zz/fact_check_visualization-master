@@ -165,13 +165,14 @@ def do_research(param, userClaim):
     readClaim.articles = final_bing_articles
     print("# Relevant bing articles(final)"+ str(len(final_bing_articles)))
     print("PHASE 2 COMPLETE!\n\n")
-    article_idx = 1
 
-    print("PHASE 3: GETTING CITATION ARTICLES RECURSIVELY")
-    for bing_article in readClaim.articles:
-        get_citation_articles(bing_article, article_idx, len(final_bing_articles), readClaim, 1)
-        article_idx += 1
-    print("PHASE 3: COMPLETE!\n\n")
+    
+    # print("PHASE 3: GETTING CITATION ARTICLES RECURSIVELY")
+    # article_idx = 1
+    # for bing_article in readClaim.articles:
+    #     get_citation_articles(bing_article, article_idx, len(final_bing_articles), readClaim, 1)
+    #     article_idx += 1
+    # print("PHASE 3: COMPLETE!\n\n")
     
     return write_json_visualization(param, readClaim)
 
