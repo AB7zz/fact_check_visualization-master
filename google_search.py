@@ -92,7 +92,6 @@ def search_claim(param, claim):
     
     print("# Search results from bing: ", count_results)
     print("# Articles successfully downloaded and parsed from BING: ", len(articles))
-    print("Articles from BING: ", articles)
     print("PHASE 1: COMPLETE!\n\n")
     return articles,len(articles)
 
@@ -165,7 +164,6 @@ def do_research(param, userClaim):
     
     readClaim.articles = final_bing_articles
     print("# Relevant bing articles(final)"+ str(len(final_bing_articles)))
-    print("Relevant bing articles:", final_bing_articles)
     print("PHASE 2 COMPLETE!\n\n")
     article_idx = 1
 
