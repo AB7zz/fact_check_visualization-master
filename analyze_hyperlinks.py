@@ -51,27 +51,71 @@ def extract_articles_from_html(article):
 
 
 def preprocess_article_text(text):
-    processed_text = urllib.parse.quote_plus(text)
-    return processed_text
+    text = text.replace('\n', '. ')
+    text = text.replace('\t', '')
+    return text
 
 
 def analyze_article(article, claim, n_relevant):
-    print('Analyzing article ...')
     relevant_sentences = find_most_similar(article, claim)
-    # if more than 5 relevant searches get first 5
     if len(relevant_sentences) > n_relevant:
         return relevant_sentences[0: n_relevant - 1]
     else:
         return None
-
-
-def get_citation_articles(originalarticle, original_article_idx, total_original, claim, depth):
-    print("Processing citation articles from originalarticle #" + str(original_article_idx) + "/" + str(total_original))
-    print("Original article link: ", originalarticle.url)
-    # while depth < 3:
-    valid_citation_articles, num_citation_articles = extract_articles_from_html(originalarticle)
-
         
+def check_citation_article_valid(citation_article,total_citation_articles, citation_article_idx, readClaim, depth):
+    print("Processing citation article #" + str(citation_article_idx) + "/" + str(total_citation_articles)) 
+    article = Analyzed_article(citation_article.text)
+    article.preprocessed_text = preprocess_article_text(citation_article.text)
+    article.most_relevant_sent = analyze_article(article.preprocessed_text, readClaim.text, 20)
+    if article.most_relevant_sent is not None:
+        if len(citation_article.authors) > 0:
+            article.author = citation_article.authors
+        if citation_article.publish_date is not None:
+            formatted_date = citation_article.publish_date.strftime("%d-%b-%Y")
+            article.publish_date = formatted_date
+            article.year = citation_article.publish_date.year
+        if citation_article.top_image != '':
+            article.image = citation_article.top_image
+        if citation_article.summary != '':
+            article.summary = citation_article.summary
+        if len(citation_article.keywords) > 0:
+            article.keywords = citation_article.keywords
+        if citation_article.source_url != '':
+            article.source_url = citation_article.source_url
+        if citation_article.url != '':
+            article.url = citation_article.url
+        if citation_article.html != '':
+            article.html = citation_article.html
+        article.depth = depth
+        return article
+    else:
+        print("Citation article"+ str(citation_article_idx) +"not relevant")
+        return None
+
+
+def get_citation_articles(originalarticle, original_article_idx, total_original, readClaim, depth):
+    if depth == 3:
+        return
+    print("Processing citation articles from originalarticle #" + str(original_article_idx) + "/" + str(total_original) + "depth: " + depth)
+    print("Original article link (or recursive original article): ", originalarticle.url)
+    
+    valid_citation_articles, num_citation_articles = extract_articles_from_html(originalarticle)
+    
+    final_citation_articles = []
+    citation_article_idx = 1
+    for citation_article in valid_citation_articles:
+        analyzed_citation_res = check_BING_article_valid(citation_article, num_citation_articles, citation_article_idx, readClaim, depth) 
+        if analyzed_citation_res != None:
+            final_citation_articles.append(analyzed_citation_res)
+        citation_article_idx += 1
+        
+    print("# Relevant citation articles(final)"+ str(len(final_citation_articles)) + "/" + str(num_citation_articles))
+    originalarticle.articleurls = final_citation_articles
+
+    # print("\n Recursive call for original article #" + str(original_article_idx)
+    # # recursive call for citation_article as original article
+    # get_citation_articles(originalarticle, original_article_idx, total_original, readClaim, depth):
         
 
         # for url in all_urls:
