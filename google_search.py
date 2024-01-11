@@ -64,7 +64,7 @@ def search_claim(param, claim):
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5)\AppleWebKit/537.36 (KHTML, like Gecko) Cafari/537.36'}
 
     num_results = 40
-    url = f'https://www.bing.com/search?q={preprocess_article_text(claim)}&count={num_results}'
+    url = f'https://www.bing.com/search?q={preprocess_url_text(claim)}&count={num_results}'
 
     # url = 'https://www.bing.com/search?q=' + preprocess_article_text(claim)
 
@@ -96,12 +96,14 @@ def search_claim(param, claim):
     print("PHASE 1: COMPLETE!")
     return articles,len(articles)
 
-def preprocess_article_text(text):
+def preprocess_url_text(text):
     processed_text = urllib.parse.quote_plus(text)
     return processed_text
-    # text = text.replace('\n', '. ')
-    # text = text.replace('\t', '')
-    # return text
+
+def preprocess_article_text(text):
+    text = text.replace('\n', '. ')
+    text = text.replace('\t', '')
+    return text
 
 def analyze_article(article, claim, n_relevant):
     relevant_sentences = find_most_similar(article, claim)
