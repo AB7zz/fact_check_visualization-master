@@ -92,9 +92,11 @@ def search_claim(param, claim):
     return articles,len(articles)
 
 def preprocess_article_text(text):
-    text = text.replace('\n', '. ')
-    text = text.replace('\t', '')
-    return text
+    processed_text = text.replace(' ', '+')
+    return processed_text
+    # text = text.replace('\n', '. ')
+    # text = text.replace('\t', '')
+    # return text
 
 def analyze_article(article, claim, n_relevant):
     relevant_sentences = find_most_similar(article, claim)
