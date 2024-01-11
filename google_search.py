@@ -84,13 +84,6 @@ def search_claim(param, claim):
             article = Article(result_link)
             article.download()
             article.parse()
-            print("Article url", result_link)
-            print("Cited Links:")
-    
-            for reference in article.references:
-                print(reference)
-            
-            print("\n")
             if article.text != None:
                 articles.append(article)
         except:
@@ -172,9 +165,10 @@ def do_research(param, userClaim):
     print("# Relevant bing articles(final)"+ str(len(final_bing_articles)))
     print("Relevant bing articles:", final_bing_articles)
     print("PHASE 2 COMPLETE!")
-    
+    article_idx = 1
     for bing_article in readClaim.articles:
-        analyze_urls(bing_article, readClaim, 1)
+        get_citation_articles(bing_article, article_idx, len(final_bing_articles), readClaim, 1)
+        article_idx += 1
     return write_json_visualization(param, readClaim)
 
 
