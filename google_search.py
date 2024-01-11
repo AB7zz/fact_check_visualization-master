@@ -74,17 +74,15 @@ def search_claim(param, claim):
     
     for result in soup.find_all('li', class_='b_algo'):
         count_results += 1
-        res = result.find('bing_article')
-        if res:
-            result_link = res['href']
-            try:  
-                article = Article(result_link)
-                article.download()
-                article.parse()
-                if article.text != None:
-                    articles.append(article)
-            except:
-                printRed("Unable to download/parse the article: " + result_link)
+        result_link = result.find('h2 a')['href']
+        try:  
+            article = Article(result_link)
+            article.download()
+            article.parse()
+            if article.text != None:
+                articles.append(article)
+        except:
+            printRed("Unable to download/parse the article: " + result_link)
 
     
     print("# Search results from bing: ", count_results)
