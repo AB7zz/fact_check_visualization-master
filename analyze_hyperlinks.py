@@ -100,7 +100,7 @@ def get_citation_articles(originalarticle, original_article_idx, total_original,
     if depth == 3:
         return
     print("Processing citation articles from originalarticle #" + str(original_article_idx) + "/" + str(total_original) + " depth: " + str(depth))
-    print("Original article link (or recursive original article): ", originalarticle.url)
+    print("Original article link (or recursive original article): ", originalarticle.url + "\n")
     
     valid_citation_articles, num_citation_articles = extract_articles_from_html(originalarticle)
 
