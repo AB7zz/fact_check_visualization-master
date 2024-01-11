@@ -71,7 +71,7 @@ def search_claim(param, claim):
     reqs = requests.get(url, headers=headers)
     soup = BeautifulSoup(reqs.text, 'html.parser')
     print('URL in bing', url)
-
+    print(soup)
     count_results = 0
     articles = []
     downloaded_articles_urls = []
