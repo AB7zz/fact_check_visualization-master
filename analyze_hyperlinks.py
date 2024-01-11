@@ -37,7 +37,7 @@ def extract_articles_from_html(article):
                 citation_article = Article(citation_url)
                 citation_article.download()
                 citation_article.parse()
-                if citation_article.text != None:
+                if citation_article != None and citation_article.text != None:
                     valid_citation_articles.append(citation_article)
             except:
                 print(f"Error: Could not parse citation article : ", citation_url)
