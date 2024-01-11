@@ -85,7 +85,12 @@ def search_claim(param, claim):
             article.download()
             article.parse()
             print("Article url", result_link)
-            print("article sources",article.references)
+            print("Cited Links:")
+    
+            for reference in article.references:
+                print(reference)
+            
+            print("\n")
             if article.text != None:
                 articles.append(article)
         except:
