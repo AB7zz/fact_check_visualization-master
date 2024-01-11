@@ -24,30 +24,30 @@ def extract_articles_from_html(article):
             url=article.url,
             headers={'User-Agent': 'Mozilla/5.0'}
         )
-        
         webpage = urlopen(req).read()
         soup = BeautifulSoup(webpage, 'html.parser')
+        
+
         citation_urls_webpage = [tag['href'] for tag in soup.select('p a[href]')]
         print("# of citation urls found in article: ", len(citation_urls_webpage))
         
-        # Filter out invalid citation articles
+
         valid_citation_articles = []
         for citation_url in citation_urls_webpage:
             try:
                 citation_article = Article(citation_url)
                 citation_article.download()
                 citation_article.parse()
-                if citation_article != None and citation_article.text != None:
+                if citation_article.text:
                     valid_citation_articles.append(citation_article)
-            except:
-                print(f"Error: Could not parse citation article : ", citation_url)
+            except Exception as e:
+                print(f"Error: Could not parse citation article: {citation_url} - {e}")
                 
-        print("# Citation articles successfully downloaded from article: " + len(valid_citation_articles) + "\n\n")
+        print("# Citation articles successfully downloaded from article: " + str(len(valid_citation_articles)) + "\n\n")
         return valid_citation_articles, len(valid_citation_articles)
         
-    except:
-        print("Orignal article could not be parsed for links")
-        return None, None
+    except Exception as e:
+        print(f"Original article could not be parsed for links - {e}")
 
 
 def preprocess_article_text(text):
