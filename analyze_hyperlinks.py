@@ -44,14 +44,11 @@ def extract_articles_from_html(article):
                 
         print("# Citation articles successfully downloaded from article: " + len(valid_citation_articles) + "\n\n")
         return valid_citation_articles, len(valid_citation_articles)
+        
     except:
         print("Orignal article could not be parsed for links")
         return None, None
 
-    except Exception as e:
-        # Handle parsing or network errors here
-        print(f"Error: Could not parse citation  #", str())
-        return []
 
 def preprocess_article_text(text):
     processed_text = urllib.parse.quote_plus(text)
