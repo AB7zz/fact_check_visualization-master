@@ -62,7 +62,11 @@ def search_claim(param, claim):
     urls = []
     headers = {
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5)\AppleWebKit/537.36 (KHTML, like Gecko) Cafari/537.36'}
-    url = 'https://www.bing.com/search?q=' + preprocess_article_text(claim)
+
+    num_results = 20
+    url = f'https://www.bing.com/search?q={preprocess_article_text(claim)}&count={num_results}'
+
+    # url = 'https://www.bing.com/search?q=' + preprocess_article_text(claim)
 
     reqs = requests.get(url, headers=headers)
     soup = BeautifulSoup(reqs.text, 'html.parser')
