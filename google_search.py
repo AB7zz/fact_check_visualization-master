@@ -73,7 +73,7 @@ def search_claim(param, claim):
     downloaded_articles_urls = []
     
     for result in soup.find_all('li', class_='b_algo'):
-        print("RESULT \n \n \n",result)
+        # print("RESULT \n \n \n",result)
         count_results += 1
         result_link = result.find('a')['href']
         try:  
@@ -88,7 +88,7 @@ def search_claim(param, claim):
     
     print("# Search results from bing: ", count_results)
     print("# Articles successfully downloaded and parsed from BING: ", len(articles))
-    print("Articles from BING: ",downloaded_articles_urls)
+    print("Articles from BING: ", articles)
     print("PHASE 1: COMPLETE!")
     return articles,len(articles)
 
@@ -107,7 +107,7 @@ def analyze_article(article, claim, n_relevant):
     else:
         return None
 
-def check_BING_article_valid(bing_article,total_bing_articles,article_idx):
+def check_BING_article_valid(bing_article,total_bing_articles,article_idx, readClaim):
     print("Processing BING article #" + str(article_idx) + "/" + str(total_bing_articles)) 
     
     article = Analyzed_article(bing_article.text)
@@ -151,7 +151,7 @@ def do_research(param, userClaim):
     final_bing_articles = []
     article_idx = 1
     for bing_article in bing_articles_P1:
-        analyzed_bing_res = check_BING_article_valid(bing_article,total_bing_articles,article_idx) 
+        analyzed_bing_res = check_BING_article_valid(bing_article,total_bing_articles,article_idx, readClaim) 
         if analyzed_bing_res != None:
             final_bing_articles.append(analyzed_bing_res)
         article_idx += 1
