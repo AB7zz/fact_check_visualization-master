@@ -71,6 +71,7 @@ def search_claim(param, claim):
     count_results = 0
     articles = []
     downloaded_articles_urls = []
+    
     for result in soup.find_all('li', class_='b_algo'):
         count_results += 1
         result_link = result.find('bing_article')['href']
@@ -78,16 +79,16 @@ def search_claim(param, claim):
             article = Article(result_link)
             article.download()
             article.parse()
-            articles.append(article)
-            downloaded_articles_urls.append(result_link)
+            if article.text != None:
+                articles.append(article)
         except:
-            printRed("Unable to download the article: " + result_link)
+            printRed("Unable to download/parse the article: " + result_link)
     
     print("# Search results from bing: ", count_results)
     print("# Articles successfully downloaded and parsed from BING: ", len(articles))
-    print("Articles from BING urls: ",downloaded_articles_urls)
+    print("Articles from BING: ",downloaded_articles_urls)
     print("PHASE 1: COMPLETE!")
-    return articles
+    return articles,len(articles)
 
 def preprocess_article_text(text):
     text = text.replace('\n', '. ')
@@ -95,7 +96,6 @@ def preprocess_article_text(text):
     return text
 
 def analyze_article(article, claim, n_relevant):
-    print('Analyzing article ...')
     relevant_sentences = find_most_similar(article, claim)
     # if more than 5 relevant searches get first 5
     if len(relevant_sentences) > n_relevant:
@@ -103,58 +103,62 @@ def analyze_article(article, claim, n_relevant):
     else:
         return None
 
+def check_BING_article_valid(bing_article,total_bing_articles,article_idx)
+    print("Processing BING article #" + str(article_idx) + "/" + str(total_bing_articles)) 
+    
+    article = Analyzed_article(bing_article.text)
+    article.preprocessed_text = preprocess_article_text(bing_article.text)
+    article.most_relevant_sent = analyze_article(article.preprocessed_text, readClaim.text,param['n_relevant_sent'])
+    if article.most_relevant_sent is not None:
+        if len(bing_article.authors) > 0:
+            article.author = bing_article.authors
+        if bing_article.publish_date is not None:
+            formatted_date = bing_article.publish_date.strftime("%d-%b-%Y")
+            article.publish_date = formatted_date
+            article.year = bing_article.publish_date.year
+        if bing_article.top_image != '':
+            article.image = bing_article.top_image
+        if bing_article.summary != '':
+            article.summary = bing_article.summary
+        if len(bing_article.keywords) > 0:
+            article.keywords = bing_article.keywords
+        if bing_article.source_url != '':
+            article.source_url = bing_article.source_url
+        if bing_article.url != '':
+            article.url = bing_article.url
+        if bing_article.html != '':
+            article.html = bing_article.html
+        article.depth = 0
+        return article
+    else:
+        print("Bing article"+str(article_idx)+"not relevant")
+        return None
+
+                
 
 
 def do_research(param, userClaim):
     readClaim = read_claim(userClaim)
     print("Research started ...")
+
+    bing_articles_P1,total_bing_articles = search_claim(param, readClaim.text)
     
-    # printLightPurple(
-    #     " C L bing_article I M     # " + str(c) + " ========================================================================")
-    
-    bing_articles_P1 = search_claim(param, readClaim.text)
-    analyzed_articles = []
-    i = 1
-    c = 1
+    print("PHASE 2: FILTERING BING ARTICLES BASED ON RELEVANCY")
+    final_bing_articles = []
+    article_idx = 1
     for bing_article in bing_articles_P1:
-        # articledata.text because of newspaper package
-        if bing_article.text != "":
-            # links = analyze_urls(bing_article)
-            print("Processing article #" + str(i))  # NOTE: the article may or may not be added to the output file based on its length")
-            # just creates bing_article article data structure and fills up artcle.text and article.id
-
-            article = Analyzed_article(bing_article.text)
-            # article.preprocessed_text just the articles text with . and no tabs
-            article.preprocessed_text = preprocess_article_text(bing_article.text)
-
-            article.most_relevant_sent = analyze_article(article.preprocessed_text, readClaim.text,param['n_relevant_sent'])
-            if article.most_relevant_sent is not None:
-                if len(bing_article.authors) > 0:
-                    article.author = bing_article.authors
-                if bing_article.publish_date is not None:
-                    formatted_date = bing_article.publish_date.strftime("%d-%b-%Y")
-                    article.publish_date = formatted_date
-                    article.year = bing_article.publish_date.year
-                if bing_article.top_image != '':
-                    article.image = bing_article.top_image
-                if bing_article.summary != '':
-                    article.summary = bing_article.summary
-                if len(bing_article.keywords) > 0:
-                    article.keywords = bing_article.keywords
-                if bing_article.source_url != '':
-                    article.source_url = bing_article.source_url
-                if bing_article.url != '':
-                    article.url = bing_article.url
-                if bing_article.html != '':
-                    article.html = bing_article.html
-                article.depth = 0
-                analyzed_articles.append(article)
-                i += 1
-    c += 1
-
-    readClaim.articles = analyzed_articles
-    for bing_article in readClaim.articles:
-        analyze_urls(bing_article, readClaim, 1)
+        analyzed_bing_res = check_BING_article_valid(bing_article,total_bing_articles,article_idx) 
+        if analyzed_bing_res != None:
+            final_bing_articles.append(analyzed_bing_res)
+        article_idx += 1
+    
+    readClaim.articles = final_bing_articles
+    print("# Relevant bing articles(final)"+ str(len(final_bing_articles)))
+    print("Relevant bing articles:", final_bing_articles)
+    print("PHASE 2 COMPLETE!")
+    
+    # for bing_article in readClaim.articles:
+    #     analyze_urls(bing_article, readClaim, 1)
     return write_json_visualization(param, readClaim)
 
 
