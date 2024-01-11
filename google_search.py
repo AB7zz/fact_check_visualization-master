@@ -93,7 +93,7 @@ def search_claim(param, claim):
     print("# Search results from bing: ", count_results)
     print("# Articles successfully downloaded and parsed from BING: ", len(articles))
     print("Articles from BING: ", articles)
-    print("PHASE 1: COMPLETE!")
+    print("PHASE 1: COMPLETE!\n\n")
     return articles,len(articles)
 
 def preprocess_url_text(text):
@@ -119,7 +119,7 @@ def check_BING_article_valid(bing_article,total_bing_articles,article_idx, readC
     
     article = Analyzed_article(bing_article.text)
     article.preprocessed_text = preprocess_article_text(bing_article.text)
-    article.most_relevant_sent = analyze_article(article.preprocessed_text, readClaim.text, 5)
+    article.most_relevant_sent = analyze_article(article.preprocessed_text, readClaim.text, 20)
     if article.most_relevant_sent is not None:
         if len(bing_article.authors) > 0:
             article.author = bing_article.authors
