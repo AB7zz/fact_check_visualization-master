@@ -73,7 +73,7 @@ def search_claim(param, claim):
     downloaded_articles_urls = []
     for result in soup.find_all('li', class_='b_algo'):
         count_results += 1
-        result_link = result.find('a')['href']
+        result_link = result.find('bing_article')['href']
         try:  
             article = Article(result_link)
             article.download()
@@ -108,54 +108,53 @@ def analyze_article(article, claim, n_relevant):
 def do_research(param, userClaim):
     readClaim = read_claim(userClaim)
     print("Research started ...")
-    c = 1
-    # printLightPurple(
-    #     " C L A I M     # " + str(c) + " ========================================================================")
-    relevant_articles = search_claim(param, readClaim.text)
     
+    # printLightPurple(
+    #     " C L bing_article I M     # " + str(c) + " ========================================================================")
+    
+    bing_articles_P1 = search_claim(param, readClaim.text)
     analyzed_articles = []
     i = 1
-
-    for a in relevant_articles:
+    c = 1
+    for bing_article in bing_articles_P1:
         # articledata.text because of newspaper package
-        if a.text != "":
-            # links = analyze_urls(a)
+        if bing_article.text != "":
+            # links = analyze_urls(bing_article)
             print("Processing article #" + str(i))  # NOTE: the article may or may not be added to the output file based on its length")
-            # just creates a article data structure and fills up artcle.text and article.id
+            # just creates bing_article article data structure and fills up artcle.text and article.id
 
-            article = Analyzed_article(a.text)
+            article = Analyzed_article(bing_article.text)
             # article.preprocessed_text just the articles text with . and no tabs
-            article.preprocessed_text = preprocess_article_text(a.text)
+            article.preprocessed_text = preprocess_article_text(bing_article.text)
 
             article.most_relevant_sent = analyze_article(article.preprocessed_text, readClaim.text,param['n_relevant_sent'])
             if article.most_relevant_sent is not None:
-                if len(a.authors) > 0:
-                    article.author = a.authors
-                if a.publish_date is not None:
-                    formatted_date = a.publish_date.strftime("%d-%b-%Y")
+                if len(bing_article.authors) > 0:
+                    article.author = bing_article.authors
+                if bing_article.publish_date is not None:
+                    formatted_date = bing_article.publish_date.strftime("%d-%b-%Y")
                     article.publish_date = formatted_date
-                    article.year = a.publish_date.year
-                if a.top_image != '':
-                    article.image = a.top_image
-                if a.summary != '':
-                    article.summary = a.summary
-                if len(a.keywords) > 0:
-                    article.keywords = a.keywords
-                if a.source_url != '':
-                    article.source_url = a.source_url
-                if a.url != '':
-                    article.url = a.url
-                if a.html != '':
-                    article.html = a.html
+                    article.year = bing_article.publish_date.year
+                if bing_article.top_image != '':
+                    article.image = bing_article.top_image
+                if bing_article.summary != '':
+                    article.summary = bing_article.summary
+                if len(bing_article.keywords) > 0:
+                    article.keywords = bing_article.keywords
+                if bing_article.source_url != '':
+                    article.source_url = bing_article.source_url
+                if bing_article.url != '':
+                    article.url = bing_article.url
+                if bing_article.html != '':
+                    article.html = bing_article.html
                 article.depth = 0
                 analyzed_articles.append(article)
                 i += 1
     c += 1
 
     readClaim.articles = analyzed_articles
-    print("Orignial articles count")
-    for a in readClaim.articles:
-        analyze_urls(a, readClaim, 1)
+    for bing_article in readClaim.articles:
+        analyze_urls(bing_article, readClaim, 1)
     return write_json_visualization(param, readClaim)
 
 
@@ -186,7 +185,7 @@ def search():
     )
     optparser.add_option(
         "-o", "--output", default="../output_data/claim",
-        help="path_to the output file, each file has a claim and its analysis"
+        help="path_to the output file, each file has bing_article claim and its analysis"
     )
     optparser.add_option(
         "-s", "--stop", default=1,
