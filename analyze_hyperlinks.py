@@ -117,7 +117,7 @@ def get_citation_articles(originalarticle, original_article_idx, total_original,
         
     print("# Relevant citation articles(final)"+ str(len(final_citation_articles)) + "/" + str(num_citation_articles))
     print("PHASE 4: COMPLETE!\n\n")
-    originalarticle.articleurls.append(final_citation_articles)
+    originalarticle.articleurls = final_citation_articles
 
     # print("PHASE 5: RECURSIVE CALLS FOR CITATION ARTICLES")
     # print("Recursive call for original article #" + str(original_article_idx))
