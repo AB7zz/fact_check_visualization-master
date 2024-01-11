@@ -71,6 +71,7 @@ def check_citation_article_valid(citation_article,total_citation_articles, citat
     article.preprocessed_text = preprocess_article_text(citation_article.text)
     article.most_relevant_sent = analyze_article(article.preprocessed_text, readClaim.text, 10)
     if article.most_relevant_sent is not None:
+        next(global_counter1)
         if len(citation_article.authors) > 0:
             article.author = citation_article.authors
         if citation_article.publish_date is not None:
