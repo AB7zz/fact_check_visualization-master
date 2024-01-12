@@ -223,7 +223,6 @@ def search():
     opts = optparser.parse_args()[0]
     param = parse_parameters(opts)
     json = do_research(param, userClaim)
-    console.log(json)
     return json
 
 
