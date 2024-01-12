@@ -22,7 +22,8 @@ def extract_articles_from_html(article):
         p_article_text = parser.getElementsByTagName('p')
         req = Request(
             url=article.url,
-            headers={'User-Agent': 'Mozilla/5.0'}
+            headers={'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5)\AppleWebKit/537.36 (KHTML, like Gecko) Safari/537.36'}
+            
         )
         webpage = urlopen(req).read()
         soup = BeautifulSoup(webpage, 'html.parser')
