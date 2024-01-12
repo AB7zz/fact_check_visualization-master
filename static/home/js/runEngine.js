@@ -22,7 +22,7 @@ search.addEventListener('click', function() {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({ value: value }),
-    timeout: 300000, // Set a timeout of 30 seconds (adjust as needed)
+    // timeout: 300000, // Set a timeout of 30 seconds (adjust as needed)
   })
     .then(function(response) {
       if (response.ok) {
