@@ -16,31 +16,27 @@ search.addEventListener('click', function() {
 
   localStorage.setItem('search', value);
 
-  fetch('/claimmap/claimmap/search', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ value: value }),
-    // timeout: 300000, // Set a timeout of 30 seconds (adjust as needed)
+fetch('/claimmap/claimmap/search', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({ value: value }),
+  // timeout: 300000, // Set a timeout of 30 seconds (adjust as needed)
+})
+  .then(function(response) {
+    console.log('Response status:', response.status); // Log response status
+    return response.text();
   })
-    .then(function(response) {
-      if (response.ok) {
-        return response.text();
-      } else {
-        throw new Error('Network response was not ok');
-      }
-    })
-    .then(function(result) {
-      if (result) {
-        localStorage.setItem('json', result);
-        
-        // Move the redirection here, inside the success callback
-        window.location.replace('claimmap/visualization');
-      }
-    })
-    .catch(function(error) {
-      console.log(error);
-    });
+  .then(function(result) {
+    console.log('Result:', result); // Log the result
+    if (result) {
+      localStorage.setItem('json', result);
+      window.location.replace('claimmap/visualization');
+    }
+  })
+  .catch(function(error) {
+    console.error('Fetch error:', error); // Log any fetch errors
+  });
 });
 
