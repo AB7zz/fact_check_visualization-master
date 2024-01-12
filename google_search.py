@@ -94,7 +94,7 @@ def search_claim(param, claim):
     print("# Search results from bing: ", count_results)
     print("# Articles successfully downloaded and parsed from BING: ", len(articles))
     print("PHASE 1: COMPLETE!\n\n")
-    return articles[:3],len(articles)
+    return articles,len(articles)
 
 def preprocess_url_text(text):
     processed_text = urllib.parse.quote_plus(text)
