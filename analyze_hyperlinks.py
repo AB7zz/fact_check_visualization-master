@@ -25,7 +25,7 @@ def extract_articles_from_html(article):
             headers={'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5)\AppleWebKit/537.36 (KHTML, like Gecko) Safari/537.36'}
             
         )
-        webpage = urlopen(req).read()
+        webpage = urlopen(req,timeout=2000).read()
         soup = BeautifulSoup(webpage, 'html.parser')
         
 
