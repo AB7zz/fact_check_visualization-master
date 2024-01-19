@@ -229,12 +229,14 @@ def search():
     json = do_research(param, userClaim)
     return json
 
+# Set the Flask app configuration
+app.config['TIMEOUT'] = timeout_seconds
 
 # it's so that you can run it with -i etc
 if __name__ == '__main__':
     # app.run(port=8000, debug=True)
     # app.run(host='192.168.1.10', port=8101, debug=True)
-    run_simple('192.168.1.10', 8101, app, use_reloader=True, use_debugger=True, use_evalex=True, threaded=True, processes=1, request_handler=None, static_files=None, passthrough_errors=False, ssl_context=None, **{'timeout': timeout_seconds})
+    app.run(host='192.168.1.10', port=8101, debug=True, use_reloader=True, use_debugger=True, use_evalex=True, threaded=True, processes=1)
 
 # html = requests.get(...).text
 # text = fulltext(html)
