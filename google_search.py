@@ -12,6 +12,10 @@ from print_colors import *
 # import settings
 from read_write import *
 from settings import global_counter1
+from werkzeug.serving import run_simple
+
+# Set the desired timeout value in seconds (e.g., 120 seconds)
+timeout_seconds = 120
 # from googlesearch import search
 
 nltk.download('punkt')
@@ -229,7 +233,8 @@ def search():
 # it's so that you can run it with -i etc
 if __name__ == '__main__':
     # app.run(port=8000, debug=True)
-    app.run(host='192.168.1.10', port=8101, debug=True)
+    # app.run(host='192.168.1.10', port=8101, debug=True)
+     run_simple('192.168.1.10', 8101, app, use_reloader=True, use_debugger=True, use_evalex=True, threaded=True, processes=1, request_handler=None, static_files=None, passthrough_errors=False, ssl_context=None, fd=None, **{'timeout': timeout_seconds})
 
 # html = requests.get(...).text
 # text = fulltext(html)
