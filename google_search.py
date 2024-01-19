@@ -15,7 +15,7 @@ from settings import global_counter1
 from werkzeug.serving import run_simple
 
 # Set the desired timeout value in seconds (e.g., 120 seconds)
-timeout_seconds = 120
+timeout_seconds = 2000
 # from googlesearch import search
 
 nltk.download('punkt')
