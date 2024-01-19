@@ -45,7 +45,7 @@ def extract_articles_from_html(article):
                 print(f"Error: Could not parse citation article:" + str(citation_url))
                 
         print("# Citation articles successfully downloaded from article: " + str(len(valid_citation_articles)) + "\n\n")
-        return valid_citation_articles[0:5], len(valid_citation_articles)
+        return valid_citation_articles[0:2], len(valid_citation_articles)
         
     except Exception as e:
         print(f"Original article could not be parsed for links")
@@ -120,13 +120,13 @@ def get_citation_articles(originalarticle, original_article_idx, total_original,
     print("PHASE 4: COMPLETE!\n\n")
     originalarticle.articleurls = final_citation_articles
 
-    # print("PHASE 5: RECURSIVE CALLS FOR CITATION ARTICLES")
-    # print("Recursive call for original article #" + str(original_article_idx))
+    print("PHASE 5: RECURSIVE CALLS FOR CITATION ARTICLES")
+    print("Recursive call for original article #" + str(original_article_idx))
     
-    # for final_citation_article in final_citation_articles:
-    #     get_citation_articles(final_citation_article, original_article_idx, total_original, readClaim, depth+1)
+    for final_citation_article in final_citation_articles:
+        get_citation_articles(final_citation_article, original_article_idx, total_original, readClaim, depth+1)
         
-    # print("PHASE 5: COMPLETE!\n\n")
+    print("PHASE 5: COMPLETE!\n\n")
 
         # for url in all_urls:
         #     retries = 0
