@@ -64,7 +64,7 @@ def parseAgain(url, article):
 def search_claim(param, claim):
     soup = None
     while soup == None:
-        print("PHASE 1: GETTING UPTO 40 RESULTS FROM BING")
+        print("PHASE 1: GETTING UPTO 25 RESULTS FROM BING")
         urls = []
         headers = {
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5)\AppleWebKit/537.36 (KHTML, like Gecko) Safari/537.36'}
@@ -116,7 +116,7 @@ def analyze_article(article, claim, n_relevant):
     if len(relevant_sentences) >= n_relevant:
         return relevant_sentences[0: n_relevant - 1], num_relevant_sentences
     else:
-        return None
+        return None,None
 
 def check_BING_article_valid(bing_article,total_bing_articles,article_idx, readClaim):
     print("Processing BING article #" + str(article_idx) + "/" + str(total_bing_articles)) 
