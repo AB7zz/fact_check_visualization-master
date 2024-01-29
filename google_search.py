@@ -115,7 +115,7 @@ def analyze_article(article, claim, n_relevant):
     # if more than 5 relevant searches get first 5
     print("# relevant sentences", num_relevant_sentences)
     if len(relevant_sentences) >= n_relevant:
-        return relevant_sentences[0: n_relevant - 1],num_relevant_sentences
+        return relevant_sentences[0: n_relevant - 1], num_relevant_sentences
     else:
         return None
 
@@ -145,10 +145,10 @@ def check_BING_article_valid(bing_article,total_bing_articles,article_idx, readC
         if bing_article.html != '':
             article.html = bing_article.html
         article.depth = 0
-        return article, num_relevant_sentences
+        return [article, num_relevant_sentences]
     else:
         print("Bing article"+str(article_idx)+"not relevant")
-        return None
+        return None, None
 
                 
 
@@ -164,13 +164,12 @@ def do_research(param, userClaim):
     final_bing_articles = []
     article_idx = 1
     for bing_article in bing_articles_P1:
-        analyzed_bing_res = check_BING_article_valid(bing_article,total_bing_articles,article_idx, readClaim) 
+        analyzed_bing_res, num_relevant_sentences  = check_BING_article_valid(bing_article,total_bing_articles,article_idx, readClaim) 
         if analyzed_bing_res != None:
-            final_bing_articles.append(analyzed_bing_res)
+            final_bing_articles.append([analyzed_bing_res,num_relevant_sentences])
         article_idx += 1
-    final_bing_articles.sort(key=lambda x: x[1], reverse=True)
-    
-    final_bing_articles = final_bing_articles[:10] 
+    final_bing_articles = [x[0] for x in sorted(final_bing_articles, key=lambda x: x[1], reverse=True)[:10]]
+
     print(final_bing_articles)
     
     end_time = time.time()
