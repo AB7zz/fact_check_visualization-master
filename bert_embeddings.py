@@ -96,7 +96,7 @@ def find_most_similar(article, claim):
     print("Finding most relevant sentences ...")
     claim_vector = get_sentence_vector(claim)
     # sentence_tokens = [sentencefromarticle, sentencefromarticle, sentencefromarticle]
-    sentence_tokens = sent_tokenize(article)
+    sentence_tokens = sent_tokenize(article[:511])
     #  if more than 5 sentences then only we
     if len(sentence_tokens) > 5:
         sentences = []
