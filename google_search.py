@@ -174,12 +174,15 @@ def do_research(param, userClaim):
     print("# Relevant bing articles(final)"+ str(len(final_bing_articles)))
     print("PHASE 2 COMPLETE!\n\n")
 
-    
+    start_time = time.time()
     print("PHASE 3: GETTING CITATION ARTICLES RECURSIVELY")
     article_idx = 1
     for bing_article in readClaim.articles:
         get_citation_articles(bing_article, article_idx, len(final_bing_articles), readClaim, 1)
         article_idx += 1
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+    print("Time taken to get citation articles recursively: ",elapsed_time)
     print("PHASE 3: COMPLETE!\n\n")
     
     return write_json_visualization(param, readClaim)
