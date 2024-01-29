@@ -12,7 +12,7 @@ from data_structures import Analyzed_article
 from settings import global_counter1
 from print_colors import *
 from google_search import *
-citation_articles_visited = 0
+
 def extract_articles_from_html(article):
     try:
         parser = AdvancedHTMLParser()
@@ -105,7 +105,6 @@ def get_citation_articles(originalarticle, original_article_idx, total_original,
     print("Original article link (or recursive original article): ", originalarticle.url + "\n")
     
     valid_citation_articles, num_citation_articles = extract_articles_from_html(originalarticle)
-    citation_articles_visited += num_citation_articles
     print("PHASE 4: CHECKING CITATION ARTICLES FOR RELEVANCY")
     final_citation_articles = []
     if num_citation_articles != 0:
@@ -127,7 +126,6 @@ def get_citation_articles(originalarticle, original_article_idx, total_original,
         get_citation_articles(final_citation_article, original_article_idx, total_original, readClaim, depth+1)
         
     print("PHASE 5: COMPLETE!\n\n")
-    print("total citation articles: ", citation_articles_visited)
 
         # for url in all_urls:
         #     retries = 0
