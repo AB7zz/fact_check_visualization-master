@@ -64,13 +64,13 @@ def analyze_article(article, claim, n_relevant):
     if len(relevant_sentences) > n_relevant:
         return relevant_sentences[0: n_relevant - 1], num_relevant_sentences
     else:
-        return None,None
+        return None, None
         
 def check_citation_article_valid(citation_article,total_citation_articles, citation_article_idx, readClaim, depth):
     print("Processing citation article #" + str(citation_article_idx) + "/" + str(total_citation_articles)) 
     article = Analyzed_article(citation_article.text)
     article.preprocessed_text = preprocess_article_text(citation_article.text)
-    article.most_relevant_sent = analyze_article(article.preprocessed_text, readClaim.text, 50)
+    article.most_relevant_sent, num_relevant_sentences = analyze_article(article.preprocessed_text, readClaim.text, 50)
     if article.most_relevant_sent is not None:
         next(global_counter1)
         if len(citation_article.authors) > 0:
