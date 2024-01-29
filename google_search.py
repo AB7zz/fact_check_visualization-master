@@ -13,6 +13,7 @@ from print_colors import *
 from read_write import *
 from settings import global_counter1
 from werkzeug.serving import run_simple
+from timeout_decorator import timeout
 
 # Set the desired timeout value in seconds (e.g., 120 seconds)
 timeout_seconds = 2000
@@ -193,6 +194,7 @@ def visualization():
     return render_template('visualization/index.html')
 
 @app.route('/claimmap/search', methods=['POST'])
+@timeout(3600, use_signals=False)
 def search():
     print('search is invoked')
     next(global_counter1)
