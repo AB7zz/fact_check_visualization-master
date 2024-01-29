@@ -168,7 +168,7 @@ def do_research(param, userClaim):
         article_idx += 1
     end_time = time.time()
     elapsed_time = end_time - start_time
-    print("Time taken to get relevant articles from bing: "elapsed_time)
+    print("Time taken to get relevant articles from bing: ",elapsed_time)
     
     readClaim.articles = final_bing_articles
     print("# Relevant bing articles(final)"+ str(len(final_bing_articles)))
