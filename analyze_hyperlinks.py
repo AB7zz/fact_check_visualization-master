@@ -12,7 +12,7 @@ from data_structures import Analyzed_article
 from settings import global_counter1
 from print_colors import *
 from google_search import *
-
+citation_articles_visited = 0
 def extract_articles_from_html(article):
     try:
         parser = AdvancedHTMLParser()
@@ -45,7 +45,7 @@ def extract_articles_from_html(article):
                 print(f"Error: Could not parse citation article:" + str(citation_url))
                 
         print("# Citation articles successfully downloaded from article: " + str(len(valid_citation_articles)) + "\n\n")
-        return valid_citation_articles[0:1], len(valid_citation_articles)
+        return valid_citation_articles, len(valid_citation_articles)
         
     except Exception as e:
         print(f"Original article could not be parsed for links")
@@ -70,7 +70,7 @@ def check_citation_article_valid(citation_article,total_citation_articles, citat
     print("Processing citation article #" + str(citation_article_idx) + "/" + str(total_citation_articles)) 
     article = Analyzed_article(citation_article.text)
     article.preprocessed_text = preprocess_article_text(citation_article.text)
-    article.most_relevant_sent = analyze_article(article.preprocessed_text, readClaim.text, 20)
+    article.most_relevant_sent = analyze_article(article.preprocessed_text, readClaim.text, 40)
     if article.most_relevant_sent is not None:
         next(global_counter1)
         if len(citation_article.authors) > 0:
@@ -105,7 +105,7 @@ def get_citation_articles(originalarticle, original_article_idx, total_original,
     print("Original article link (or recursive original article): ", originalarticle.url + "\n")
     
     valid_citation_articles, num_citation_articles = extract_articles_from_html(originalarticle)
-
+    citation_articles_visited += num_citation_articles
     print("PHASE 4: CHECKING CITATION ARTICLES FOR RELEVANCY")
     final_citation_articles = []
     if num_citation_articles != 0:
@@ -127,6 +127,7 @@ def get_citation_articles(originalarticle, original_article_idx, total_original,
         get_citation_articles(final_citation_article, original_article_idx, total_original, readClaim, depth+1)
         
     print("PHASE 5: COMPLETE!\n\n")
+    print("total citation articles: ", citation_articles_visited)
 
         # for url in all_urls:
         #     retries = 0
