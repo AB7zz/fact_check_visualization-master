@@ -69,7 +69,7 @@ def search_claim(param, claim):
         headers = {
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5)\AppleWebKit/537.36 (KHTML, like Gecko) Safari/537.36'}
     
-        num_results = 15
+        num_results = 25
         url = f'https://www.bing.com/search?q={preprocess_url_text(claim)}&count={num_results}'
     
         # url = 'https://www.bing.com/search?q=' + preprocess_article_text(claim)
@@ -114,7 +114,7 @@ def analyze_article(article, claim, n_relevant):
     # if more than 5 relevant searches get first 5
     print("# relevant sentences", num_relevant_sentences)
     if len(relevant_sentences) >= n_relevant:
-        return relevant_sentences[0: n_relevant - 1]
+        return relevant_sentences[0: n_relevant - 1],num_relevant_sentences
     else:
         return None
 
@@ -123,7 +123,7 @@ def check_BING_article_valid(bing_article,total_bing_articles,article_idx, readC
     
     article = Analyzed_article(bing_article.text)
     article.preprocessed_text = preprocess_article_text(bing_article.text)
-    article.most_relevant_sent = analyze_article(article.preprocessed_text, readClaim.text, 40)
+    article.most_relevant_sent, num_relevant_sentences = analyze_article(article.preprocessed_text, readClaim.text, 40)
     if article.most_relevant_sent is not None:
         if len(bing_article.authors) > 0:
             article.author = bing_article.authors
@@ -144,7 +144,7 @@ def check_BING_article_valid(bing_article,total_bing_articles,article_idx, readC
         if bing_article.html != '':
             article.html = bing_article.html
         article.depth = 0
-        return article
+        return article, num_relevant_sentences
     else:
         print("Bing article"+str(article_idx)+"not relevant")
         return None
@@ -157,7 +157,9 @@ def do_research(param, userClaim):
     print("Research started ...")
     start_time = time.time()
     bing_articles_P1,total_bing_articles = search_claim(param, readClaim.text)
+    
     print("PHASE 2: FILTERING BING ARTICLES BASED ON RELEVANCY")
+    
     final_bing_articles = []
     article_idx = 1
     for bing_article in bing_articles_P1:
@@ -165,6 +167,11 @@ def do_research(param, userClaim):
         if analyzed_bing_res != None:
             final_bing_articles.append(analyzed_bing_res)
         article_idx += 1
+    final_bing_articles.sort(key=lambda x: x[1], reverse=True)
+    
+    final_bing_articles = final_bing_articles[:10] 
+    print(final_bing_articles)
+    
     end_time = time.time()
     elapsed_time = end_time - start_time
     print("Time taken to get relevant articles from bing: ",elapsed_time)
