@@ -69,7 +69,7 @@ def search_claim(param, claim):
         headers = {
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5)\AppleWebKit/537.36 (KHTML, like Gecko) Safari/537.36'}
     
-        num_results = 20
+        num_results = 15
         url = f'https://www.bing.com/search?q={preprocess_url_text(claim)}&count={num_results}'
     
         # url = 'https://www.bing.com/search?q=' + preprocess_article_text(claim)
@@ -98,7 +98,7 @@ def search_claim(param, claim):
     print("# Search results from bing: ", count_results)
     print("# Articles successfully downloaded and parsed from BING: ", len(articles))
     print("PHASE 1: COMPLETE!\n\n")
-    return articles[0:6],len(articles)
+    return articles,len(articles)
 
 def preprocess_url_text(text):
     processed_text = urllib.parse.quote_plus(text)
@@ -123,7 +123,7 @@ def check_BING_article_valid(bing_article,total_bing_articles,article_idx, readC
     
     article = Analyzed_article(bing_article.text)
     article.preprocessed_text = preprocess_article_text(bing_article.text)
-    article.most_relevant_sent = analyze_article(article.preprocessed_text, readClaim.text, 20)
+    article.most_relevant_sent = analyze_article(article.preprocessed_text, readClaim.text, 40)
     if article.most_relevant_sent is not None:
         if len(bing_article.authors) > 0:
             article.author = bing_article.authors
@@ -155,9 +155,8 @@ def check_BING_article_valid(bing_article,total_bing_articles,article_idx, readC
 def do_research(param, userClaim):
     readClaim = read_claim(userClaim)
     print("Research started ...")
-
+    start_time = time.time()
     bing_articles_P1,total_bing_articles = search_claim(param, readClaim.text)
-    
     print("PHASE 2: FILTERING BING ARTICLES BASED ON RELEVANCY")
     final_bing_articles = []
     article_idx = 1
@@ -166,6 +165,9 @@ def do_research(param, userClaim):
         if analyzed_bing_res != None:
             final_bing_articles.append(analyzed_bing_res)
         article_idx += 1
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+    print("Time taken to get relevant articles from bing: "elapsed_time)
     
     readClaim.articles = final_bing_articles
     print("# Relevant bing articles(final)"+ str(len(final_bing_articles)))
