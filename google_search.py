@@ -147,7 +147,7 @@ def check_BING_article_valid(bing_article,total_bing_articles,article_idx, readC
         return [article, num_relevant_sentences]
     else:
         print("Bing article"+str(article_idx)+"not relevant")
-        return None
+        return None, None
 
                 
 
