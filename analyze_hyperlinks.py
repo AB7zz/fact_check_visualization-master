@@ -45,7 +45,7 @@ def extract_articles_from_html(article):
                 print(f"Error: Could not parse citation article:" + str(citation_url))
                 
         print("# Citation articles successfully downloaded from article: " + str(len(valid_citation_articles)) + "\n\n")
-        return valid_citation_articles[0:5], len(valid_citation_articles)
+        return valid_citation_articles, len(valid_citation_articles)
         
     except Exception as e:
         print(f"Original article could not be parsed for links")
@@ -62,9 +62,9 @@ def analyze_article(article, claim, n_relevant):
     relevant_sentences, num_relevant_sentences = find_most_similar(article, claim)
     print("# relevant sentences", num_relevant_sentences)
     if len(relevant_sentences) > n_relevant:
-        return relevant_sentences[0: n_relevant - 1]
+        return relevant_sentences[0: n_relevant - 1], num_relevant_sentences
     else:
-        return None
+        return None,None
         
 def check_citation_article_valid(citation_article,total_citation_articles, citation_article_idx, readClaim, depth):
     print("Processing citation article #" + str(citation_article_idx) + "/" + str(total_citation_articles)) 
@@ -92,10 +92,10 @@ def check_citation_article_valid(citation_article,total_citation_articles, citat
         if citation_article.html != '':
             article.html = citation_article.html
         article.depth = depth
-        return article
+        return [article, num_relevant_sentences]
     else:
         print("Citation article"+ str(citation_article_idx) +"not relevant")
-        return None
+        return None, None
 
 
 def get_citation_articles(originalarticle, original_article_idx, total_original, readClaim, depth):
@@ -110,11 +110,11 @@ def get_citation_articles(originalarticle, original_article_idx, total_original,
     if num_citation_articles != 0:
         citation_article_idx = 1
         for citation_article in valid_citation_articles:
-            analyzed_citation_res = check_citation_article_valid(citation_article, num_citation_articles, citation_article_idx, readClaim, depth) 
+            analyzed_citation_res, num_relevant_sentences  = check_citation_article_valid(citation_article, num_citation_articles, citation_article_idx, readClaim, depth) 
             if analyzed_citation_res != None:
-                final_citation_articles.append(analyzed_citation_res)
+                final_citation_articles.append([analyzed_citation_res, num_relevant_sentences])
             citation_article_idx += 1
-        
+    final_citation_articles =  [x[0] for x in sorted(final_citation_articles, key=lambda x: x[1], reverse=True)[:5]]
     print("# Relevant citation articles(final)"+ str(len(final_citation_articles)) + "/" + str(num_citation_articles))
     print("PHASE 4: COMPLETE!\n\n")
     originalarticle.articleurls = final_citation_articles
