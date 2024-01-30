@@ -128,6 +128,7 @@ def check_BING_article_valid(bing_article,total_bing_articles,article_idx, readC
     
     article = Analyzed_article(bing_article.text)
     article.preprocessed_text = preprocess_article_text(bing_article.text)
+    print('preproccessed text',article.preprocessed_text)
     article.most_relevant_sent, num_relevant_sentences = analyze_article(article.preprocessed_text, readClaim.text, 40)
     if article.most_relevant_sent is not None:
         if len(bing_article.authors) > 0:

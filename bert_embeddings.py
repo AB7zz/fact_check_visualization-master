@@ -103,7 +103,6 @@ def find_most_similar(article, claim):
         sentences = []
         for sent in sentence_tokens:
             if sent != '.':
-                sent = sent[:511]
                 s = Article_sent(sent)
                 s.vector = get_sentence_vector(s.text)
                 # checks sentences in the article with the sentences in the claim
