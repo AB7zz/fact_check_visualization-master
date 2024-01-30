@@ -71,7 +71,7 @@ def search_claim(param, claim):
         }
         
         num_results = 25
-        url = f'https://www.bing.com/search?q={preprocess_url_text(claim)}&count={num_results}'
+        url = f'https://www.bing.com/search?q={preprocess_url_text(claim)}'
         
         reqs = requests.get(url, headers=headers)
 
