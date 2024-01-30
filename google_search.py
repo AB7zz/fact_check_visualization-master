@@ -68,16 +68,19 @@ def search_claim(param, claim):
         print("PHASE 1: GETTING UPTO 25 RESULTS FROM BING")
         urls = []
         headers = {
-             'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.19582'}
-    
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.19582'
+        }
+        
         num_results = 25
         url = f'https://www.bing.com/search?q={preprocess_url_text(claim)}&count={num_results}'
-    
+        
+        reqs = requests.get(url, headers=headers)
+
         # url = 'https://www.bing.com/search?q=' + preprocess_article_text(claim)
     
         reqs = requests.get(url, headers=headers)
         soup = BeautifulSoup(reqs.text, 'html.parser')
-        print(soup)
+        print(soup.prettify())
     print('URL in bing', url)
     count_results = 0
     articles = []
