@@ -64,7 +64,7 @@ def parseAgain(url, article):
 
 def search_claim(param, claim):
     soup = None
-    while soup == None or (soup != None and soup.find_all('li', class_='b_algo') == None):
+    while soup == None:
         print("PHASE 1: GETTING UPTO 25 RESULTS FROM BING")
         urls = []
         headers = {
@@ -72,8 +72,8 @@ def search_claim(param, claim):
         }
         
         num_results = 25
-        url = f'https://www.bing.com/search?q={preprocess_url_text(claim)}'
-        
+        preprocessed_claim = preprocess_url_text(claim)
+        url = f'https://www.bing.com/search?q={preprocessed_claim}'
         reqs = requests.get(url, headers=headers)
 
         # url = 'https://www.bing.com/search?q=' + preprocess_article_text(claim)
