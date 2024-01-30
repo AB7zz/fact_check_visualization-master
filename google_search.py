@@ -84,7 +84,7 @@ def search_claim(param, claim):
     ol_results = soup.find('ol', id='b_results')
 
     if ol_results:
-        for result in ol_results.find_all('li', class_='b_algo')
+        for result in ol_results.find_all('li', class_='b_algo'):
             print("RESULT \n \n \n",result)
             count_results += 1
             result_link = result.find('a')['href']
