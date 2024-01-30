@@ -84,25 +84,20 @@ def search_claim(param, claim):
     count_results = 0
     articles = []
     downloaded_articles_urls = []
-    ol_results = soup.find('ol', id='b_results')
-
-    if ol_results:
-        for result in ol_results.find_all('li', class_='b_algo'):
-            print("RESULT \n \n \n",result)
-            count_results += 1
-            result_link = result.find('a')['href']
-            try:  
-                article = Article(result_link)
-                article.download()
-                article.parse()
-                if article.text != None:
-                    articles.append(article)
-            except:
-                printRed("Unable to download/parse the article: " + result_link)
-    else:
-        print("no ol with id b_results found")
-
     
+    for result in soup.find_all('li', class_='b_algo'):
+        print("RESULT \n \n \n",result)
+        count_results += 1
+        result_link = result.find('a')['href']
+        try:  
+            article = Article(result_link)
+            article.download()
+            article.parse()
+            if article.text != None:
+                articles.append(article)
+        except:
+            printRed("Unable to download/parse the article: " + result_link)
+
     print("# Search results from bing: ", count_results)
     print("# Articles successfully downloaded and parsed from BING: ", len(articles))
     print("PHASE 1: COMPLETE!\n\n")
