@@ -64,7 +64,7 @@ def parseAgain(url, article):
 
 def search_claim(param, claim):
     soup = None
-    while soup == None:
+    while soup == None or (soup != None and soup.find_all('li', class_='b_algo') == None):
         print("PHASE 1: GETTING UPTO 25 RESULTS FROM BING")
         urls = []
         headers = {
