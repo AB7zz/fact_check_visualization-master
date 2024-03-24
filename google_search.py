@@ -77,7 +77,6 @@ def search_claim(param, claim):
 
         # url = 'https://www.bing.com/search?q=' + preprocess_article_text(claim)
     
-        reqs = requests.get(url, headers=headers)
         soup = BeautifulSoup(reqs.text, 'html.parser')
         print(soup.prettify())
     print('URL in bing', url)
