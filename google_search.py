@@ -67,7 +67,7 @@ def search_claim(param, claim):
         print("PHASE 1: GETTING UPTO 25 RESULTS FROM BING")
         urls = []
         headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.19582'
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5)\AppleWebKit/537.36 (KHTML, like Gecko) Cafari/537.36''
         }
         
         num_results = 25
