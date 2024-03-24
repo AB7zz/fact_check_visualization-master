@@ -98,12 +98,10 @@ def find_most_similar(article, claim):
     claim_vector = get_sentence_vector(claim)
     # sentence_tokens = [sentencefromarticle, sentencefromarticle, sentencefromarticle]
     sentence_tokens = sent_tokenize(article)
-    print(sentence_tokens)
     #  if more than 5 sentences then only we
-    if len(sentence_tokens) > 0:
+    if len(sentence_tokens) > 5:
         sentences = []
         for sent in sentence_tokens:
-            print('sentence',sent)
             if sent != '.':
                 sent = sent[:551]
                 s = Article_sent(sent)
