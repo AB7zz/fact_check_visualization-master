@@ -125,7 +125,7 @@ def analyze_article(article, claim, n_relevant):
 
 def check_BING_article_valid(bing_article,total_bing_articles,article_idx, readClaim):
     print("Processing BING article #" + str(article_idx) + "/" + str(total_bing_articles)) 
-    
+    print("article text:",bing_article.text)
     article = Analyzed_article(bing_article.text)
     article.preprocessed_text = preprocess_article_text(bing_article.text)
     print('preproccessed text',article.preprocessed_text)
