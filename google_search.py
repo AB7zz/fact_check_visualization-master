@@ -95,7 +95,7 @@ def search_claim(param, claim):
             article.download()
             article.parse()
             if article.text != None:
-                print('articletext:',article.text)
+                print('articletext:',article.keywords)
                 articles.append(article.text)
         except:
             printRed("Unable to download/parse the article: " + result_link)
