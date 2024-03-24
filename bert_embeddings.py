@@ -99,7 +99,7 @@ def find_most_similar(article, claim):
     sentence_tokens = sent_tokenize(article)
     print("token length:",len(sentence_tokens))
     #  if more than 5 sentences then only we
-    if len(sentence_tokens) > 5:
+    if len(sentence_tokens) > 0:
         sentences = []
         for sent in sentence_tokens:
             if sent != '.':
