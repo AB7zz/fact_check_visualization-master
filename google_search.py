@@ -90,10 +90,11 @@ def search_claim(param, claim):
         count_results += 1
         result_link = result.find('a')['href']
         try:  
+            print('link:',result_link)
             article = Article(result_link)
             article.download()
             article.parse()
-            if article.text:
+            if article.text != None:
                 articles.append(article.text)
         except:
             printRed("Unable to download/parse the article: " + result_link)
