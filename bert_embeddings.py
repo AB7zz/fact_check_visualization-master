@@ -93,6 +93,7 @@ def get_sentence_vector(sentence):
 # returns relevant_sentences = [relevant sentences from the article in order of similarity]
 def find_most_similar(article, claim):
     relevant_sentences = []
+    print(article,claim)
     print("Finding most relevant sentences ...")
     claim_vector = get_sentence_vector(claim)
     # sentence_tokens = [sentencefromarticle, sentencefromarticle, sentencefromarticle]
