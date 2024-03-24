@@ -93,9 +93,8 @@ def search_claim(param, claim):
             article = Article(result_link)
             article.download()
             article.parse()
-            if article.text != None:
-                print("article text: ",article.text)
-                articles.append(article)
+            if article.text:
+                articles.append(article.text)
         except:
             printRed("Unable to download/parse the article: " + result_link)
 
@@ -125,7 +124,6 @@ def analyze_article(article, claim, n_relevant):
 
 def check_BING_article_valid(bing_article,total_bing_articles,article_idx, readClaim):
     print("Processing BING article #" + str(article_idx) + "/" + str(total_bing_articles)) 
-    print("article text:",bing_article.text)
     article = Analyzed_article(bing_article.text)
     article.preprocessed_text = preprocess_article_text(bing_article.text)
     print('preproccessed text',article.preprocessed_text)
@@ -169,6 +167,7 @@ def do_research(param, userClaim):
     final_bing_articles = []
     article_idx = 1
     for bing_article in bing_articles_P1:
+        print("article text:",bing_article.text)
         analyzed_bing_res, num_relevant_sentences  = check_BING_article_valid(bing_article,total_bing_articles,article_idx, readClaim) 
         if analyzed_bing_res != None:
             final_bing_articles.append([analyzed_bing_res,num_relevant_sentences])
