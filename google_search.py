@@ -96,8 +96,7 @@ def search_claim(param, claim):
             article.download()
             article.parse()
             if article.text != None:
-                print('articletext:',article.keywords)
-                articles.append(article.text)
+                articles.append(article)
         except:
             printRed("Unable to download/parse the article: " + result_link)
 
@@ -170,7 +169,6 @@ def do_research(param, userClaim):
     final_bing_articles = []
     article_idx = 1
     for bing_article in bing_articles_P1:
-        print("article text:",bing_article.text)
         analyzed_bing_res, num_relevant_sentences  = check_BING_article_valid(bing_article,total_bing_articles,article_idx, readClaim) 
         if analyzed_bing_res != None:
             final_bing_articles.append([analyzed_bing_res,num_relevant_sentences])
