@@ -87,7 +87,7 @@ def search_claim(param, claim):
     for result in soup.find_all('li', class_='b_algo'):
         print("RESULT \n \n \n",result)
         count_results += 1
-        result_link = result.find('a')['href']
+        result_link = result.find('a',class_='tilk')['href']
         try:  
             print('link:',result_link)
             article = Article(result_link)
